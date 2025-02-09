@@ -1,6 +1,6 @@
 ---
 title: Hello World
-description: Welcome to Hugo Theme Stack
+description: Welcome everyone
 slug: hello-world
 date: 2025-02-09 00:00:00+0000
 image: cover.jpg
