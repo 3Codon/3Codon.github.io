@@ -1,5 +1,5 @@
 # Change baseurl before deploy
-baseurl = "3Codon.github.io"
+baseurl = "https://3codon.github.io/"
 languageCode = "en-us"
 title = "3Codon"
 
