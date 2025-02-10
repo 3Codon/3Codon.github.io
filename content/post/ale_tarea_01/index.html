@@ -26,8 +26,14 @@ tags:
 <p>• Answer the following questions</p>
 <div id="what-does-rg-stand-for" class="section level3">
 <h3>What does RG stand for?</h3>
-<p><strong>Sgam</strong>: It means read group, wich in turn indicates the number of reads for a specific sample. Its important to mention that when multiplexing in a single lane, each library or sample has its own read group. The relevance of having read groups from the same sample in different lanes and flow cells is to be able to discern which part of the error is due to the sequenciator or other circumnstances (batch effect).
-Ref: <a href="https://support.illumina.com/help/BS_App_MDProcessor_Online_1000000007932/Content/Source/Informatics/BAM-Format.htm" class="uri">https://support.illumina.com/help/BS_App_MDProcessor_Online_1000000007932/Content/Source/Informatics/BAM-Format.htm</a>, <a href="https://gatk.broadinstitute.org/hc/en-us/articles/360035890671-Read-groups" class="uri">https://gatk.broadinstitute.org/hc/en-us/articles/360035890671-Read-groups</a></p>
+<p><strong>Sgam</strong>: It means read group, wich in turn indicates the number of reads for a specific sample. Its important to mention that when multiplexing in a single lane, each library or sample has its own read group. The relevance of having read groups from the same sample in different lanes and flow cells is to be able to discern which part of the error is due to the sequenciator or other circumnstances (batch effect).</p>
+<p><strong>Ferro:</strong>
+The <span class="citation">@RG</span> stand has this information:</p>
+<p>ID: Is a read group identifier. Each <span class="citation">@RG</span> line must have a unique ID.
+The value of this ID is used in the RG tags of alignment record labels.
+When merging the SAM files for collision control you can modify the IDs.</p>
+<p>Ref: <a href="https://support.illumina.com/help/BS_App_MDProcessor_Online_1000000007932/Content/Source/Informatics/BAM-Format.htm" class="uri">https://support.illumina.com/help/BS_App_MDProcessor_Online_1000000007932/Content/Source/Informatics/BAM-Format.htm</a>, <a href="https://gatk.broadinstitute.org/hc/en-us/articles/360035890671-Read-groups" class="uri">https://gatk.broadinstitute.org/hc/en-us/articles/360035890671-Read-groups</a>
+<a href="https://samtools.github.io/hts-specs/SAMv1.pdf" class="uri">https://samtools.github.io/hts-specs/SAMv1.pdf</a></p>
 <p><strong>Suazo:</strong></p>
 <pre class="bash"><code>samtools view -H NA20538.bam | grep &#39;^@RG&#39;
 @RG	ID:ERR003612	PL:ILLUMINA	LB:g1k-sc-NA20538-TOS-1	PI:2000	DS:SRP000540	SM:NA20538	CN:SC
@@ -52,6 +58,7 @@ Ref: <a href="https://support.illumina.com/help/BS_App_MDProcessor_Online_100000
 </div>
 <div id="what-is-the-sequencing-platform" class="section level3">
 <h3>What is the sequencing platform?</h3>
+<pre class="bash"><code>default_platform=ILLUMINA</code></pre>
 <blockquote>
 <p>Hint: you want to use samtools. Files are huge so remember to pipe.
 samtools view -H NA20538.bam | less -S</p>
@@ -59,9 +66,14 @@ samtools view -H NA20538.bam | less -S</p>
 </div>
 <div id="what-version-of-the-human-assembly-was-used-to-perform-the-alignments" class="section level3">
 <h3>What version of the human assembly was used to perform the alignments?</h3>
+<p><strong>Ferro:</strong></p>
 </div>
 <div id="what-programs-were-used-to-create-this-bam-file" class="section level3">
 <h3>What programs were used to create this BAM file?</h3>
+<pre class="bash"><code>@PG     ID:GATK IndelRealigner  VN:1.0.4487     CL:SNPsFileForDebugging=null targetIntervals=/lustre/scratch105/projects/g1k/ref/broad_rec...
+@PG     ID:GATK TableRecalibration      VN:1.0.4487     CL:output_bam=null window_size_nqs=5 force_read_group=null smoothing=1 default_pla...
+</code></pre>
+<p>The Programs used were GATK IndelRealigner and GATK TableRecalibration</p>
 </div>
 <div id="what-version-of-bwa-was-used-to-align-the-reads" class="section level3">
 <h3>What version of bwa was used to align the reads?</h3>
