@@ -110,7 +110,23 @@ The name of the first read is ERR003814.1408899
 
 ### What position does the alignment of the read start at?
 
+**Suazo:**
+
+```{bash, eval = F}
+ERR003814.1408899       163     1       19999970        23      37M     =       20000147        213     GGTGGGTGGATCACCTGAGATCGGGAGTTTGAGA
+```
+
+The position of the alignment of the read start at 19999970
+
+
 ### What is the mapping quality of the first read?
+
+**Suazo:**
+```{bash, eval = F}
+ERR003814.1408899       163     1       19999970        23      37M     =       20000147        213     GGTGGGTGGATCACCTGAGATCGGGAGTTTGAGA
+```
+
+The mapping quality of the first read is 23
 
 ## Practical bcf
 > Now use file 1kg.bcf
