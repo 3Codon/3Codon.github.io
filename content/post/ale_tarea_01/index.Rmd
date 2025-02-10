@@ -49,6 +49,10 @@ When merging the SAM files for collision control you can modify the IDs.
 
 BC (*barcode*): Is a sequence that identify the library or the sample. It value 
 If the sample or library has several barcodes, it is recommended to concatenated all the barcodes with hyphens ("-")
+
+CN: Name of sequencing center producing the read.
+DS: It is the description.
+
 Ref: <https://support.illumina.com/help/BS_App_MDProcessor_Online_1000000007932/Content/Source/Informatics/BAM-Format.htm>, <https://gatk.broadinstitute.org/hc/en-us/articles/360035890671-Read-groups>
 <https://samtools.github.io/hts-specs/SAMv1.pdf>
 
@@ -88,6 +92,7 @@ samtools view -H NA20538.bam | less -S
 ### What version of the human assembly was used to perform the alignments?
 
 **Ferro:** 
+
 
 ### What programs were used to create this BAM file?
 
