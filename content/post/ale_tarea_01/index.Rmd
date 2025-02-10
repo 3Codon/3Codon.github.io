@@ -28,16 +28,7 @@ tags:
 ### What does RG stand for?
 
 **Sgam**: It means read group, wich in turn indicates the number of reads for a specific sample. Its important to mention that when multiplexing in a single lane, each library or sample has its own read group. The relevance of having read groups from the same sample in different lanes and flow cells is to be able to discern which part of the error is due to the sequenciator or other circumnstances (batch effect).
-
-**Ferro:** 
-The @RG stand has this information: 
-
-ID: Is a read group identifier. Each @RG line must have a unique ID.
-The value of this ID is used in the RG tags of alignment record labels.
-When merging the SAM files for collision control you can modify the IDs.
-
 Ref: <https://support.illumina.com/help/BS_App_MDProcessor_Online_1000000007932/Content/Source/Informatics/BAM-Format.htm>, <https://gatk.broadinstitute.org/hc/en-us/articles/360035890671-Read-groups>
-<https://samtools.github.io/hts-specs/SAMv1.pdf>
 
 **Suazo:** 
 
@@ -63,27 +54,16 @@ samtools view -H NA20538.bam | grep '^@RG'
 
 ### What is the lane ID? ("Lane” is the basic independent run of a high- throughput sequencing machine. For Illumina machines, this is the physical sequencing lane. Reads from one lane are identified by the same read group ID and the information about lanes can be found in the header in lines starting with "@RG".)
 
-### What is the sequencing platform?
+We suppose that the Lane ID in this case is the tag ID, which does not repeat.  According to <https://gatk.broadinstitute.org/hc/en-us/articles/360035890671-Read-groups>, there could be multiplexing in each lane, and for that reason i'm confused with the definition that all samples of a lane are represented by the same RG.
 
-```{bash, eval = FALSE}
-default_platform=ILLUMINA
-```
+### What is the sequencing platform?
 
 > Hint: you want to use samtools. Files are huge so remember to pipe.
 samtools view -H NA20538.bam | less -S
 
 ### What version of the human assembly was used to perform the alignments?
-**Ferro:** 
 
 ### What programs were used to create this BAM file?
-
-```{bash, eval = F}
-@PG     ID:GATK IndelRealigner  VN:1.0.4487     CL:SNPsFileForDebugging=null targetIntervals=/lustre/scratch105/projects/g1k/ref/broad_rec...
-@PG     ID:GATK TableRecalibration      VN:1.0.4487     CL:output_bam=null window_size_nqs=5 force_read_group=null smoothing=1 default_pla...
-
-```
-
-The Programs used were GATK IndelRealigner and GATK TableRecalibration
 
 ### What version of bwa was used to align the reads?
 
