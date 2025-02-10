@@ -58,6 +58,8 @@ We suppose that the Lane ID in this case is the tag ID, which does not repeat.  
 
 ### What is the sequencing platform?
 
+Illumina, represented by the tag PL
+
 > Hint: you want to use samtools. Files are huge so remember to pipe.
 samtools view -H NA20538.bam | less -S
 
@@ -120,6 +122,7 @@ The mapping quality of the first read is 23
 > Now use file 1kg.bcf
 
 ### What is a bcf?
+A bcf is like a vcf, but in binary, in which the fields are arranged for fast access. They store information about variants in read alignments.
 
 ### Can you convert bcf to vcf using bcftools? How?
 
