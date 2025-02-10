@@ -26,13 +26,21 @@ tags:
 <p>• Answer the following questions</p>
 <div id="what-does-rg-stand-for" class="section level3">
 <h3>What does RG stand for?</h3>
-<p><strong>Sgam</strong>: It means read group, wich in turn indicates the number of reads for a specific sample. Its important to mention that when multiplexing in a single lane, each library or sample has its own read group. The relevance of having read groups from the same sample in different lanes and flow cells is to be able to discern which part of the error is due to the sequenciator or other circumnstances (batch effect).
-Ref: <a href="https://support.illumina.com/help/BS_App_MDProcessor_Online_1000000007932/Content/Source/Informatics/BAM-Format.htm" class="uri">https://support.illumina.com/help/BS_App_MDProcessor_Online_1000000007932/Content/Source/Informatics/BAM-Format.htm</a>, <a href="https://gatk.broadinstitute.org/hc/en-us/articles/360035890671-Read-groups" class="uri">https://gatk.broadinstitute.org/hc/en-us/articles/360035890671-Read-groups</a></p>
+<p><strong>Sgam</strong>: It means read group, wich in turn indicates the number of reads for a specific sample. Its important to mention that when multiplexing in a single lane, each library or sample has its own read group. The relevance of having read groups from the same sample in different lanes and flow cells is to be able to discern which part of the error is due to the sequenciator or other circumnstances (batch effect).</p>
 <p><strong>Ferro:</strong>
 The <span class="citation">@RG</span> stand has this information:</p>
 <p>ID: Is a read group identifier. Each <span class="citation">@RG</span> line must have a unique ID.
 The value of this ID is used in the RG tags of alignment record labels.
-When merging the SAM files for collision control you can modify the IDs.
+When merging the SAM files for collision control you can modify the IDs.</p>
+<p>BC (<em>barcode</em>): Identifies the sample or the library</p>
+<p>Ref: <a href="https://support.illumina.com/help/BS_App_MDProcessor_Online_1000000007932/Content/Source/Informatics/BAM-Format.htm" class="uri">https://support.illumina.com/help/BS_App_MDProcessor_Online_1000000007932/Content/Source/Informatics/BAM-Format.htm</a>, <a href="https://gatk.broadinstitute.org/hc/en-us/articles/360035890671-Read-groups" class="uri">https://gatk.broadinstitute.org/hc/en-us/articles/360035890671-Read-groups</a></p>
+<p><strong>Ferro:</strong>
+The <span class="citation">@RG</span> stand has this information:</p>
+<p>ID: Is a read group identifier. Each <span class="citation">@RG</span> line must have a unique ID.
+The value of this ID is used in the RG tags of alignment record labels.
+When merging the SAM files for collision control you can modify the IDs.</p>
+<p>BC (<em>barcode</em>): Is a sequence that identify the library or the sample. It value
+If the sample or library has several barcodes, it is recommended to concatenated all the barcodes with hyphens (“-”)
 Ref: <a href="https://support.illumina.com/help/BS_App_MDProcessor_Online_1000000007932/Content/Source/Informatics/BAM-Format.htm" class="uri">https://support.illumina.com/help/BS_App_MDProcessor_Online_1000000007932/Content/Source/Informatics/BAM-Format.htm</a>, <a href="https://gatk.broadinstitute.org/hc/en-us/articles/360035890671-Read-groups" class="uri">https://gatk.broadinstitute.org/hc/en-us/articles/360035890671-Read-groups</a>
 <a href="https://samtools.github.io/hts-specs/SAMv1.pdf" class="uri">https://samtools.github.io/hts-specs/SAMv1.pdf</a></p>
 <p><strong>Suazo:</strong></p>
