@@ -137,17 +137,26 @@ ERR003814.1408899</code></pre>
 <blockquote>
 <p>Using samtools stats answer</p>
 </blockquote>
+<p><code>samtools stats NA20538.bam | grep ^SN</code></p>
 <div id="what-is-the-total-number-of-reads" class="section level3">
 <h3>What is the total number of reads?</h3>
+<p><strong>Suazo:</strong></p>
+<pre class="bash"><code>SN	raw total sequences:	347367	# excluding supplementary and secondary reads</code></pre>
 </div>
 <div id="what-proportion-of-the-reads-were-mapped" class="section level3">
 <h3>What proportion of the reads were mapped?</h3>
-</div>
-<div id="how-many-reads-were-mapped-to-a-different-chromosome" class="section level3">
-<h3>How many reads were mapped to a different chromosome?</h3>
+<p><strong>Suazo:</strong></p>
+<pre class="bash"><code>SN	reads mapped:	323966</code></pre>
+<p>The proportion of the reads that were mapped is 323966/347367 = 0.932
+### How many reads were mapped to a different chromosome?</p>
+<pre class="bash"><code>SN	pairs on different chromosomes:	4055</code></pre>
+<p>There were 4055 reads mapped to a different chromosome</p>
 </div>
 <div id="what-is-the-insert-size-mean-and-standard-deviation" class="section level3">
 <h3>What is the insert size mean and standard deviation?</h3>
+<pre class="bash"><code>SN	insert size average:	190.3
+SN	insert size standard deviation:	136.4</code></pre>
+<p>The insert size mean is 190.3 and the standard deviation is 136.4</p>
 </div>
 <div id="hint-options--f-secondary" class="section level3">
 <h3>Hint: options -F SECONDARY</h3>
