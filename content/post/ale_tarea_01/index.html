@@ -70,6 +70,7 @@ samtools view -H NA20538.bam | less -S</p>
 </div>
 <div id="what-programs-were-used-to-create-this-bam-file" class="section level3">
 <h3>What programs were used to create this BAM file?</h3>
+<p><strong>Suazo:</strong></p>
 <pre class="bash"><code>@PG     ID:GATK IndelRealigner  VN:1.0.4487     CL:SNPsFileForDebugging=null targetIntervals=/lustre/scratch105/projects/g1k/ref/broad_rec...
 @PG     ID:GATK TableRecalibration      VN:1.0.4487     CL:output_bam=null window_size_nqs=5 force_read_group=null smoothing=1 default_pla...
 </code></pre>
@@ -77,9 +78,16 @@ samtools view -H NA20538.bam | less -S</p>
 </div>
 <div id="what-version-of-bwa-was-used-to-align-the-reads" class="section level3">
 <h3>What version of bwa was used to align the reads?</h3>
+<p><strong>Suazo:</strong></p>
+<pre class="bash"><code>@PG     ID:bwa  VN:0.5.5</code></pre>
+<p>The version of bwa used was 0.5.5</p>
 </div>
 <div id="what-is-the-name-of-the-first-read" class="section level3">
 <h3>What is the name of the first read?</h3>
+<p><strong>Suazo:</strong></p>
+<pre class="bash"><code> samtools view NA20538.bam | grep -m 1 &quot;^ERR&quot; | awk &#39;{print $1}&#39;
+ERR003814.1408899</code></pre>
+<p>The name of the first read is ERR003814.1408899</p>
 </div>
 <div id="what-position-does-the-alignment-of-the-read-start-at" class="section level3">
 <h3>What position does the alignment of the read start at?</h3>
