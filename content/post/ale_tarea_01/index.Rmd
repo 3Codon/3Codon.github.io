@@ -32,6 +32,9 @@ Ref: <https://support.illumina.com/help/BS_App_MDProcessor_Online_1000000007932/
 
 Suazo: 
 
+
+Ferro es choto
+
 ### What is the lane ID? ("Lane” is the basic independent run of a high- throughput sequencing machine. For Illumina machines, this is the physical sequencing lane. Reads from one lane are identified by the same read group ID and the information about lanes can be found in the header in lines starting with "@RG".)
 
 ### What is the sequencing platform?
