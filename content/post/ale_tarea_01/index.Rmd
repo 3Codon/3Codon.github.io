@@ -148,7 +148,7 @@ A bcf is like a vcf, but in binary, in which the fields are arranged for fast ac
 
 ## Practical stats
 
-### Using samtools stats answer
+> Using samtools stats answer
 
 ### What is the total number of reads?
  
