@@ -40,8 +40,10 @@ The <span class="citation">@RG</span> stand has this information:</p>
 The value of this ID is used in the RG tags of alignment record labels.
 When merging the SAM files for collision control you can modify the IDs.</p>
 <p>BC (<em>barcode</em>): Is a sequence that identify the library or the sample. It value
-If the sample or library has several barcodes, it is recommended to concatenated all the barcodes with hyphens (“-”)
-Ref: <a href="https://support.illumina.com/help/BS_App_MDProcessor_Online_1000000007932/Content/Source/Informatics/BAM-Format.htm" class="uri">https://support.illumina.com/help/BS_App_MDProcessor_Online_1000000007932/Content/Source/Informatics/BAM-Format.htm</a>, <a href="https://gatk.broadinstitute.org/hc/en-us/articles/360035890671-Read-groups" class="uri">https://gatk.broadinstitute.org/hc/en-us/articles/360035890671-Read-groups</a>
+If the sample or library has several barcodes, it is recommended to concatenated all the barcodes with hyphens (“-”)</p>
+<p>CN: Name of sequencing center producing the read.
+DS: It is the description.</p>
+<p>Ref: <a href="https://support.illumina.com/help/BS_App_MDProcessor_Online_1000000007932/Content/Source/Informatics/BAM-Format.htm" class="uri">https://support.illumina.com/help/BS_App_MDProcessor_Online_1000000007932/Content/Source/Informatics/BAM-Format.htm</a>, <a href="https://gatk.broadinstitute.org/hc/en-us/articles/360035890671-Read-groups" class="uri">https://gatk.broadinstitute.org/hc/en-us/articles/360035890671-Read-groups</a>
 <a href="https://samtools.github.io/hts-specs/SAMv1.pdf" class="uri">https://samtools.github.io/hts-specs/SAMv1.pdf</a></p>
 <p><strong>Suazo:</strong></p>
 <pre class="bash"><code>samtools view -H NA20538.bam | grep &#39;^@RG&#39;
@@ -77,6 +79,15 @@ samtools view -H NA20538.bam | less -S</p>
 <div id="what-version-of-the-human-assembly-was-used-to-perform-the-alignments" class="section level3">
 <h3>What version of the human assembly was used to perform the alignments?</h3>
 <p><strong>Ferro:</strong></p>
+<pre class="bash"><code>samtools view -H NA20538.bam | head -n 2
+@HD	VN:1.0	GO:none	SO:coordinate
+@SQ	SN:1	LN:249250621	AS:NCBI37	UR:ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/technical/reference/human_g1k_v37.fasta.gz	M5:1b22b98cdeb4a9304cb5d48026a85128	SP:Human
+</code></pre>
+<pre class="bash"><code>samtools view -H NA20538.bam | head -n 2
+@HD	VN:1.0	GO:none	SO:coordinate
+@SQ	SN:1	LN:249250621	AS:NCBI37	UR:ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/technical/reference/human_g1k_v37.fasta.gz	M5:1b22b98cdeb4a9304cb5d48026a85128	SP:Human
+</code></pre>
+<p>In this example, we can see that the Reference Sequence Dictionary (<span class="citation">@SQ</span>) has a part called, Genome Assembly Identifier (<span class="citation">@AS</span>) that indicates that the reference genome used in this BAM file is the GRCh37 version.</p>
 </div>
 <div id="what-programs-were-used-to-create-this-bam-file" class="section level3">
 <h3>What programs were used to create this BAM file?</h3>
