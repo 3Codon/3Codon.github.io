@@ -28,6 +28,16 @@ tags:
 ### What does RG stand for?
 
 **Sgam**: It means read group, wich in turn indicates the number of reads for a specific sample. Its important to mention that when multiplexing in a single lane, each library or sample has its own read group. The relevance of having read groups from the same sample in different lanes and flow cells is to be able to discern which part of the error is due to the sequenciator or other circumnstances (batch effect).
+
+**Ferro:** 
+The @RG stand has this information: 
+
+ID: Is a read group identifier. Each @RG line must have a unique ID.
+The value of this ID is used in the RG tags of alignment record labels.
+When merging the SAM files for collision control you can modify the IDs.
+
+BC (*barcode*): Identifies the sample or the library 
+
 Ref: <https://support.illumina.com/help/BS_App_MDProcessor_Online_1000000007932/Content/Source/Informatics/BAM-Format.htm>, <https://gatk.broadinstitute.org/hc/en-us/articles/360035890671-Read-groups>
 
 **Suazo:** 
