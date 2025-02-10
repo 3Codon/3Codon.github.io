@@ -30,6 +30,8 @@ tags:
 **Sgam**: It means read group, wich in turn indicates the number of reads for a specific sample. Its important to mention that when multiplexing in a single lane, each library or sample has its own read group. The relevance of having read groups from the same sample in different lanes and flow cells is to be able to discern which part of the error is due to the sequenciator or other circumnstances (batch effect).
 Ref: <https://support.illumina.com/help/BS_App_MDProcessor_Online_1000000007932/Content/Source/Informatics/BAM-Format.htm>, <https://gatk.broadinstitute.org/hc/en-us/articles/360035890671-Read-groups>
 
+Suazo: 
+
 ### What is the lane ID? ("Lane” is the basic independent run of a high- throughput sequencing machine. For Illumina machines, this is the physical sequencing lane. Reads from one lane are identified by the same read group ID and the information about lanes can be found in the header in lines starting with "@RG".)
 
 ### What is the sequencing platform?
