@@ -101,15 +101,6 @@ samtools view -H NA20538.bam | head -n 2
 ```
 
 
-
-```{bash, eval = FALSE}
-samtools view -H NA20538.bam | head -n 2
-@HD	VN:1.0	GO:none	SO:coordinate
-@SQ	SN:1	LN:249250621	AS:NCBI37	UR:ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/technical/reference/human_g1k_v37.fasta.gz	M5:1b22b98cdeb4a9304cb5d48026a85128	SP:Human
-
-```
-
-
 In this example, we can see that the Reference Sequence Dictionary (@SQ) has a part called, Genome Assembly Identifier (@AS) that indicates that the reference genome used in this BAM file is the GRCh37 version.
 
 
