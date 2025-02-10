@@ -171,14 +171,41 @@ The mapping quality of the first read is 23
 > Now use file 1kg.bcf
 
 ### What is a bcf?
-A bcf is like a vcf, but in binary, in which the fields are arranged for fast access. They store information about variants in read alignments.
+**Sofia:** A bcf is like a vcf, but in binary, in which the fields are arranged for fast access. They store information about variants in read alignments.
 
-### Can you convert bcf to vcf using bcftools? How?
+### Can you convert bcf to vcf using bcftools? 
+
+**Sofia**: Yes, with a command in bcftools called view. View has an -O option which can be transformed into -Oz to transsform a bcf file into a compressed vcf; it also can be -Ov, which transforms a bcf file into a uncompressed vcf. For example: 
+```{bash}
+[sgamino@compute-00-05 format_qc]$ bcftools view -O v -o output.vcf 1kg.bcf 
+```
 
 ### How many samples are in the BCF? Hint: use the -l option.
 
+
+```{bash}
+[sgamino@compute-00-05 format_qc]$ grep -v "#" output.vcf | wc -l
+10000
+```
+
+There are 10000 samples.
+
+
 ### What is the genotype of the sample HG00107 at the position 20:24019472? 
 >Hint: use the combination of -r, -s, and -f '[ %TGT]\n' options.
+
+
+```{bash}
+[sgamino@compute-00-05 format_qc]$ awk '{for(i=1; i<=NF; i++) if ($i == "HG00107") print i}' output.vcf
+19
+[sgamino@compute-00-05 format_qc]$ grep "24019472" output.vcf | awk '{print $19}' 
+0/1:235,0,148:16
+
+```
+
+The genotype of the sample HG00107 in the locus 20:24019472 is a heterozygous, with the variant 1. The genotype is not phased, so we don't know from which of the parents each allele comes from.
+
+
 
 ### How many positions there are with more than 10 alternate alleles? (See the INFO/AC tag.) Hint: use the -i filtering option.
 
