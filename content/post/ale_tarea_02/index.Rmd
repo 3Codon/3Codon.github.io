@@ -18,7 +18,7 @@ tags:
 ---
 
 ## • Using bwa index de e. coli genome
-
+a
 **Suazo:**
 
 ```{bash, eval = F}
