@@ -164,6 +164,7 @@ The mapping quality of the first read is 23
 ### How many samples are in the BCF? Hint: use the -l option.
 
 **Sofia**:
+
 ```{bash}
 [sgamino@compute-00-05 format_qc]$ grep -v "#" output.vcf | wc -l
 10000
@@ -176,6 +177,7 @@ There are 10000 samples.
 >Hint: use the combination of -r, -s, and -f '[ %TGT]\n' options.
 
 **Sofia**:
+
 ```{bash}
 [sgamino@compute-00-05 format_qc]$ awk '{for(i=1; i<=NF; i++) if ($i == "HG00107") print i}' output.vcf
 19
@@ -187,6 +189,7 @@ There are 10000 samples.
 The genotype of the sample HG00107 in the locus 20:24019472 is a heterozygous, with the variant 1. The genotype is not phased, so we don't know from which of the parents each allele comes from. But we can search this information if we have a vcf for the parents and then we use the tool *isec* from **bcftools** to do phasing parental.
 
 Ref:<https://samtools.github.io/bcftools/bcftools.html>
+
 
 ### How many positions there are with more than 10 alternate alleles? (See the INFO/AC tag.) Hint: use the -i filtering option.
 
@@ -227,7 +230,7 @@ Ref:<https://samtools.github.io/bcftools/bcftools.html#view>
 
 ### List all positions where HG00107 has a non-reference genotype and the read depth is bigger than 10.
 
-**Ferro:** 
+**Ferro:**
 
 ```{bash, eval = F}
 bcftools view -s HG00107 -i 'GT!="0/0" && GT!="./." && FORMAT/DP>10' input.vcf.gz | wc -l
