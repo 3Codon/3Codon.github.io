@@ -61,7 +61,7 @@ SRR576933.3	0	NC_000913.2	1572373	60	36M	*	0	0	AGTGCGATGCCGTTCACCCGGTTTTCTTTATCA
 
 > • Please analyze the quality of the data, try using fastqc ;)
 
-> Here you go, [fastqc]()
+> Here you go, [fastqc](https://3codon.github.io/p/)
 
 **Sofi**: 
 
