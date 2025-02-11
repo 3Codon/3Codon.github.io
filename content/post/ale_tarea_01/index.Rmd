@@ -96,6 +96,8 @@ In this example, we can see that the Reference Sequence Dictionary (@SQ) has a p
 
 ### What programs were used to create this BAM file?
 
+`samtools view -H NA20538.bam | less -S`
+
 **Suazo:** 
 
 ```{bash, eval = F}
@@ -128,6 +130,8 @@ ERR003814.1408899
 The name of the first read is ERR003814.1408899 
 
 ### What position does the alignment of the read start at?
+
+`samtools view NA20538.bam | less -S`
 
 **Suazo:**
 
