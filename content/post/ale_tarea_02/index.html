@@ -76,14 +76,46 @@ SRR576933.2	0	NC_000913.2	147284	60	36M	*	0	0	TGGAGGCTGACCACGATAAGCTGCCGCTGGTGGT
 SRR576933.3	0	NC_000913.2	1572373	60	36M	*	0	0	AGTGCGATGCCGTTCACCCGGTTTTCTTTATCATTA	EEEEED=DD?AD=DDEEBEDEBBECCD&gt;&gt;&gt;BB?EE5	NM:i:0	MD:Z:36	AS:i:36	XS:i:0
 </code></pre>
 </div>
-<div id="using-the-available-indexed-genomes-in-the-cluster" class="section level2">
-<h2>• Using the available indexed genomes in the cluster</h2>
-<p>(/mnt/Archives/genome/) align reads of a mouse ChIP-seq
-experiment to the genome.</p>
+<div id="using-the-available-indexed-genomes-in-the-cluster-mntarchivesgenome-align-reads-of-a-mouse-chip-seq-experiment-to-the-genome." class="section level2">
+<h2>• Using the available indexed genomes in the cluster (/mnt/Archives/genome/) align reads of a mouse ChIP-seq experiment to the genome.</h2>
 <blockquote>
 <p>• Please analyze the quality of the data, try using fastqc ;)</p>
 </blockquote>
-</div>
-<div id="mntatgc-d1bioinfoiidataalignment" class="section level2">
-<h2>• /mnt/atgc-d1/bioinfoII/data/alignment</h2>
+<p><strong>Sofi</strong>:</p>
+<p>I started by finding the route in which the mouse genome fasta was allocated (/mnt/Archives/genome/mouse/)mm10/UCSC/bwa-0.7.15-index/index/mm10.fa).</p>
+<p>I just used one command to do the alignment:</p>
+<pre class="bash"><code>module load bwa/0.7.8
+bwa mem /mnt/Archives/genome/mouse/mm10/UCSC/bwa-0.7.15-index/index/mm10.fa /mnt/atgc-d1/bioinfoII/sgamino/alignment/mus_musculus_CEBPA_liver_ERR005132.fastq.gz &gt; /mnt/atgc-d1/bioinfoII/sgamino/alignment/mouse_align_exp.sam</code></pre>
+<p>This leaves us with a SAM file that will contain the aligned reads to the reference genome mm10.fa. Its important to note that the quality of the fasta is bad, so if we desire more confidence in our alignment we should perform base recalibration to search for possible reads of the adaptors.</p>
+<p>This is the job i submitted with qsub job.sge.</p>
+<pre class="bash"><code>#!/bin/bash
+# Use current working directory
+#$ -cwd
+#
+# Join stdout and stderr
+#$ -j y
+#
+# Run job through bash shell
+#$ -S /bin/bash
+#
+#You can edit the scriptsince this line
+#
+# Your job name
+#$ -N mouse_align_experiment
+#
+# Allocated memory
+#$ -l vf=30G
+# Send an email after the job has finished
+#$ -m e
+#$ -M ghobibohg@gmail.com
+#
+# If modules are needed, source modules environment (Do not delete the next line):
+. /etc/profile.d/modules.sh
+#
+# Add any modules you might require:
+module load bwa/0.7.8
+#
+# Write your commands in the next line
+bwa mem /mnt/Archives/genome/mouse/mm10/UCSC/bwa-0.7.15-index/index/mm10.fa /mnt/atgc-d1/bioinfoII/sgamino/alignment/mus_musculus_CEBPA_liver_ERR005132.fastq.gz &gt; /mnt/atgc-d1/bioinfoII/sgamino/alignment/mouse_align_exp.sam
+</code></pre>
 </div>
