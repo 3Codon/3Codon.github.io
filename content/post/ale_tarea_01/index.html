@@ -80,6 +80,7 @@ samtools view -H NA20538.bam | less -S</p>
 </div>
 <div id="what-programs-were-used-to-create-this-bam-file" class="section level3">
 <h3>What programs were used to create this BAM file?</h3>
+<p><code>samtools view -H NA20538.bam | less -S</code></p>
 <p><strong>Suazo:</strong></p>
 <pre class="bash"><code>@PG     ID:GATK IndelRealigner  VN:1.0.4487     CL:SNPsFileForDebugging=null targetIntervals=/lustre/scratch105/projects/g1k/ref/broad_rec...
 @PG     ID:GATK TableRecalibration      VN:1.0.4487     CL:output_bam=null window_size_nqs=5 force_read_group=null smoothing=1 default_pla...
@@ -101,6 +102,7 @@ ERR003814.1408899</code></pre>
 </div>
 <div id="what-position-does-the-alignment-of-the-read-start-at" class="section level3">
 <h3>What position does the alignment of the read start at?</h3>
+<p><code>samtools view NA20538.bam | less -S</code></p>
 <p><strong>Suazo:</strong></p>
 <pre class="bash"><code>ERR003814.1408899       163     1       19999970        23      37M     =       20000147        213     GGTGGGTGGATCACCTGAGATCGGGAGTTTGAGA</code></pre>
 <p>The position of the alignment of the read start at 19999970</p>
