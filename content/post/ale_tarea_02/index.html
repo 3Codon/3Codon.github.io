@@ -1,0 +1,89 @@
+---
+title: Practical alignment
+description: Practical Activity
+slug: ale_tarea_02
+date: 2025-02-11
+image: cover.jpg
+categories:
+    - Activity
+    - Bioinformatics
+    - Basic
+tags:
+    - BWA
+    - Alignment
+    - QC
+    - FASTQC
+    - QUALITY CONTROLL
+
+---
+
+
+
+<div id="using-bwa-index-de-e.-coli-genome" class="section level2">
+<h2>• Using bwa index de e. coli genome</h2>
+<p><strong>Suazo:</strong></p>
+<pre class="bash"><code>module load bwa/0.7.17
+
+bwm index Escherichia_coli_K12_MG1655.fasta</code></pre>
+<p>This would create multiple files</p>
+<table>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Archive</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>.amb</td>
+<td>Contain Infromation about ambigous bases (N) in the sequence.</td>
+</tr>
+<tr class="even">
+<td>.ann</td>
+<td>Contain Annotation about genome, like sequences names and lenghts.</td>
+</tr>
+<tr class="odd">
+<td>.bwt</td>
+<td>Contain compressed representation of the genome using Burrows-Wheeler algorithm.</td>
+</tr>
+<tr class="even">
+<td>.pac</td>
+<td>Contain packed genome sequence in 2 bits per base. It is used to search the genome.</td>
+</tr>
+<tr class="odd">
+<td>.sa</td>
+<td>Contain the suffix array of the genome.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="align-reads-from-a-fnr-chip-seq-experiment" class="section level2">
+<h2>• Align reads from a FNR ChIP-seq experiment</h2>
+<p><strong>Suazo:</strong></p>
+<pre class="bash"><code>bwa mem Escherichia_coli_K12_MG1655.fasta SRX189773_FNR_ChIP.fastq </code></pre>
+<p>This will generate a SAM file with the alignment of the reads to the genome.</p>
+<blockquote>
+<p>Preview:</p>
+</blockquote>
+<pre class="bash"><code>@SQ	SN:NC_000913.2	LN:4639675
+@PG	ID:bwa	PN:bwa	VN:0.7.17-r1188	CL:bwa mem Escherichia_coli_K12_MG1655.fasta SRX189773_FNR_ChIP.fastq
+SRR576933.1	0	NC_000913.2	914875	60	36M	*	0	0	AAGCATGGAATAACCGCCTGGTGAATGCTCGCCATA EDEA=EEEEEBFBDFDEBDAD=DDBAC5CCEEE:E@	NM:i:0	MD:Z:36	AS:i:36	XS:i:0
+SRR576933.2	0	NC_000913.2	147284	60	36M	*	0	0	TGGAGGCTGACCACGATAAGCTGCCGCTGGTGGTGC	EDF:D?=DEEE?EEE5DDDAEB:ECEBBEA&gt;AA956	NM:i:0	MD:Z:36	AS:i:36	XS:i:0
+SRR576933.3	0	NC_000913.2	1572373	60	36M	*	0	0	AGTGCGATGCCGTTCACCCGGTTTTCTTTATCATTA	EEEEED=DD?AD=DDEEBEDEBBECCD&gt;&gt;&gt;BB?EE5	NM:i:0	MD:Z:36	AS:i:36	XS:i:0
+</code></pre>
+</div>
+<div id="using-the-available-indexed-genomes-in-the-cluster" class="section level2">
+<h2>• Using the available indexed genomes in the cluster</h2>
+<p>(/mnt/Archives/genome/) align reads of a mouse ChIP-seq
+experiment to the genome.</p>
+<blockquote>
+<p>• Please analyze the quality of the data, try using fastqc ;)</p>
+</blockquote>
+</div>
+<div id="mntatgc-d1bioinfoiidataalignment" class="section level2">
+<h2>• /mnt/atgc-d1/bioinfoII/data/alignment</h2>
+</div>
