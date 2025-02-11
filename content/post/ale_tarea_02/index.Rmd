@@ -61,6 +61,8 @@ SRR576933.3	0	NC_000913.2	1572373	60	36M	*	0	0	AGTGCGATGCCGTTCACCCGGTTTTCTTTATCA
 
 > • Please analyze the quality of the data, try using fastqc ;)
 
+> Here you go, [fastqc]()
+
 **Sofi**: 
 
 I started by finding the route in which the mouse genome fasta was allocated (/mnt/Archives/genome/mouse/)mm10/UCSC/bwa-0.7.15-index/index/mm10.fa).
