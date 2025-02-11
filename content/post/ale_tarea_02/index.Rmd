@@ -1,0 +1,66 @@
+---
+title: Practical alignment
+description: Practical Activity
+slug: ale_tarea_02
+date: 2025-02-11
+image: cover.jpg
+categories:
+    - Activity
+    - Bioinformatics
+    - Basic
+tags:
+    - BWA
+    - Alignment
+    - QC
+    - FASTQC
+    - QUALITY CONTROLL
+
+---
+
+## • Using bwa index de e. coli genome
+
+**Suazo:**
+
+```{bash, eval = F}
+module load bwa/0.7.17
+
+bwm index Escherichia_coli_K12_MG1655.fasta
+```
+
+This would create multiple files 
+
+|Archive|Description|
+|---|---|
+|.amb|Contain Infromation about ambigous bases (N) in the sequence.|
+|.ann|Contain Annotation about genome, like sequences names and lenghts.|
+|.bwt|Contain compressed representation of the genome using Burrows-Wheeler algorithm.|
+|.pac|Contain packed genome sequence in 2 bits per base. It is used to search the genome.|
+|.sa|Contain the suffix array of the genome.|
+
+## • Align reads from a FNR ChIP-seq experiment
+
+**Suazo:**
+
+```{bash, eval = F}
+bwa mem Escherichia_coli_K12_MG1655.fasta SRX189773_FNR_ChIP.fastq 
+```
+
+This will generate a SAM file with the alignment of the reads to the genome.
+
+> Preview:
+
+```{bash, eval = F}
+@SQ	SN:NC_000913.2	LN:4639675
+@PG	ID:bwa	PN:bwa	VN:0.7.17-r1188	CL:bwa mem Escherichia_coli_K12_MG1655.fasta SRX189773_FNR_ChIP.fastq
+SRR576933.1	0	NC_000913.2	914875	60	36M	*	0	0	AAGCATGGAATAACCGCCTGGTGAATGCTCGCCATA EDEA=EEEEEBFBDFDEBDAD=DDBAC5CCEEE:E@	NM:i:0	MD:Z:36	AS:i:36	XS:i:0
+SRR576933.2	0	NC_000913.2	147284	60	36M	*	0	0	TGGAGGCTGACCACGATAAGCTGCCGCTGGTGGTGC	EDF:D?=DEEE?EEE5DDDAEB:ECEBBEA>AA956	NM:i:0	MD:Z:36	AS:i:36	XS:i:0
+SRR576933.3	0	NC_000913.2	1572373	60	36M	*	0	0	AGTGCGATGCCGTTCACCCGGTTTTCTTTATCATTA	EEEEED=DD?AD=DDEEBEDEBBECCD>>>BB?EE5	NM:i:0	MD:Z:36	AS:i:36	XS:i:0
+
+```
+## • Using the available indexed genomes in the cluster
+(/mnt/Archives/genome/) align reads of a mouse ChIP-seq
+experiment to the genome.
+
+> • Please analyze the quality of the data, try using fastqc ;)
+
+## • /mnt/atgc-d1/bioinfoII/data/alignment
