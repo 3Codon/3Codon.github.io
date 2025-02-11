@@ -202,6 +202,11 @@ The genotype of the sample HG00107 in the locus 20:24019472 is a heterozygous, w
 
 ### List all positions where HG00107 has a non-reference genotype and the read depth is bigger than 10.
 
+```{bash, eval = F}
+bcftools view -i 'N_ALT > 10' output.vcf
+
+```
+
 ## Practical stats
 
 > Using samtools stats answer
