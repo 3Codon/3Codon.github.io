@@ -36,17 +36,6 @@ ID: Is a read group identifier. Each @RG line must have a unique ID.
 The value of this ID is used in the RG tags of alignment record labels.
 When merging the SAM files for collision control you can modify the IDs.
 
-BC (*barcode*): Identifies the sample or the library 
-
-Ref: <https://support.illumina.com/help/BS_App_MDProcessor_Online_1000000007932/Content/Source/Informatics/BAM-Format.htm>, <https://gatk.broadinstitute.org/hc/en-us/articles/360035890671-Read-groups>
-
-**Ferro:** 
-The @RG stand has this information: 
-
-ID: Is a read group identifier. Each @RG line must have a unique ID.
-The value of this ID is used in the RG tags of alignment record labels.
-When merging the SAM files for collision control you can modify the IDs.
-
 BC (*barcode*): Is a sequence that identify the library or the sample. It value 
 If the sample or library has several barcodes, it is recommended to concatenated all the barcodes with hyphens ("-")
 
@@ -167,6 +156,7 @@ The mapping quality of the first read is 23
 ### Can you convert bcf to vcf using bcftools? 
 
 **Sofia**: Yes, with a command in bcftools called view. View has an -O option which can be transformed into -Oz to transsform a bcf file into a compressed vcf; it also can be -Ov, which transforms a bcf file into a uncompressed vcf. For example: 
+
 ```{bash}
 [sgamino@compute-00-05 format_qc]$ bcftools view -O v -o output.vcf 1kg.bcf 
 ```
@@ -194,18 +184,70 @@ There are 10000 samples.
 
 ```
 
-The genotype of the sample HG00107 in the locus 20:24019472 is a heterozygous, with the variant 1. The genotype is not phased, so we don't know from which of the parents each allele comes from.
+The genotype of the sample HG00107 in the locus 20:24019472 is a heterozygous, with the variant 1. The genotype is not phased, so we don't know from which of the parents each allele comes from. But we can search this information if we have a vcf for the parents and then we use the tool *isec* from **bcftools** to do phasing parental.
 
+Ref:<https://samtools.github.io/bcftools/bcftools.html>
 
 
 ### How many positions there are with more than 10 alternate alleles? (See the INFO/AC tag.) Hint: use the -i filtering option.
 
-### List all positions where HG00107 has a non-reference genotype and the read depth is bigger than 10.
+**Ferro:** 
 
 ```{bash, eval = F}
-bcftools view -i 'N_ALT > 10' output.vcf
+bcftools view -i 'INFO/AC > 10' output.vcf > resultado.vcf
+
+
+less -S resultado.vcf | head -n 50 > header.vcf
+
+#CHROM  POS     ID      REF     ALT     QUAL    FILTER  INFO    FORMAT  HG00096 HG00097 HG00099 HG00100 HG00101 HG00102 HG00103 HG00105 HG00106 HG00107 HG00108 HG00109 HG00110 HG00111 HG00
+20      23946710        .       C       T       999     .       AN=98;AC=94;AC_Het=4;AC_Hom=90;AC_Hemi=0        GT:PL:DP        1/1:77,6,0:2    1/1:141,15,0:5  0/1:45,0,68:5   1/1:211,21,0
+20      23948049        .       A       G       999     .       AN=98;AC=97;AC_Het=1;AC_Hom=96;AC_Hemi=0        GT:PL:DP        1/1:129,9,0:3   1/1:232,33,0:11 0/1:26,0,32:2   1/1:255,42,0
+20      23948593        .       G       A       999     .       AN=96;AC=90;AC_Het=4;AC_Hom=86;AC_Hemi=0        GT:PL:DP        1/1:86,9,0:3    1/1:193,21,0:7  0/1:174,0,111:11        1/1:
+20      23949020        .       A       G       999     .       AN=98;AC=93;AC_Het=5;AC_Hom=88;AC_Hemi=0        GT:PL:DP        1/1:255,21,0:7  1/1:255,33,0:11 0/1:178,0,60:8  1/1:255,33,0
+20      23949210        .       A       G       999     .       AN=100;AC=95;AC_Het=5;AC_Hom=90;AC_Hemi=0       GT:PL:DP        1/1:109,12,0:4  1/1:255,42,0:14 0/1:54,0,67:4   1/1:255,45,0
+20      23949344        .       A       C       999     .       AN=100;AC=100;AC_Het=0;AC_Hom=100;AC_Hemi=0     GT:PL:DP        1/1:186,15,0:5  1/1:255,36,0:12 1/1:139,12,0:4  1/1:237,30,0
+
+wc -l output.vcf 
+10043 output.vcf 
+
+wc -l resultado.vcf 
+4822 resultado.vcf
 
 ```
+
+Previously, we converted the file 1kg.bcf to output.vcf in order to display the information. 
+With the help of the *view* tool of **bcftools** we use complement filler tags, i.e. we use INFO/AC to count how many positions there are with more than 10 alternative alleles. So we create an archive vcf with this positions, it calls *resultado.vcf*. 
+
+We create the vcf called header.vcf to show an example of the contein of the archive resultado.vcf.
+
+Finally we count the number of variants in the original vcf (output.vcf) and the filtered vcf (resultado.vcf) and we can see that the archive has 4822 variants that have an alternative allele frequency (AC) greater than 10, that is, they have at least 11 alternative alleles that are found in the population. 
+
+Ref:<https://samtools.github.io/bcftools/bcftools.html#view>
+<https://samtools-github-io.translate.goog/bcftools/howtos/plugin.fill-tags.html?_x_tr_sl=en&_x_tr_tl=es&_x_tr_hl=es&_x_tr_pto=tc>
+
+
+### List all positions where HG00107 has a non-reference genotype and the read depth is bigger than 10.
+
+**Ferro:** 
+
+```{bash, eval = F}
+bcftools view -s HG00107 -i 'GT!="0/0" && GT!="./." && FORMAT/DP>10' input.vcf.gz | wc -l
+9820
+```
+
+What we did is use view to visualize our requested genotype (sample HG00107), then we asked for only the unfiltered genotypes with GT!="0/0" && GT!="./." and with FORMAT/DP>10 we made sure that we only have the variants that have a reading depth greater than 10 since we access the Format section where it contains the DP field that tells us the reading depth. And finally we counted the number of variants that meet these requirements in the vcf.
+
+We obtained that there are 9820 variants that meet the requirements of non-referential genotype and reading depth greater than 10.
+
+
+```{bash, eval = F}
+bcftools view -s HG00107 -i 'GT!="0/0" && GT!="./." && FORMAT/DP>10 && FORMAT/GQ>20' output.vcf | wc -l
+0
+```
+
+We wanted to be a little more strict in the filtering since we observed that when filtering and finding non-reference genotypes, some referential variants were still found, so we added GQ>20 to the previous command, which is Genotype Quality, to filter variants that have a score greater than 20 since it is considered that from 10 to 20, the called genotype is reasonably adequate, and thus we increase the precision of the filtering to obtain unreferenced genotypes.
+
+But when running the command, we get a result of 0, and that could mean that by adding GQ we are making the filtering too strict, so we prefer to use a less strict filtering that gives us some referenced genotypes.
 
 ## Practical stats
 
