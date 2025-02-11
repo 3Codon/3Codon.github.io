@@ -32,13 +32,6 @@ The <span class="citation">@RG</span> stand has this information:</p>
 <p>ID: Is a read group identifier. Each <span class="citation">@RG</span> line must have a unique ID.
 The value of this ID is used in the RG tags of alignment record labels.
 When merging the SAM files for collision control you can modify the IDs.</p>
-<p>BC (<em>barcode</em>): Identifies the sample or the library</p>
-<p>Ref: <a href="https://support.illumina.com/help/BS_App_MDProcessor_Online_1000000007932/Content/Source/Informatics/BAM-Format.htm" class="uri">https://support.illumina.com/help/BS_App_MDProcessor_Online_1000000007932/Content/Source/Informatics/BAM-Format.htm</a>, <a href="https://gatk.broadinstitute.org/hc/en-us/articles/360035890671-Read-groups" class="uri">https://gatk.broadinstitute.org/hc/en-us/articles/360035890671-Read-groups</a></p>
-<p><strong>Ferro:</strong>
-The <span class="citation">@RG</span> stand has this information:</p>
-<p>ID: Is a read group identifier. Each <span class="citation">@RG</span> line must have a unique ID.
-The value of this ID is used in the RG tags of alignment record labels.
-When merging the SAM files for collision control you can modify the IDs.</p>
 <p>BC (<em>barcode</em>): Is a sequence that identify the library or the sample. It value
 If the sample or library has several barcodes, it is recommended to concatenated all the barcodes with hyphens (“-”)</p>
 <p>CN: Name of sequencing center producing the read.
@@ -79,10 +72,6 @@ samtools view -H NA20538.bam | less -S</p>
 <div id="what-version-of-the-human-assembly-was-used-to-perform-the-alignments" class="section level3">
 <h3>What version of the human assembly was used to perform the alignments?</h3>
 <p><strong>Ferro:</strong></p>
-<pre class="bash"><code>samtools view -H NA20538.bam | head -n 2
-@HD	VN:1.0	GO:none	SO:coordinate
-@SQ	SN:1	LN:249250621	AS:NCBI37	UR:ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/technical/reference/human_g1k_v37.fasta.gz	M5:1b22b98cdeb4a9304cb5d48026a85128	SP:Human
-</code></pre>
 <pre class="bash"><code>samtools view -H NA20538.bam | head -n 2
 @HD	VN:1.0	GO:none	SO:coordinate
 @SQ	SN:1	LN:249250621	AS:NCBI37	UR:ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/technical/reference/human_g1k_v37.fasta.gz	M5:1b22b98cdeb4a9304cb5d48026a85128	SP:Human
@@ -130,25 +119,74 @@ ERR003814.1408899</code></pre>
 </blockquote>
 <div id="what-is-a-bcf" class="section level3">
 <h3>What is a bcf?</h3>
-<p>A bcf is like a vcf, but in binary, in which the fields are arranged for fast access. They store information about variants in read alignments.</p>
+<p><strong>Sofia:</strong> A bcf is like a vcf, but in binary, in which the fields are arranged for fast access. They store information about variants in read alignments.</p>
 </div>
-<div id="can-you-convert-bcf-to-vcf-using-bcftools-how" class="section level3">
-<h3>Can you convert bcf to vcf using bcftools? How?</h3>
+<div id="can-you-convert-bcf-to-vcf-using-bcftools" class="section level3">
+<h3>Can you convert bcf to vcf using bcftools?</h3>
+<p><strong>Sofia</strong>: Yes, with a command in bcftools called view. View has an -O option which can be transformed into -Oz to transsform a bcf file into a compressed vcf; it also can be -Ov, which transforms a bcf file into a uncompressed vcf. For example:</p>
+<pre class="bash"><code>[sgamino@compute-00-05 format_qc]$ bcftools view -O v -o output.vcf 1kg.bcf </code></pre>
 </div>
 <div id="how-many-samples-are-in-the-bcf-hint-use-the--l-option." class="section level3">
 <h3>How many samples are in the BCF? Hint: use the -l option.</h3>
+<p><strong>Sofia</strong>:</p>
+<pre class="bash"><code>[sgamino@compute-00-05 format_qc]$ grep -v &quot;#&quot; output.vcf | wc -l
+10000</code></pre>
+<p>There are 10000 samples.</p>
 </div>
 <div id="what-is-the-genotype-of-the-sample-hg00107-at-the-position-2024019472" class="section level3">
 <h3>What is the genotype of the sample HG00107 at the position 20:24019472?</h3>
 <blockquote>
 <p>Hint: use the combination of -r, -s, and -f ‘[ %TGT]’ options.</p>
 </blockquote>
+<p><strong>Sofia</strong>:</p>
+<pre class="bash"><code>[sgamino@compute-00-05 format_qc]$ awk &#39;{for(i=1; i&lt;=NF; i++) if ($i == &quot;HG00107&quot;) print i}&#39; output.vcf
+19
+[sgamino@compute-00-05 format_qc]$ grep &quot;24019472&quot; output.vcf | awk &#39;{print $19}&#39; 
+0/1:235,0,148:16
+</code></pre>
+<p>The genotype of the sample HG00107 in the locus 20:24019472 is a heterozygous, with the variant 1. The genotype is not phased, so we don’t know from which of the parents each allele comes from. But we can search this information if we have a vcf for the parents and then we use the tool <em>isec</em> from <strong>bcftools</strong> to do phasing parental.</p>
+<p>Ref:<a href="https://samtools.github.io/bcftools/bcftools.html" class="uri">https://samtools.github.io/bcftools/bcftools.html</a></p>
 </div>
 <div id="how-many-positions-there-are-with-more-than-10-alternate-alleles-see-the-infoac-tag.-hint-use-the--i-filtering-option." class="section level3">
 <h3>How many positions there are with more than 10 alternate alleles? (See the INFO/AC tag.) Hint: use the -i filtering option.</h3>
+<p><strong>Ferro:</strong></p>
+<pre class="bash"><code>bcftools view -i &#39;INFO/AC &gt; 10&#39; output.vcf &gt; resultado.vcf
+
+
+less -S resultado.vcf | head -n 50 &gt; header.vcf
+
+#CHROM  POS     ID      REF     ALT     QUAL    FILTER  INFO    FORMAT  HG00096 HG00097 HG00099 HG00100 HG00101 HG00102 HG00103 HG00105 HG00106 HG00107 HG00108 HG00109 HG00110 HG00111 HG00
+20      23946710        .       C       T       999     .       AN=98;AC=94;AC_Het=4;AC_Hom=90;AC_Hemi=0        GT:PL:DP        1/1:77,6,0:2    1/1:141,15,0:5  0/1:45,0,68:5   1/1:211,21,0
+20      23948049        .       A       G       999     .       AN=98;AC=97;AC_Het=1;AC_Hom=96;AC_Hemi=0        GT:PL:DP        1/1:129,9,0:3   1/1:232,33,0:11 0/1:26,0,32:2   1/1:255,42,0
+20      23948593        .       G       A       999     .       AN=96;AC=90;AC_Het=4;AC_Hom=86;AC_Hemi=0        GT:PL:DP        1/1:86,9,0:3    1/1:193,21,0:7  0/1:174,0,111:11        1/1:
+20      23949020        .       A       G       999     .       AN=98;AC=93;AC_Het=5;AC_Hom=88;AC_Hemi=0        GT:PL:DP        1/1:255,21,0:7  1/1:255,33,0:11 0/1:178,0,60:8  1/1:255,33,0
+20      23949210        .       A       G       999     .       AN=100;AC=95;AC_Het=5;AC_Hom=90;AC_Hemi=0       GT:PL:DP        1/1:109,12,0:4  1/1:255,42,0:14 0/1:54,0,67:4   1/1:255,45,0
+20      23949344        .       A       C       999     .       AN=100;AC=100;AC_Het=0;AC_Hom=100;AC_Hemi=0     GT:PL:DP        1/1:186,15,0:5  1/1:255,36,0:12 1/1:139,12,0:4  1/1:237,30,0
+
+wc -l output.vcf 
+10043 output.vcf 
+
+wc -l resultado.vcf 
+4822 resultado.vcf
+</code></pre>
+<p>Previously, we converted the file 1kg.bcf to output.vcf in order to display the information.
+With the help of the <em>view</em> tool of <strong>bcftools</strong> we use complement filler tags, i.e. we use INFO/AC to count how many positions there are with more than 10 alternative alleles. So we create an archive vcf with this positions, it calls <em>resultado.vcf</em>.</p>
+<p>We create the vcf called header.vcf to show an example of the contein of the archive resultado.vcf.</p>
+<p>Finally we count the number of variants in the original vcf (output.vcf) and the filtered vcf (resultado.vcf) and we can see that the archive has 4822 variants that have an alternative allele frequency (AC) greater than 10, that is, they have at least 11 alternative alleles that are found in the population.</p>
+<p>Ref:<a href="https://samtools.github.io/bcftools/bcftools.html#view" class="uri">https://samtools.github.io/bcftools/bcftools.html#view</a>
+<a href="https://samtools-github-io.translate.goog/bcftools/howtos/plugin.fill-tags.html?_x_tr_sl=en&amp;_x_tr_tl=es&amp;_x_tr_hl=es&amp;_x_tr_pto=tc" class="uri">https://samtools-github-io.translate.goog/bcftools/howtos/plugin.fill-tags.html?_x_tr_sl=en&amp;_x_tr_tl=es&amp;_x_tr_hl=es&amp;_x_tr_pto=tc</a></p>
 </div>
 <div id="list-all-positions-where-hg00107-has-a-non-reference-genotype-and-the-read-depth-is-bigger-than-10." class="section level3">
 <h3>List all positions where HG00107 has a non-reference genotype and the read depth is bigger than 10.</h3>
+<p><strong>Ferro:</strong></p>
+<pre class="bash"><code>bcftools view -s HG00107 -i &#39;GT!=&quot;0/0&quot; &amp;&amp; GT!=&quot;./.&quot; &amp;&amp; FORMAT/DP&gt;10&#39; input.vcf.gz | wc -l
+9820</code></pre>
+<p>What we did is use view to visualize our requested genotype (sample HG00107), then we asked for only the unfiltered genotypes with GT!=“0/0” &amp;&amp; GT!=“./.” and with FORMAT/DP&gt;10 we made sure that we only have the variants that have a reading depth greater than 10 since we access the Format section where it contains the DP field that tells us the reading depth. And finally we counted the number of variants that meet these requirements in the vcf.</p>
+<p>We obtained that there are 9820 variants that meet the requirements of non-referential genotype and reading depth greater than 10.</p>
+<pre class="bash"><code>bcftools view -s HG00107 -i &#39;GT!=&quot;0/0&quot; &amp;&amp; GT!=&quot;./.&quot; &amp;&amp; FORMAT/DP&gt;10 &amp;&amp; FORMAT/GQ&gt;20&#39; output.vcf | wc -l
+0</code></pre>
+<p>We wanted to be a little more strict in the filtering since we observed that when filtering and finding non-reference genotypes, some referential variants were still found, so we added GQ&gt;20 to the previous command, which is Genotype Quality, to filter variants that have a score greater than 20 since it is considered that from 10 to 20, the called genotype is reasonably adequate, and thus we increase the precision of the filtering to obtain unreferenced genotypes.</p>
+<p>But when running the command, we get a result of 0, and that could mean that by adding GQ we are making the filtering too strict, so we prefer to use a less strict filtering that gives us some referenced genotypes.</p>
 </div>
 </div>
 <div id="practical-stats" class="section level2">

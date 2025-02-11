@@ -157,7 +157,7 @@ The mapping quality of the first read is 23
 
 **Sofia**: Yes, with a command in bcftools called view. View has an -O option which can be transformed into -Oz to transsform a bcf file into a compressed vcf; it also can be -Ov, which transforms a bcf file into a uncompressed vcf. For example: 
 
-```{bash}
+```{bash, eval = F}
 [sgamino@compute-00-05 format_qc]$ bcftools view -O v -o output.vcf 1kg.bcf 
 ```
 
@@ -165,7 +165,7 @@ The mapping quality of the first read is 23
 
 **Sofia**:
 
-```{bash}
+```{bash, eval = F}
 [sgamino@compute-00-05 format_qc]$ grep -v "#" output.vcf | wc -l
 10000
 ```
@@ -178,7 +178,7 @@ There are 10000 samples.
 
 **Sofia**:
 
-```{bash}
+```{bash, eval = F}
 [sgamino@compute-00-05 format_qc]$ awk '{for(i=1; i<=NF; i++) if ($i == "HG00107") print i}' output.vcf
 19
 [sgamino@compute-00-05 format_qc]$ grep "24019472" output.vcf | awk '{print $19}' 
