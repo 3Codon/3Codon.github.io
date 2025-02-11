@@ -237,7 +237,7 @@ Ref:<https://samtools.github.io/bcftools/bcftools.html#view>
 **Ferro:**
 
 ```{bash, eval = F}
-bcftools view -s HG00107 -i 'GT!="0/0" && GT!="./." && FORMAT/DP>10' input.vcf.gz | wc -l
+bcftools view -s HG00107 -i 'GT!="0/0" && GT!="./." && FORMAT/DP>10' output.vcf | wc -l
 9820
 ```
 
