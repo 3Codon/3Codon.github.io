@@ -62,7 +62,18 @@ SRR576933.3	0	NC_000913.2	1572373	60	36M	*	0	0	AGTGCGATGCCGTTCACCCGGTTTTCTTTATCA
 > • Please analyze the quality of the data, try using fastqc ;)
 
 **Ferro**:
-To use the tool fastqc I charged the module *fastqc/0.12.1* 
+To use the tool fastqc I charged the module *fastqc/0.12.1* to start the analysis.
+
+```{bash, eval = F}
+module load fastqc/0.12.1
+module list
+Currently Loaded Modulefiles:
+  1) gcc/5.1.0         2) sge/2011.11p1     3) bcftools/1.10.2   4) fastqc/0.12.1
+  
+```
+
+
+
 
 **Sofi**: 
 
