@@ -62,10 +62,11 @@ SRR576933.3	0	NC_000913.2	1572373	60	36M	*	0	0	AGTGCGATGCCGTTCACCCGGTTTTCTTTATCA
 > • Please analyze the quality of the data, try using fastqc ;)
 
 **Ferro**:
-To use the tool fastqc I charged the module *fastqc/0.12.1* to start the analysis.
+To use the tool fastqc I charged the module *fastqc/0.12.1* to start the analysis of the quality of the data. 
 
 ```{bash, eval = F}
 module load fastqc/0.12.1
+
 module list
 Currently Loaded Modulefiles:
   1) gcc/5.1.0         2) sge/2011.11p1     3) bcftools/1.10.2   4) fastqc/0.12.1
@@ -73,6 +74,51 @@ Currently Loaded Modulefiles:
 ```
 
 
+Once charged the module my next step is used the next command to analyze the quality of the fastq:
+
+```{bash, eval = F}
+
+fastqc mus_musculus_CEBPA_liver_ERR005132.fastq.gz
+
+```
+
+The output of this comand line is two archives:
+
+- mus_musculus_CEBPA_liver_ERR005132_fastqc.html
+- mus_musculus_CEBPA_liver_ERR005132_fastqc.zip
+
+
+The first file, redirects you to the results of the analysis performed by this tool, which contains a summary showing which of these filters the fastq managed to pass and which ones did not:
+
+Summary
+
+- Basic Statistics
+- Per base sequence quality
+- Per tile sequence quality
+- Per sequence quality scores
+- Per base sequence content
+- Per sequence GC content
+- Per base N content
+- Sequence Length Distribution
+- Sequence Duplication Levels
+- Overrepresented sequences
+- Adapter Content
+
+Also each filter of the summary has a graph that shows us more precise and visual the information of the result of this filters.
+
+In the case of our fastq we have this results:
+
+*<font color="green">[PASS]</font>*Basic Statistics
+*<font color="red">[FAIL]</font>*Per base sequence quality
+*<font color="red">[FAIL]</font>*Per tile sequence quality
+*<font color="red">[FAIL]</font>*Per sequence quality scores
+*<font color="red">[FAIL]</font>*Per base sequence content
+*<font color="green">[PASS]</font>*Per sequence GC content
+*<font color="green">[PASS]</font>*Per base N content
+*<font color="green">[PASS]</font>*Sequence Length Distribution
+*<font color="green">[PASS]</font>*Sequence Duplication Levels
+*<font color="green">[PASS]</font>*Overrepresented sequences
+*<font color="green">[PASS]</font>*Adapter Content
 
 
 **Sofi**: 
