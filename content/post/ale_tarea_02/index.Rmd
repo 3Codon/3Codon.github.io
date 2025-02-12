@@ -61,7 +61,8 @@ SRR576933.3	0	NC_000913.2	1572373	60	36M	*	0	0	AGTGCGATGCCGTTCACCCGGTTTTCTTTATCA
 
 > • Please analyze the quality of the data, try using fastqc ;)
 
-> Here you go, [fastqc](https://3lconejo.github.io/posts/fastqc/)
+**Ferro**:
+To use the tool fastqc I charged the module *fastqc/0.12.1* 
 
 **Sofi**: 
 
