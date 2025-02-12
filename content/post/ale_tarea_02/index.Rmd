@@ -18,7 +18,7 @@ tags:
 ---
 
 ## • Using bwa index de e. coli genome
-
+a
 **Suazo:**
 
 ```{bash, eval = F}
@@ -60,6 +60,8 @@ SRR576933.3	0	NC_000913.2	1572373	60	36M	*	0	0	AGTGCGATGCCGTTCACCCGGTTTTCTTTATCA
 ## • Using the available indexed genomes in the cluster (/mnt/Archives/genome/) align reads of a mouse ChIP-seq experiment to the genome.
 
 > • Please analyze the quality of the data, try using fastqc ;)
+
+> Here you go, [fastqc](https://3lconejo.github.io/posts/fastqc/)
 
 **Sofi**: 
 
