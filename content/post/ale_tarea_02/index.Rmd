@@ -62,6 +62,12 @@ SRR576933.3	0	NC_000913.2	1572373	60	36M	*	0	0	AGTGCGATGCCGTTCACCCGGTTTTCTTTATCA
 > • Please analyze the quality of the data, try using fastqc ;)
 
 **Ferro**:
+What is FASTQC?
+
+One of the essential steps in research on the molecule of life is its sequencing. Once the samples have been extracted, the sequencing process is carried out to obtain the nucleotide sequence of the samples. Currently, the new sequencing technology "...can generate hundreds of thousands of sequences in a single run." (Babraham institute). But it should be mentioned that before doing an analysis of the sequences to reach a conclusion, it is important to do a simple quality control on the fastq files, to observe how well the raw files look for future analysis and thus avoid biases that can affect the research.
+
+To do quality tests for fastq files, there is the **FASTQC** tool, whose output is a report of the problems that arose in the sequencer or in the start library.
+
 To use the tool fastqc I charged the module *fastqc/0.12.1* to start the analysis of the quality of the data. 
 
 ```{bash, eval = F}
