@@ -66,9 +66,12 @@ What is FASTQC?
 
 One of the essential steps in research on the molecule of life is its sequencing. Once the samples have been extracted, the sequencing process is carried out to obtain the nucleotide sequence of the samples. Currently, the new sequencing technology "...can generate hundreds of thousands of sequences in a single run." (Babraham institute). But it should be mentioned that before doing an analysis of the sequences to reach a conclusion, it is important to do a simple quality control on the fastq files, to observe how well the raw files look for future analysis and thus avoid biases that can affect the research.
 
-To do quality tests for fastq files, there is the **FASTQC** tool, whose output is a report of the problems that arose in the sequencer or in the start library.
+To do quality tests for fastq files, there is the **FASTQC** tool, whose output is a report of the problems that arose in the sequencer or in the start library.This tool can be run in two different modes, the first is as a stand-alone interactive application that can perform a quick analysis with a few fastq files or as a non-interactive mode, where the analysis process is larger, since it does
+a "...systematic processing of large amounts of files." (Babraham institute)
 
 To use the tool fastqc I charged the module *fastqc/0.12.1* to start the analysis of the quality of the data. 
+
+Ref:<https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/1%20Introduction/1.1%20What%20is%20FastQC.html>
 
 ```{bash, eval = F}
 module load fastqc/0.12.1
@@ -114,18 +117,57 @@ Also each filter of the summary has a graph that shows us more precise and visua
 
 In the case of our fastq we have this results:
 
-*<font color="green">[PASS]</font>*Basic Statistics
-*<font color="red">[FAIL]</font>*Per base sequence quality
-*<font color="red">[FAIL]</font>*Per tile sequence quality
-*<font color="red">[FAIL]</font>*Per sequence quality scores
-*<font color="red">[FAIL]</font>*Per base sequence content
-*<font color="green">[PASS]</font>*Per sequence GC content
-*<font color="green">[PASS]</font>*Per base N content
-*<font color="green">[PASS]</font>*Sequence Length Distribution
-*<font color="green">[PASS]</font>*Sequence Duplication Levels
-*<font color="green">[PASS]</font>*Overrepresented sequences
-*<font color="green">[PASS]</font>*Adapter Content
+- *<font color="green">[PASS]</font>*Basic Statistics
+- *<font color="red">[FAIL]</font>*Per base sequence quality
+- *<font color="red">[FAIL]</font>*Per tile sequence quality
+- *<font color="red">[FAIL]</font>*Per sequence quality scores
+- *<font color="red">[FAIL]</font>*Per base sequence content
+- *<font color="green">[PASS]</font>*Per sequence GC content
+- *<font color="green">[PASS]</font>*Per base N content
+- *<font color="green">[PASS]</font>*Sequence Length Distribution
+- *<font color="green">[PASS]</font>*Sequence Duplication Levels
+- *<font color="green">[PASS]</font>*Overrepresented sequences
+- *<font color="green">[PASS]</font>*Adapter Content
 
+Now we will analyze the four filters that failed the FASTQC test:
+
+![](per_base_quality.png)
+
+This graph shows us the quality scores for the base call. *<font color="green">Green</font>* indicates the call has good quality, *<font color="yellow">yellow</font>* has reasonable quality, and *<font color="red">red</font>* if the quality is very poor.
+
+In our case we can see that most base calls have low or reasonable quality as they are in the red and yellow part, this helps us conclude that the call quality per base is poor.
+
+Ref:<https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/2%20Per%20Base%20Sequence%20Quality.html>
+
+![](per_tile_quality.png)
+This graph shows quality per tile indicating whether there are variations in quality in different regions of the sequencing process by comparing the sequencing quality at different positions within the read (X) to different tiles in the flow cell (Y) and whether certain tiles (sections of the sequencing machine sensor) produce lower quality data.
+
+Dark blue tells us that there is high quality in most positions and tiles.
+Red/yellow areas show us specific regions with lower quality, which may indicate problems in some tiles in the sequencing flow.
+
+In the case of our fastq we can see that most tiles and reading positions have a high quality, which is a good sign, but there are some areas with red and yellow dots around positions 12-20 bp and 30-35 bp.
+This tells us that in some tiles, the quality is significantly lower at those positions.
+
+Ref:<https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/12%20Per%20Tile%20Sequence%20Quality.html>
+![](per_sequence_quality.png)
+This graph shows us how poorly photographed the sequences are. The X-axis tells us the sequence's quality score on the PHRED scale and the Y-axis tells us the number of sequences that contain that score. Our fastq shows that most sequences have an average quality of around 12-15, which means that the accuracy percentage is less than 95%, meaning that the probability of that sequence being correct is low.
+
+Ref: <https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/3%20Per%20Sequence%20Quality%20Scores.html>
+
+![](per_base_sequence_content.png)
+This graph shows the content of each of the nucleotides throughout the read. It is expected that in this graph we can see that the same content of A is equal to the content of T, and in the same way the same content of C must be equal to the content of G. In our case we can observe that at the beginning of the reading the same number of A and T and the same number of C and G are conserved, but from position 20-21 the amount of C deviates and ends up having the same amount of T as C, at the same time in that same position the content of A deviates and ends up having the same amount of A as G. It seems that, halfway through the reading, the amount of purines (A and G) equals each other, as well as the amount of pyrimidines (C and T). The next step would be to investigate what was the cause that caused this error.
+
+Ref:<https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/4%20Per%20Base%20Sequence%20Content.html>
+
+In order for our FASTQ file to pass the four filters above, it must be subjected to a filtering process that improves its quality and thus avoids bias in the research.
+
+The other filters are those that passed the FASTQC test, indicating that:
+- It does not have a percentage of N content in all databases
+- It has sequence fragments of uniform length
+- It contain a low level of duplication, this can indicate that they have a high level of coverage.
+- It does not contain overrepresented sequences.
+- It does not present adapter sequences (Illumina Universal Adapter,
+Illumina Small RNA 3' Adapter, Illumina Small RNA 5' Adapter, Nextera Transposase Sequence, PolyA, PolyG).
 
 **Sofi**: 
 
@@ -175,7 +217,7 @@ bwa mem /mnt/Archives/genome/mouse/mm10/UCSC/bwa-0.7.15-index/index/mm10.fa /mnt
 
 > Preview:
 
-```{bash}
+```{bash eval = F}
 [sgamino@chromatin alignment]$ head -50 mouse_align_exp.sam
 @SQ	SN:chr10	LN:130694993
 @SQ	SN:chr11	LN:122082543
