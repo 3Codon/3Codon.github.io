@@ -149,6 +149,7 @@ In the case of our fastq we can see that most tiles and reading positions have a
 This tells us that in some tiles, the quality is significantly lower at those positions.
 
 Ref:<https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/12%20Per%20Tile%20Sequence%20Quality.html>
+
 ![](per_sequence_quality.png)
 This graph shows us how poorly photographed the sequences are. The X-axis tells us the sequence's quality score on the PHRED scale and the Y-axis tells us the number of sequences that contain that score. Our fastq shows that most sequences have an average quality of around 12-15, which means that the accuracy percentage is less than 95%, meaning that the probability of that sequence being correct is low.
 
@@ -162,12 +163,38 @@ Ref:<https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis
 In order for our FASTQ file to pass the four filters above, it must be subjected to a filtering process that improves its quality and thus avoids bias in the research.
 
 The other filters are those that passed the FASTQC test, indicating that:
-- It does not have a percentage of N content in all databases
+
+- It does not have a percentage of N content in all databases.
+
+![](per_base_n_content.png)
+Ref:<https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/6%20Per%20Base%20N%20Content.html>
+
 - It has sequence fragments of uniform length
+
+![](sequence_length_distribution.png)
+ref:<https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/7%20Sequence%20Length%20Distribution.html>
+
 - It contain a low level of duplication, this can indicate that they have a high level of coverage.
+
+![](duplication_levels.png)
+Ref:<https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/8%20Duplicate%20Sequences.html>
+
 - It does not contain overrepresented sequences.
-- It does not present adapter sequences (Illumina Universal Adapter,
-Illumina Small RNA 3' Adapter, Illumina Small RNA 5' Adapter, Nextera Transposase Sequence, PolyA, PolyG).
+
+Ref:<https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/9%20Overrepresented%20Sequences.html>
+<https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/11%20Kmer%20Content.html>
+
+- It does not present this adapter sequences: 
+
+- Illumina Universal Adapter
+- Illumina Small RNA 3' Adapter
+- Illumina Small RNA 5' Adapter
+- Nextera Transposase Sequence
+- PolyA
+- PolyG
+
+![](adapter_content.png)
+Ref:<https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/10%20Adapter%20Content.html>
 
 **Sofi**: 
 
