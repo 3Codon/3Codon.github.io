@@ -105,6 +105,10 @@ samtools sort MT1.bam -o MT1.sorted.bam
 samtools sort MT2.bam -o MT2.sorted.bam
 
 # We index the BAM files
+
+samtools index MT1.sorted.bam
+
+samtools index MT2.sorted.bam
 </code></pre>
 </div>
 <div id="we-should-do-the-same-for-sample-mt2" class="section level2">
@@ -114,6 +118,7 @@ samtools sort MT2.bam -o MT2.sorted.bam
 <h2>Now we can load the BAM files to IGV… Remember you need the index</h2>
 <div id="what-do-you-see-explore-the-genome." class="section level3">
 <h3>What do you see?, explore the genome.</h3>
+<p><img src="images/clipboard-320555205.png" /></p>
 </div>
 <div id="visualize-loci-pchas_0505200-and-pchas_1409500" class="section level3">
 <h3>Visualize loci: PCHAS_0505200 and PCHAS_1409500</h3>

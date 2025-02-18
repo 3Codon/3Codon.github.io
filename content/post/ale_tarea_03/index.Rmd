@@ -30,7 +30,9 @@ tags:
 
 <video width="320" height="240" controls>
 
-<source src="video/video1.mp4" type="video/mp4"> Your browser does not support the video tag. </video>
+<source src="video/video1.mp4" type="video/mp4">
+
+Your browser does not support the video tag. </video>
 
 ### Which one is the annotation file?
 
@@ -100,6 +102,10 @@ samtools sort MT1.bam -o MT1.sorted.bam
 samtools sort MT2.bam -o MT2.sorted.bam
 
 # We index the BAM files
+
+samtools index MT1.sorted.bam
+
+samtools index MT2.sorted.bam
 
 
 ```
