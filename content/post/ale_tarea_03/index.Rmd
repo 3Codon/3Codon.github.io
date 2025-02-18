@@ -109,6 +109,8 @@ samtools index MT2.sorted.bam
 
 ```
 
+
+**Ferro**:
 ## We should do the same for sample MT2
 
 ## Now we can load the BAM files to IGV... Remember you need the index
@@ -122,7 +124,11 @@ samtools index MT2.sorted.bam
 ### What do you see?
 
 ### Can you export the figure?
+Yes, IGV has a tool that you can export the figure 
 
+![](igv_snapshot_PCHAS_0505200.png)
+
+![](igv_snapshot_PCHAS_1409500.png)
 # IGV Mouse
 
 ## Using IGV try to visualize the data for mouse ChIP-seq you generated. Is a liver data set, can you point to an interesting loci?
