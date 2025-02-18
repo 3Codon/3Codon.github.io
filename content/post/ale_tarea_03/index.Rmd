@@ -110,6 +110,8 @@ samtools sort MT2.bam -o MT2.sorted.bam
 
 ### What do you see?, explore the genome.
 
+![](images/clipboard-320555205.png)
+
 ### Visualize loci: PCHAS_0505200 and PCHAS_1409500
 
 ### What do you see?
