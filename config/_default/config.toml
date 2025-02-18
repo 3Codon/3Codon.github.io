@@ -16,3 +16,6 @@ disqusShortname = "3Codon"
 
 [pagination]
 pagerSize = 5
+
+[params]
+  contentSecurityPolicy = "script-src 'self' https://documentcloud.adobe.com; style-src 'self';"
