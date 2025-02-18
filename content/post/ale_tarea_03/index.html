@@ -14,7 +14,6 @@ tags:
     - BCF
     - BAM
     - SAMTOOLS
-
 ---
 
 
@@ -32,31 +31,42 @@ tags:
 </div>
 <div id="load-the-genome-from-a-file-note-it-has-been-indexed" class="section level2">
 <h2>Load the genome from a file (note it has been indexed)</h2>
-<p>##Load annotations for the genome.</p>
+<div id="load-annotations-for-the-genome." class="section level3">
+<h3>Load annotations for the genome.</h3>
+<video width="320" height="240" controls>
+<source src="video/video1.mp4" type="video/mp4">
+<p>Your browser does not support the video tag. </video></p>
+</div>
 <div id="which-one-is-the-annotation-file" class="section level3">
 <h3>Which one is the annotation file?</h3>
+<p><strong>Suazo</strong>: The annotation files are the ones with the extension .gff3 which stands for General Feature Format version 3.</p>
 </div>
 <div id="what-is-this-format-describing" class="section level3">
 <h3>What is this format describing?</h3>
+<p><strong>Suazo</strong>: The ggf3 format is a tab-delimited file that describes the features of a genome, such as DNA, RNA and protein sequences. It is a standard format for genome annotation.</p>
 </div>
 </div>
 <div id="what-is-the-browser-displaying" class="section level2">
 <h2>What is the browser displaying?</h2>
+<p><strong>Suazo</strong>: The browser is displaying information about the annotations of genes, transcriptions and exons.</p>
 </div>
 <div id="what-happens-if-you-zoom-in-or-out" class="section level2">
 <h2>What happens if you zoom in or out?</h2>
+<p><strong>Suazo</strong>: When you zoom in, the browser displays more detailed information about the annotations such as nucleotides. When you zoom out, the browser displays less detailed information.</p>
 </div>
 <div id="load-an-alignment-file-for-an-rna-seq-experiment-mt1-and-mt2" class="section level2">
 <h2>Load an alignment file for an RNA-seq experiment MT1 and MT2</h2>
 </div>
 <div id="is-the-data-in-the-correct-format" class="section level2">
 <h2>Is the data in the correct format?</h2>
+<p><strong>Suazo</strong>: No, the format provided is in FASTQ format, which is not compatible with IGV. We need to convert it to BAM format.</p>
 </div>
 <div id="what-kind-of-data-do-you-need" class="section level2">
 <h2>What kind of data do you need?</h2>
 <blockquote>
 <p>This is RNA-seq data so we need special aligners to take into account isoforms.</p>
 </blockquote>
+<p><strong>Suazo</strong>: We need to align the data to the genome.</p>
 </div>
 <div id="we-will-use-hisat2-to-map-the-rna-seq-reads-from-our-samples-to-the-reference-genome." class="section level2">
 <h2>We will use HISAT2 to map the RNA-Seq reads from our samples to the reference genome.</h2>
@@ -74,6 +84,28 @@ tags:
 </div>
 <div id="we-need-to-convert-the-sam-to-bam-and-sort-the-file-we-also-need-an-index-so-igv-can-access-the-data-quickly." class="section level2">
 <h2>We need to convert the sam to bam and sort the file… We also need an index so IGV can access the data quickly.</h2>
+<pre class="bash"><code># We align the Pair Ended reads
+
+hisat2 --max-intronlen 10000 -x PccAS_v3_hisat2.idx -1 MT1_1.fastq -2 MT1_2.fastq -S MT1.sam
+
+
+hisat2 --max-intronlen 10000 -x PccAS_v3_hisat2.idx -1 MT2_1.fastq -2 MT2_2.fastq -S MT2.sam
+
+
+# We convert the SAM files to BAM files
+
+samtools view MT1.sam -O BAM -o MT1.bam
+ 
+samtools view MT1.sam -O BAM -o MT2.bam
+
+# We sort the BAM files
+
+samtools sort MT1.bam -o MT1.sorted.bam
+
+samtools sort MT2.bam -o MT2.sorted.bam
+
+# We index the BAM files
+</code></pre>
 </div>
 <div id="we-should-do-the-same-for-sample-mt2" class="section level2">
 <h2>We should do the same for sample MT2</h2>
