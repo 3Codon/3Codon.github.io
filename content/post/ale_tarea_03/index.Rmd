@@ -121,6 +121,20 @@ samtools index MT2.sorted.bam
 
 ### Visualize loci: PCHAS_0505200 and PCHAS_1409500
 
+```{bash, eval = F}
+[sgamino@compute-00-11 IGV]$ grep "PCHAS_0505200" PccAS_v3.gff3
+PccAS_05_v3	DEFAULT	gene	202496	203599	.	-	.	ID=PCHAS_0505200
+PccAS_05_v3	DEFAULT	mRNA	202496	203599	.	-	.	ID=PCHAS_0505200.1;Parent=PCHAS_0505200
+PccAS_05_v3	DEFAULT	CDS	202496	202583	.	-	1	ID=PCHAS_0505200.1:exon:2216;Parent=PCHAS_0505200.1
+PccAS_05_v3	DEFAULT	CDS	202719	202869	.	-	2	ID=PCHAS_0505200.1:exon:2217;Parent=PCHAS_0505200.1
+PccAS_05_v3	DEFAULT	CDS	202994	203081	.	-	0	ID=PCHAS_0505200.1:exon:2218;Parent=PCHAS_0505200.1
+PccAS_05_v3	DEFAULT	CDS	203199	203269	.	-	2	ID=PCHAS_0505200.1:exon:2219;Parent=PCHAS_0505200.1
+PccAS_05_v3	DEFAULT	CDS	203452	203599	.	-	0	ID=PCHAS_0505200.1:exon:2220;Parent=PCHAS_0505200.1
+
+```
+
+This way, we could know the position of these loci.
+
 ### What do you see?
 
 ### Can you export the figure?
