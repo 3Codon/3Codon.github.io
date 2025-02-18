@@ -3,7 +3,7 @@ title: Genome Browsers
 description: Practical Activity
 slug: ale_tarea_03
 date: 2025-02-09 
-image: cover.jpg
+image: covera.jpg
 categories:
     - Activity
     - Bioinformatics
