@@ -1,0 +1,123 @@
+---
+title: Genome Browsers
+description: Practical Activity
+slug: ale_tarea_03
+date: 2025-02-09 
+image: covera.jpg
+categories:
+    - Activity
+    - Bioinformatics
+    - Basic
+tags:
+    - FASTQC
+    - File Managing
+    - BCF
+    - BAM
+    - SAMTOOLS
+
+---
+
+
+
+<div id="igv" class="section level1">
+<h1>IGV</h1>
+<div id="we-will-use-igv-to-visualize-data-for-plasmodium-chabaudi-as-p.-chabaudi" class="section level2">
+<h2>We will use IGV to visualize data for Plasmodium chabaudi AS (P. chabaudi)</h2>
+<blockquote>
+<p>P. Chabaudi is a malaria mouse pathogen.</p>
+</blockquote>
+</div>
+<div id="using-the-files-in-mntatgc-d1bioinfoiidataigv-we-will-visualize-rna-seq-data." class="section level2">
+<h2>Using the files in: /mnt/atgc-d1/bioinfoII/data/IGV, we will visualize RNA-seq data.</h2>
+</div>
+<div id="load-the-genome-from-a-file-note-it-has-been-indexed" class="section level2">
+<h2>Load the genome from a file (note it has been indexed)</h2>
+<p>##Load annotations for the genome.</p>
+<div id="which-one-is-the-annotation-file" class="section level3">
+<h3>Which one is the annotation file?</h3>
+</div>
+<div id="what-is-this-format-describing" class="section level3">
+<h3>What is this format describing?</h3>
+</div>
+</div>
+<div id="what-is-the-browser-displaying" class="section level2">
+<h2>What is the browser displaying?</h2>
+</div>
+<div id="what-happens-if-you-zoom-in-or-out" class="section level2">
+<h2>What happens if you zoom in or out?</h2>
+</div>
+<div id="load-an-alignment-file-for-an-rna-seq-experiment-mt1-and-mt2" class="section level2">
+<h2>Load an alignment file for an RNA-seq experiment MT1 and MT2</h2>
+</div>
+<div id="is-the-data-in-the-correct-format" class="section level2">
+<h2>Is the data in the correct format?</h2>
+</div>
+<div id="what-kind-of-data-do-you-need" class="section level2">
+<h2>What kind of data do you need?</h2>
+<blockquote>
+<p>This is RNA-seq data so we need special aligners to take into account isoforms.</p>
+</blockquote>
+</div>
+<div id="we-will-use-hisat2-to-map-the-rna-seq-reads-from-our-samples-to-the-reference-genome." class="section level2">
+<h2>We will use HISAT2 to map the RNA-Seq reads from our samples to the reference genome.</h2>
+</div>
+<div id="hisat2-is-a-fast-and-sensitive-splice-aware-aligner." class="section level2">
+<h2>HISAT2 is a fast and sensitive splice-aware aligner.</h2>
+</div>
+<div id="we-need-to-index-the-genome" class="section level2">
+<h2>We need to index the genome</h2>
+<pre class="bash"><code>hisat2-build PccAS_v3_genome.fa PccAS_v3_hisat2.idx</code></pre>
+</div>
+<div id="now-we-can-align" class="section level2">
+<h2>Now we can align</h2>
+<pre class="bash"><code>hisat2 --max-intronlen 10000 -x PccAS_v3_hisat2.idx -1 MT1_1.fastq -2 MT1_2.fastq -S MT1.sam</code></pre>
+</div>
+<div id="we-need-to-convert-the-sam-to-bam-and-sort-the-file-we-also-need-an-index-so-igv-can-access-the-data-quickly." class="section level2">
+<h2>We need to convert the sam to bam and sort the file… We also need an index so IGV can access the data quickly.</h2>
+</div>
+<div id="we-should-do-the-same-for-sample-mt2" class="section level2">
+<h2>We should do the same for sample MT2</h2>
+</div>
+<div id="now-we-can-load-the-bam-files-to-igv-remember-you-need-the-index" class="section level2">
+<h2>Now we can load the BAM files to IGV… Remember you need the index</h2>
+<div id="what-do-you-see-explore-the-genome." class="section level3">
+<h3>What do you see?, explore the genome.</h3>
+</div>
+<div id="visualize-loci-pchas_0505200-and-pchas_1409500" class="section level3">
+<h3>Visualize loci: PCHAS_0505200 and PCHAS_1409500</h3>
+</div>
+<div id="what-do-you-see" class="section level3">
+<h3>What do you see?</h3>
+</div>
+<div id="can-you-export-the-figure" class="section level3">
+<h3>Can you export the figure?</h3>
+</div>
+</div>
+</div>
+<div id="igv-mouse" class="section level1">
+<h1>IGV Mouse</h1>
+<div id="using-igv-try-to-visualize-the-data-for-mouse-chip-seq-you-generated.-is-a-liver-data-set-can-you-point-to-an-interesting-loci" class="section level2">
+<h2>Using IGV try to visualize the data for mouse ChIP-seq you generated. Is a liver data set, can you point to an interesting loci?</h2>
+</div>
+<div id="use-ucsc-genome-browser" class="section level2">
+<h2>Use UCSC Genome Browser</h2>
+<div id="how-can-you-upload-the-data" class="section level3">
+<h3>How can you upload the data?</h3>
+<p>•Bam</p>
+<p>•Bigwig</p>
+</div>
+<div id="what-is-bigwig" class="section level3">
+<h3>What is BigWig?</h3>
+</div>
+<div id="create-a-bigwig-using-deeptools" class="section level3">
+<h3>Create a BigWig using deepTools</h3>
+<pre class="bash"><code>bamCoverage -b reads.bam -o coverage.bw</code></pre>
+<blockquote>
+<p>You might need to try <a href="https://de.cyverse.org/" class="uri">https://de.cyverse.org/</a> or any server could work.</p>
+</blockquote>
+</div>
+</div>
+<div id="can-you-contextualize-your-results-to-other-available-data-sets" class="section level2">
+<h2>Can you contextualize your results to other available data sets?</h2>
+</div>
+</div>
