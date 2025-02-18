@@ -186,7 +186,7 @@ bamCoverage -b reads.bam -o coverage.bw
         },
         metaData: { fileName: "example.pdf" },
       },
-      { embedMode: "LIGHT_BOX" }
+      { embedMode: "IN_LINE" }
     );
   });
 </script>
