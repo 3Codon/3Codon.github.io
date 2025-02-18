@@ -1,0 +1,105 @@
+---
+title: Genome Browsers
+description: Practical Activity
+slug: ale_tarea_03
+date: 2025-02-09 
+image: cover.jpg
+categories:
+    - Activity
+    - Bioinformatics
+    - Basic
+tags:
+    - FASTQC
+    - File Managing
+    - BCF
+    - BAM
+    - SAMTOOLS
+
+---
+
+# IGV
+
+## We will use IGV to visualize data for Plasmodium chabaudi AS (P. chabaudi)
+
+
+> P. Chabaudi is a malaria mouse pathogen.
+
+
+## Using the files in: /mnt/atgc-d1/bioinfoII/data/IGV, we will visualize RNA-seq data.
+
+## Load the genome from a file (note it has been indexed)
+
+##Load annotations for the genome.
+
+### Which one is the annotation file?
+
+### What is this format describing?
+
+## What is the browser displaying?
+
+## What happens if you zoom in or out?
+
+## Load an alignment file for an RNA-seq experiment MT1 and MT2
+
+## Is the data in the correct format?
+
+
+## What kind of data do you need?
+
+> This is RNA-seq data so we need special aligners to take into account isoforms.
+
+## We will use HISAT2 to map the RNA-Seq reads from our samples to the reference genome.
+
+## HISAT2 is a fast and sensitive splice-aware aligner.
+
+## We need to index the genome
+
+```{bash, eval = F}
+hisat2-build PccAS_v3_genome.fa PccAS_v3_hisat2.idx
+```
+
+
+## Now we can align
+
+```{bash, eval = F}
+hisat2 --max-intronlen 10000 -x PccAS_v3_hisat2.idx -1 MT1_1.fastq -2 MT1_2.fastq -S MT1.sam
+```
+
+## We need to convert the sam to bam and sort the file… We also need an index so IGV can access the data quickly.
+
+## We should do the same for sample MT2
+
+## Now we can load the BAM files to IGV... Remember you need the index
+
+### What do you see?, explore the genome.
+
+### Visualize loci: PCHAS_0505200 and PCHAS_1409500
+
+### What do you see?
+
+### Can you export the figure? 
+
+# IGV Mouse
+
+## Using IGV try to visualize the data for mouse ChIP-seq you generated. Is a liver data set, can you point to an interesting loci?
+
+## Use UCSC Genome Browser
+
+### How can you upload the data?
+
+•Bam
+
+•Bigwig
+
+### What is BigWig?
+
+
+### Create a BigWig using deepTools
+
+```{bash, eval = F}
+bamCoverage -b reads.bam -o coverage.bw
+```
+
+> You might need to try https://de.cyverse.org/ or any server could work.
+
+## Can you contextualize your results to other available data sets?
