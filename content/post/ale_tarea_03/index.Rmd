@@ -182,7 +182,7 @@ bamCoverage -b reads.bam -o coverage.bw
       {
         content: {
           location: {
-            url: "USCS.pdf", // Ruta al PDF subido
+            url: "https://data.cyverse.org/dav-anon/iplant/home/3lconejo/USCS.pdf", // Ruta al PDF subido
           },
         },
         metaData: { fileName: "example.pdf" },
