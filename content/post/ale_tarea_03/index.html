@@ -156,5 +156,18 @@ samtools index MT2.sorted.bam
 </div>
 <div id="can-you-contextualize-your-results-to-other-available-data-sets" class="section level2">
 <h2>Can you contextualize your results to other available data sets?</h2>
+<div id="adobe-dc-view">
+
+</div>
+<script src="https://acrobatservices.adobe.com/view-sdk/viewer.js"></script>
+<script type="text/javascript">
+	document.addEventListener("adobe_dc_view_sdk.ready", function(){ 
+		var adobeDCView = new AdobeDC.View({clientId: "<YOUR_CLIENT_ID>", divId: "adobe-dc-view"});
+		adobeDCView.previewFile({
+			content:{promise: "<FILE_BLOB_PROMISE>"},
+			metaData:{fileName: "<FILE_NAME>"}
+		}, {});
+	});
+</script>
 </div>
 </div>
