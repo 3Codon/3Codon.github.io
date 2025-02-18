@@ -63,6 +63,142 @@ SRR576933.3	0	NC_000913.2	1572373	60	36M	*	0	0	AGTGCGATGCCGTTCACCCGGTTTTCTTTATCA
 
 > Here you go, [fastqc](https://3lconejo.github.io/posts/fastqc/)
 
+**Ferro**:
+What is FASTQC?
+
+One of the essential steps in research on the molecule of life is its sequencing. Once the samples have been extracted, the sequencing process is carried out to obtain the nucleotide sequence of the samples. Currently, the new sequencing technology "...can generate hundreds of thousands of sequences in a single run." (Babraham institute). But it should be mentioned that before doing an analysis of the sequences to reach a conclusion, it is important to do a simple quality control on the fastq files, to observe how well the raw files look for future analysis and thus avoid biases that can affect the research.
+
+To do quality tests for fastq files, there is the **FASTQC** tool, whose output is a report of the problems that arose in the sequencer or in the start library.This tool can be run in two different modes, the first is as a stand-alone interactive application that can perform a quick analysis with a few fastq files or as a non-interactive mode, where the analysis process is larger, since it does
+a "...systematic processing of large amounts of files." (Babraham institute)
+
+To use the tool fastqc I charged the module *fastqc/0.12.1* to start the analysis of the quality of the data. 
+
+Ref:<https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/1%20Introduction/1.1%20What%20is%20FastQC.html>
+
+```{bash, eval = F}
+module load fastqc/0.12.1
+
+module list
+Currently Loaded Modulefiles:
+  1) gcc/5.1.0         2) sge/2011.11p1     3) bcftools/1.10.2   4) fastqc/0.12.1
+  
+```
+
+
+Once charged the module my next step is used the next command to analyze the quality of the fastq:
+
+```{bash, eval = F}
+
+fastqc mus_musculus_CEBPA_liver_ERR005132.fastq.gz
+
+```
+
+The output of this comand line is two archives:
+
+- mus_musculus_CEBPA_liver_ERR005132_fastqc.html
+- mus_musculus_CEBPA_liver_ERR005132_fastqc.zip
+
+
+The first file, redirects you to the results of the analysis performed by this tool, which contains a summary showing which of these filters the fastq managed to pass and which ones did not:
+
+Summary
+
+- Basic Statistics
+- Per base sequence quality
+- Per tile sequence quality
+- Per sequence quality scores
+- Per base sequence content
+- Per sequence GC content
+- Per base N content
+- Sequence Length Distribution
+- Sequence Duplication Levels
+- Overrepresented sequences
+- Adapter Content
+
+Also each filter of the summary has a graph that shows us more precise and visual the information of the result of this filters.
+
+In the case of our fastq we have this results:
+
+- *<font color="green">[PASS]</font>* Basic Statistics
+- *<font color="red">[FAIL]</font>* Per base sequence quality
+- *<font color="red">[FAIL]</font>* Per tile sequence quality
+- *<font color="red">[FAIL]</font>* Per sequence quality scores
+- *<font color="red">[FAIL]</font>* Per base sequence content
+- *<font color="green">[PASS]</font>* Per sequence GC content
+- *<font color="green">[PASS]</font>* Per base N content
+- *<font color="green">[PASS]</font>* Sequence Length Distribution
+- *<font color="green">[PASS]</font>* Sequence Duplication Levels
+- *<font color="green">[PASS]</font>* Overrepresented sequences
+- *<font color="green">[PASS]</font>* Adapter Content
+
+Now we will analyze the four filters that failed the FASTQC test:
+
+![](per_base_quality.png)
+
+This graph shows us the quality scores for the base call. *<font color="green">Green</font>* indicates the call has good quality, *<font color="yellow">yellow</font>* has reasonable quality, and *<font color="red">red</font>* if the quality is very poor.
+
+In our case we can see that most base calls have low or reasonable quality as they are in the red and yellow part, this helps us conclude that the call quality per base is poor.
+
+Ref:<https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/2%20Per%20Base%20Sequence%20Quality.html>
+
+![](per_tile_quality.png)
+This graph shows quality per tile indicating whether there are variations in quality in different regions of the sequencing process by comparing the sequencing quality at different positions within the read (X) to different tiles in the flow cell (Y) and whether certain tiles (sections of the sequencing machine sensor) produce lower quality data.
+
+Dark blue tells us that there is high quality in most positions and tiles.
+Red/yellow areas show us specific regions with lower quality, which may indicate problems in some tiles in the sequencing flow.
+
+In the case of our fastq we can see that most tiles and reading positions have a high quality, which is a good sign, but there are some areas with red and yellow dots around positions 12-20 bp and 30-35 bp.
+This tells us that in some tiles, the quality is significantly lower at those positions.
+
+Ref:<https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/12%20Per%20Tile%20Sequence%20Quality.html>
+
+![](per_sequence_quality.png)
+This graph shows us how poorly photographed the sequences are. The X-axis tells us the sequence's quality score on the PHRED scale and the Y-axis tells us the number of sequences that contain that score. Our fastq shows that most sequences have an average quality of around 12-15, which means that the accuracy percentage is less than 95%, meaning that the probability of that sequence being correct is low.
+
+Ref: <https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/3%20Per%20Sequence%20Quality%20Scores.html>
+
+![](per_base_sequence_content.png)
+This graph shows the content of each of the nucleotides throughout the read. It is expected that in this graph we can see that the same content of A is equal to the content of T, and in the same way the same content of C must be equal to the content of G. In our case we can observe that at the beginning of the reading the same number of A and T and the same number of C and G are conserved, but from position 20-21 the amount of C deviates and ends up having the same amount of T as C, at the same time in that same position the content of A deviates and ends up having the same amount of A as G. It seems that, halfway through the reading, the amount of purines (A and G) equals each other, as well as the amount of pyrimidines (C and T). The next step would be to investigate what was the cause that caused this error.
+
+Ref:<https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/4%20Per%20Base%20Sequence%20Content.html>
+
+In order for our FASTQ file to pass the four filters above, it must be subjected to a filtering process that improves its quality and thus avoids bias in the research.
+
+The other filters are those that passed the FASTQC test, indicating that:
+
+- It does not have a percentage of N content in all databases.
+
+![](per_base_n_content.png)
+Ref:<https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/6%20Per%20Base%20N%20Content.html>
+
+- It has sequence fragments of uniform length
+
+![](sequence_length_distribution.png)
+ref:<https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/7%20Sequence%20Length%20Distribution.html>
+
+- It contain a low level of duplication, this can indicate that they have a high level of coverage.
+
+![](duplication_levels.png)
+Ref:<https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/8%20Duplicate%20Sequences.html>
+
+- It does not contain overrepresented sequences.
+
+Ref:<https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/9%20Overrepresented%20Sequences.html>
+<https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/11%20Kmer%20Content.html>
+
+- It does not present this adapter sequences: 
+
+- Illumina Universal Adapter
+- Illumina Small RNA 3' Adapter
+- Illumina Small RNA 5' Adapter
+- Nextera Transposase Sequence
+- PolyA
+- PolyG
+
+![](adapter_content.png)
+Ref:<https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/10%20Adapter%20Content.html>
+
+
 **Sofi**: 
 
 I started by finding the route in which the mouse genome fasta was allocated (/mnt/Archives/genome/mouse/)mm10/UCSC/bwa-0.7.15-index/index/mm10.fa).
@@ -165,8 +301,26 @@ ERR005132.4	4	*	0	0	*	*	0	0	GATATCGTAATCTGCCAACTGCCATCCCCTCATCTCACACCC	III*7&E.0
 ```
 
 **UPDATE**:
-**Sofia**: Turns out, with the las alignment we had 0.0% of alignments (\(T_T)/), so we proceeded to remove adaptors with trimmomatic.
+**Sofia**: Turns out, with the last alignment we had 0.0% of alignments (\(T_T)/), so we proceeded to remove adaptors with trimmomatic.
 
+
+**Ferro**:
+We used trimmomatic to be able to remove adapters and process our fastq file.
+
+**Trimmomatic**:
+"Trimmomatic is a fast, multi-threaded command line tool that can be used to trim Illumina (FASTQ) data and to remove adapters" (http://www.usadellab.org)
+
+This tool has two modes:
+For Single-end and Paired-end fastq files
+
+The Paired-end mode keeps the match of read pairs and uses the additional information in the paired reads to find the adapters or PCR primers.
+
+Trimmomatic works with fastq files with quality scores phred+33 or phred+64. It accepts files compressed with gzip or bzip2.
+
+Ref:<http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/TrimmomaticManual_V0.32.pdf>
+
+
+**Sofia**: 
 First we loaded the archive which contains the adaptors from illumina, with the name TruSeq3-SE.fa. Its insides are: 
 ```{bash, eval = F}
 >TruSeq3_IndexedAdapter
@@ -181,6 +335,57 @@ Then, we proceeded to run the next command in a job:
 ```
 
 This command takes reads with high quality (30) but does NOT has a MINLEN argument to define the minimun lenght of the reads. For that reason, the cut sometimes is very big for the read and we end un with many reads with a lenght of less than 36 bp. In this case we remain with around 10 million reads, with an average lenght of 14 bp.
+
+**Ferro**:
+After to use the tool trimming, now we analize the qualification of the new file fastq filtered with the tool *fastqc*.
+
+We have these new results for our fastq:
+- *<font color="green">[PASS]</font>* Basic Statistics
+- *<font color="green">[PASS]</font>* Per base sequence quality
+- *<font color="green">[PASS]</font>* Per sequence quality scores
+- *<font color="red">[FAIL]</font>* Per base sequence content
+- *<font color="green">[PASS]</font>* Per sequence GC content
+- *<font color="green">[PASS]</font>* Per base N content
+- *<font color="yellow">[WARN]</font>* Sequence Length Distribution
+- *<font color="green">[PASS]</font>* Sequence Duplication Levels
+- *<font color="yellow">[WARN]</font>* Overrepresented sequences
+- *<font color="green">[PASS]</font>* Adapter Content
+
+
+In contrast to the first graphs of the analysis with fastqc we see that the filters that had not passed already passed after trimmomatic was used.
+
+![](per_base_quality_S.png)
+
+In the filter called *Quality by base sequence* we can see that the average quality of each base in each position of the read is in the green region, which indicates that these positions have good quality. Comparing it with the previous graph, we observe that the quality has increased.
+
+![](per_sequence_quality_S.png)
+In the case of *Per sequence quality scores*, with this graph we can confirm that Trimmomatic did filter the minimum size of reads that we asked for, since most of the reads have a size of 36 bp, which was the minimum size we were looking for.
+
+![](per_base_sequence_content_S.png)
+The case of *Per base sequence content* Although the new fastq passed this filter, we can see that at the end of the graph the amount of Thymine increases and that of Adenine decreases until having approximately the same amount of Cytosine, in addition to the fact that Cytosine increases and at the end there is a greater amount of Cytosine than its complementary nucleotide, Guanine. It seems that at the end of the graph, the amount of pyrimidine type nucleotides increases. Therefore, even when it passed the filter, there are still different amounts between the complementary nucleotides.
+
+Finally we got two filters that found an error but not so serious as to fail the test:
+
+![](sequence_length_distribution_S.png)
+In *Sequence length distribution* we can also see that the trimming was filtered correctly, since in this graph we can see that most of the samples have a size of 36 bp as requested by the tool, and it also indicates that there are also many 42 bp reads.
+This filter can appear in WARM because there may be a wide distribution of lengths, that is, “not all sequences have the same length” (Babraham Institute), or because the trimming made a cut but not in a uniform way, or because the library is fragmented or due to sequencing errors or if the sequences were trimmed with the adapter..
+
+Ref:<https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/7%20Sequence%20Length%20Distribution.html>
+<https://docs.omicsbox.biobam.com/latest/FastQC-Quality-Check/>
+
+
+
+```{bash, eval = F}
+Sequence	Count	Percentage	Possible Source
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA	922	0.18814713840854458	No Hit
+```
+
+In *Overrepresented sequences*It gives us a sequence of 40 adenines, and that this was found 922 times in the data sequence, and represents approximately 0.19% of the total, for this reason, the fastqc tool puts this filter in WARM
+
+Ref:<https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/9%20Overrepresented%20Sequences.html>
+<https://docs.omicsbox.biobam.com/latest/FastQC-Quality-Check/>
+
+**Sofia**:
 The code for the alignment is the following:
 
 ```{bash, eval = F}
@@ -199,4 +404,6 @@ And the alignment:
 bowtie /mnt/Archives/genome/mouse/mm10/UCSC/bowtie-0.12.7-index/index/mm10 /mnt/atgc-d1/bioinfoII/sgamino/alignment/aln_mouse_liver/TRIM_minlen36_mus_musculus_CEBPA_liver_ERR005132.fastq 
 -S /mnt/atgc-d1/bioinfoII/sgamino/alignment/aln_mouse_liver/TRIM_minlen36_mus_musculus_CEBPA_liver_ERR005132.sam
 ```
+
+
 
