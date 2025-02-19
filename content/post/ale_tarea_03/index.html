@@ -18,6 +18,7 @@ tags:
 
 
 
+<meta http-equiv="Content-Security-Policy" content="{{ .Site.Params.contentSecurityPolicy }}">
 <div id="igv" class="section level1">
 <h1>IGV</h1>
 <div id="we-will-use-igv-to-visualize-data-for-plasmodium-chabaudi-as-p.-chabaudi" class="section level2">
@@ -34,7 +35,7 @@ tags:
 <div id="load-annotations-for-the-genome." class="section level3">
 <h3>Load annotations for the genome.</h3>
 <video width="320" height="240" controls>
-<source src="video/video1.mp4" type="video/mp4">
+<source src="https://data.cyverse.org/dav-anon/iplant/home/3lconejo/video1.mp4" type="video/mp4">
 <p>Your browser does not support the video tag. </video></p>
 </div>
 <div id="which-one-is-the-annotation-file" class="section level3">
@@ -121,6 +122,16 @@ samtools index MT2.sorted.bam
 </div>
 <div id="visualize-loci-pchas_0505200-and-pchas_1409500" class="section level3">
 <h3>Visualize loci: PCHAS_0505200 and PCHAS_1409500</h3>
+<pre class="bash"><code>[sgamino@compute-00-11 IGV]$ grep &quot;PCHAS_0505200&quot; PccAS_v3.gff3
+PccAS_05_v3	DEFAULT	gene	202496	203599	.	-	.	ID=PCHAS_0505200
+PccAS_05_v3	DEFAULT	mRNA	202496	203599	.	-	.	ID=PCHAS_0505200.1;Parent=PCHAS_0505200
+PccAS_05_v3	DEFAULT	CDS	202496	202583	.	-	1	ID=PCHAS_0505200.1:exon:2216;Parent=PCHAS_0505200.1
+PccAS_05_v3	DEFAULT	CDS	202719	202869	.	-	2	ID=PCHAS_0505200.1:exon:2217;Parent=PCHAS_0505200.1
+PccAS_05_v3	DEFAULT	CDS	202994	203081	.	-	0	ID=PCHAS_0505200.1:exon:2218;Parent=PCHAS_0505200.1
+PccAS_05_v3	DEFAULT	CDS	203199	203269	.	-	2	ID=PCHAS_0505200.1:exon:2219;Parent=PCHAS_0505200.1
+PccAS_05_v3	DEFAULT	CDS	203452	203599	.	-	0	ID=PCHAS_0505200.1:exon:2220;Parent=PCHAS_0505200.1
+</code></pre>
+<p>This way, we could know the position of these loci.</p>
 </div>
 <div id="what-do-you-see" class="section level3">
 <h3>What do you see?</h3>
@@ -161,13 +172,23 @@ samtools index MT2.sorted.bam
 </div>
 <script src="https://acrobatservices.adobe.com/view-sdk/viewer.js"></script>
 <script type="text/javascript">
-	document.addEventListener("adobe_dc_view_sdk.ready", function(){ 
-		var adobeDCView = new AdobeDC.View({clientId: "<YOUR_CLIENT_ID>", divId: "adobe-dc-view"});
-		adobeDCView.previewFile({
-			content:{promise: "<FILE_BLOB_PROMISE>"},
-			metaData:{fileName: "<FILE_NAME>"}
-		}, {});
-	});
+  document.addEventListener("adobe_dc_view_sdk.ready", function() {
+    var adobeDCView = new AdobeDC.View({
+      clientId: "c57675621c8d42c1943b44c8a1f0b0ff", // Reemplaza con tu clientId de Adobe
+      divId: "adobe-dc-view"
+    });
+    adobeDCView.previewFile(
+      {
+        content: {
+          location: {
+            url: "https://data.cyverse.org/dav-anon/iplant/home/3lconejo/USCS.pdf", // Ruta al PDF subido
+          },
+        },
+        metaData: { fileName: "example.pdf" },
+      },
+      { embedMode: "IN_LINE" }
+    );
+  });
 </script>
 </div>
 </div>
