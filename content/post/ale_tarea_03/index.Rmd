@@ -109,9 +109,7 @@ samtools index MT2.sorted.bam
 
 ```
 
-
-**Ferro**:
-## We should do the same for sample MT2
+**Ferro**: \## We should do the same for sample MT2
 
 ## Now we can load the BAM files to IGV... Remember you need the index
 
@@ -138,12 +136,12 @@ This way, we could know the position of these loci.
 ### What do you see?
 
 ### Can you export the figure?
-Yes, IGV has a tool that you can export the figure 
+
+Yes, IGV has a tool that you can export the figure
 
 ![](igv_snapshot_PCHAS_0505200.png)
 
-![](igv_snapshot_PCHAS_1409500.png)
-# IGV Mouse
+![](igv_snapshot_PCHAS_1409500.png) \# IGV Mouse
 
 ## Using IGV try to visualize the data for mouse ChIP-seq you generated. Is a liver data set, can you point to an interesting loci?
 
@@ -167,14 +165,21 @@ bamCoverage -b reads.bam -o coverage.bw
 
 ## Can you contextualize your results to other available data sets?
 
-<div id="adobe-dc-view"></div>
+::: {#adobe-dc-view}
+:::
+
+```{=html}
 <script src="https://acrobatservices.adobe.com/view-sdk/viewer.js"></script>
+```
+
+```{=html}
 <script type="text/javascript">
-	document.addEventListener("adobe_dc_view_sdk.ready", function(){ 
-		var adobeDCView = new AdobeDC.View({clientId: "<YOUR_CLIENT_ID>", divId: "adobe-dc-view"});
-		adobeDCView.previewFile({
-			content:{promise: "<FILE_BLOB_PROMISE>"},
-			metaData:{fileName: "<FILE_NAME>"}
-		}, {});
-	});
+    document.addEventListener("adobe_dc_view_sdk.ready", function(){ 
+        var adobeDCView = new AdobeDC.View({clientId: "<YOUR_CLIENT_ID>", divId: "adobe-dc-view"});
+        adobeDCView.previewFile({
+            content:{promise: "<FILE_BLOB_PROMISE>"},
+            metaData:{fileName: "<FILE_NAME>"}
+        }, {});
+    });
 </script>
+```
