@@ -203,10 +203,10 @@ bamCoverage -b reads.bam -o coverage.bw
 ```{=html}
 <script src="https://acrobatservices.adobe.com/view-sdk/viewer.js"></script>
 ```
+  
 
-```         
 
-```{=html}
+<div id="adobe-dc-view"></div>
 <script type="text/javascript">
   document.addEventListener("adobe_dc_view_sdk.ready", function() {
     var adobeDCView = new AdobeDC.View({
@@ -226,6 +226,6 @@ bamCoverage -b reads.bam -o coverage.bw
     );
   });
 </script>
-```
+
 
 Yes we can. In the UCSC genome browser, we can compare in real time our results to those obtained in a variety of experiments and projects like the ENCODE project. For example, we can know the results of CHIPseq alignment of many types of proteins, and then compare with our own CHIP seq experiments to see if they are congruent to the know literature.
