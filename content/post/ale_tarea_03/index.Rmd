@@ -18,7 +18,6 @@ tags:
 
 <meta http-equiv="Content-Security-Policy" content="{{ .Site.Params.contentSecurityPolicy }}">
 
-
 # IGV
 
 ## We will use IGV to visualize data for Plasmodium chabaudi AS (P. chabaudi)
@@ -63,11 +62,9 @@ Your browser does not support the video tag. </video>
 
 > This is RNA-seq data so we need special aligners to take into account isoforms.
 
-**Suazo**: We need to align the data to the genome.
+**Suazo**: We need to align the data to the genome. **Sofia**: For that reason, we need data in the form of bam and their index, bam.bai.
 
-## We will use HISAT2 to map the RNA-Seq reads from our samples to the reference genome.
-
-## HISAT2 is a fast and sensitive splice-aware aligner.
+## We will use HISAT2 to map the RNA-Seq reads from our samples to the reference genome. HISAT2 is a fast and sensitive splice-aware aligner.
 
 ## We need to index the genome
 
@@ -88,7 +85,6 @@ hisat2 --max-intronlen 10000 -x PccAS_v3_hisat2.idx -1 MT1_1.fastq -2 MT1_2.fast
 
 hisat2 --max-intronlen 10000 -x PccAS_v3_hisat2.idx -1 MT1_1.fastq -2 MT1_2.fastq -S MT1.sam
 
-
 hisat2 --max-intronlen 10000 -x PccAS_v3_hisat2.idx -1 MT2_1.fastq -2 MT2_2.fastq -S MT2.sam
 
 
@@ -96,7 +92,7 @@ hisat2 --max-intronlen 10000 -x PccAS_v3_hisat2.idx -1 MT2_1.fastq -2 MT2_2.fast
 
 samtools view MT1.sam -O BAM -o MT1.bam
  
-samtools view MT1.sam -O BAM -o MT2.bam
+samtools view MT2.sam -O BAM -o MT2.bam
 
 # We sort the BAM files
 
@@ -132,33 +128,51 @@ PccAS_05_v3	DEFAULT	CDS	202994	203081	.	-	0	ID=PCHAS_0505200.1:exon:2218;Parent=
 PccAS_05_v3	DEFAULT	CDS	203199	203269	.	-	2	ID=PCHAS_0505200.1:exon:2219;Parent=PCHAS_0505200.1
 PccAS_05_v3	DEFAULT	CDS	203452	203599	.	-	0	ID=PCHAS_0505200.1:exon:2220;Parent=PCHAS_0505200.1
 
+[sgamino@compute-00-11 IGV]$ grep "PCHAS_1409500" PccAS_v3.gff3
+PccAS_14_v3     DEFAULT gene    377689  378830  .       +       .       ID=PCHAS_1409500
+PccAS_14_v3     DEFAULT mRNA    377689  378830  .       +       .       ID=PCHAS_1409500.1;Parent=PCHAS_1409500
+PccAS_14_v3     DEFAULT CDS     377689  377868  .       +       0       ID=PCHAS_1409500.1:exon:12588;Parent=PCHAS_1409500.1
+PccAS_14_v3     DEFAULT CDS     378016  378165  .       +       0       ID=PCHAS_1409500.1:exon:12589;Parent=PCHAS_1409500.1
+PccAS_14_v3     DEFAULT CDS     378669  378830  .       +       0       ID=PCHAS_1409500.1:exon:12590;Parent=PCHAS_1409500.1
 ```
 
-This way, we could know the position of these loci.
+This way, we can know the position of these loci.
 
 ### What do you see?
 
 ### Can you export the figure?
 
-Yes, IGV has a tool that you can export the figure
+Yes, IGV has a tool where you can export the figure
 
 ![](igv_snapshot_PCHAS_0505200.png)
 
-![](igv_snapshot_PCHAS_1409500.png) \# IGV Mouse
+![](igv_snapshot_PCHAS_1409500.png)
+
+# IGV Mouse
 
 ## Using IGV try to visualize the data for mouse ChIP-seq you generated. Is a liver data set, can you point to an interesting loci?
 
+No, because when we aligned the RNA-seq sequences from the loci after trimming, we remained with around 400k reads with adequate quality. This amount of reads is neglible, son any assesment is almost impossible to do. For example, this is the kind of information we get from a loci:
+
+![](images/clipboard-2848686320.png)
+
 ## Use UCSC Genome Browser
 
-### How can you upload the data?
+## How can you upload the data?
 
-•Bam
+### Bam
 
-•Bigwig
+### Bigwig
 
-### What is BigWig?
+#### What is BigWig?
 
-### Create a BigWig using deepTools
+BigWig (bw) is a type of format useful to display information on genome browsers visualizers, as it does not needs to charge all reads, but only those in the region displayed, called "sparse". BigWig files contain information of aligned reads for each position.
+
+It is an indexed file and the info is saved in a server external to the genome browser.
+
+BigWig files are created from wiggle (wig) type files using the program wigToBigWig
+
+#### Create a BigWig using deepTools
 
 ```{bash, eval = F}
 bamCoverage -b reads.bam -o coverage.bw
@@ -167,10 +181,15 @@ bamCoverage -b reads.bam -o coverage.bw
 > You might need to try <https://de.cyverse.org/> or any server could work.
 
 ## Can you contextualize your results to other available data sets?
-<div id="adobe-dc-view"></div>
 
+::: {#adobe-dc-view}
+:::
+
+```{=html}
 <script src="https://acrobatservices.adobe.com/view-sdk/viewer.js"></script>
 ```
+
+```         
 
 ```{=html}
 <script type="text/javascript">
@@ -194,3 +213,4 @@ bamCoverage -b reads.bam -o coverage.bw
 </script>
 ```
 
+Yes we can. In the UCSC genome browser, we can compare in real time our results to those obtained in a variety of experiments and projects like the ENCODE project. For example, we can know the results of CHIPseq alignment of many types of proteins, and then compare with our own CHIP seq experiments to see if they are congruent to the know literature.
