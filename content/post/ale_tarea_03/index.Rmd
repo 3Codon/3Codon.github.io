@@ -108,8 +108,7 @@ samtools index MT2.sorted.bam
 
 ```
 
-**Ferro**: 
-## We should do the same for sample MT2
+**Ferro**: \## We should do the same for sample MT2
 
 ## Now we can load the BAM files to IGV... Remember you need the index
 
@@ -117,9 +116,7 @@ samtools index MT2.sorted.bam
 
 We observe that at the top of the reads they tell us the coverage of each coding sequence and the coverage can help us infer which exons are more expressed among all the exons in the sample. We can see that the reads are cut very precisely and between each set of reads of each exon there is a GAP or a space, this is due to the prediction of the splicing junctions and that the reads are cut, which is what IGV does to be able to map the reads in the reference genome. Also with this, IGV represents the splicing junctions as a red or blue curve.
 
-Ref:<https://www.youtube.com/watch?v=awGN-rpLYas>
-<https://igv.org/doc/desktop/#UserGuide>
-
+Ref:<https://www.youtube.com/watch?v=awGN-rpLYas> <https://igv.org/doc/desktop/#UserGuide>
 
 ![](images/clipboard-320555205.png)
 
@@ -145,15 +142,13 @@ PccAS_14_v3     DEFAULT CDS     378669  378830  .       +       0       ID=PCHAS
 
 This way, we can know the position of these loci.
 
+**Ferro**: \### What do you see?
 
-**Ferro**:
-### What do you see?
 First, let's remember what the mRNA maturation process is: The result of the DNA transcription process is an RNA molecule called pre-mRNA, this molecule is characterized by containing introns and exons. The premature RNA molecule enters a process called spicing where the spliceosome removes the introns and only leaves the coding sequences (CD). Then the regions where the spliceosome cuts are called splicing junctions, which are the regions where the exons are joined and thus we obtain the mature mRNA ready to begin the translation process. Now when we get the mRNA sequencing reads at the time of aligning them with the reference genome, but the problem is that some reads do not map to the reference genome, therefore to align what is done is that IGV predicts the splicing junctions and cuts the reads and aligns them with the coding sequences (CD), and with this the more coverage the different exons have, we can observe which exons are being expressed. Also IGV when predicting the splice junctions, represents the jumps between exons as arcs. If the arcs are red, it represents the splicing junctions of the positive strand, while the blue arcs represent the splicing junctions of the negative strand. The thickness and height of these curves are determined by the amount of reads you have in a given junction.
 
 In our sample, we can see that the PCHAS_0505200 loci has 5 coding sequences and each of them has a good coverage, and the coding sequences are of different sizes. All the representations of the splicing junctions are from the negative strand, since it is colored blue. On the other hand, the PCHAS_1409500 loci only has 3 coding sequences, we can see that the curves that represent the junctions are red, this indicates that these arcs are splicing junctions from the positive strand. In both samples we can also see at the top that it tells us how many coverages each exon has, in our sample, it tells us that there are high coverages in each coding sequence that the loci has.
 
-Ref:<https://www.youtube.com/watch?v=awGN-rpLYas>
-<https://igv.org/doc/desktop/#UserGuide>
+Ref:<https://www.youtube.com/watch?v=awGN-rpLYas> <https://igv.org/doc/desktop/#UserGuide>
 
 ### Can you export the figure?
 
@@ -167,7 +162,7 @@ Yes, IGV allows you to export the image of what you are working on. To be able t
 
 ## Using IGV try to visualize the data for mouse ChIP-seq you generated. Is a liver data set, can you point to an interesting loci?
 
-No, because when we aligned the RNA-seq sequences from the loci after trimming, we remained with around 400k reads with adequate quality. This amount of reads is neglible, son any assesment is almost impossible to do. For example, this is the kind of information we get from a loci:
+No, because when we aligned the RNA-seq sequences from the loci after trimming, we remained with around 400k reads with adequate quality. This amount of reads is neglible, so any assesment is almost impossible to do. For example, this is the kind of information we get from a loci:
 
 ![](images/clipboard-2848686320.png)
 
@@ -181,16 +176,17 @@ No, because when we aligned the RNA-seq sequences from the loci after trimming, 
 
 #### What is BigWig?
 
-BigWig (bw) is a type of format useful to display information on genome browsers visualizers, as it does not needs to charge all reads, but only those in the region displayed, called "sparse". BigWig files contain information of aligned reads for each position.
+**Sofia**: BigWig (bw) is a type of format useful to display information on genome browsers visualizers, as it does not needs to charge all reads, but only those in the region displayed, called "sparse". BigWig files contain information of aligned reads for each sparse.
 
 It is an indexed file and the info is saved in a server external to the genome browser.
 
-BigWig files are created from wiggle (wig) type files using the program wigToBigWig
+BigWig files are created from wiggle (wig) type files using the program wigToBigWig, but we can also use bamCoverage or bamCompare to transform bam files to bigwig files.
 
 #### Create a BigWig using deepTools
 
 ```{bash, eval = F}
-bamCoverage -b reads.bam -o coverage.bw
+[sgamino@chromatin deepTools]$ bamCoverage -b .TRIM_minlen36_mus_musculus_CEBPA_liver_ERR005132_SORTED.bam -o TRIM_minlen36_mus_musculus_CEBPA_liver_ERR005132_SORTED.bw
+
 ```
 
 > You might need to try <https://de.cyverse.org/> or any server could work.
@@ -203,10 +199,12 @@ bamCoverage -b reads.bam -o coverage.bw
 ```{=html}
 <script src="https://acrobatservices.adobe.com/view-sdk/viewer.js"></script>
 ```
-  
 
+<div>
 
-<div id="adobe-dc-view"></div>
+</div>
+
+```{=html}
 <script type="text/javascript">
   document.addEventListener("adobe_dc_view_sdk.ready", function() {
     var adobeDCView = new AdobeDC.View({
@@ -226,6 +224,6 @@ bamCoverage -b reads.bam -o coverage.bw
     );
   });
 </script>
+```
 
-
-Yes we can. In the UCSC genome browser, we can compare in real time our results to those obtained in a variety of experiments and projects like the ENCODE project. For example, we can know the results of CHIPseq alignment of many types of proteins, and then compare with our own CHIP seq experiments to see if they are congruent to the know literature.
+**Sofia**: Yes we can. In the UCSC genome browser we can compare in real time our results to those obtained in a variety of experiments and projects like the ENCODE project. For example, we can know the results of CHIPseq alignment of many types of proteins, and then compare with our own CHIP seq experiments to see if they are congruent to the known literature.
