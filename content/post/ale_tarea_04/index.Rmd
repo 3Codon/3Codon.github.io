@@ -219,3 +219,67 @@ Ref: <https://bioinformatics.ccr.cancer.gov/docs/data-visualization-with-r/Lesso
 ![](Heatmap_mouse_1.png)
 
 # TidyTuesday plot. Choose a dataset that is of your interest and make a graph with them.
+
+We choose Long Beach Animal Shelter dataset, it is a dataset that contains information about the animals that are in the shelter, the date that they arrived, the date that they left, the type of animal, the breed, the color, etc.
+
+## Suazo Graph
+
+It shows the coordinates where the animal was found, the color of the point is according to the type of animal, and the popup shows the ID, the type and the name of the animal.
+
+
+```{r include=FALSE}
+library(leaflet)
+library(dplyr)
+library(ggplot2)
+library(tidytuesdayR)
+
+tuesdata <- tidytuesdayR::tt_load(2025, week = 9)
+
+
+
+longbeach <- tuesdata$longbeach
+
+str(longbeach)
+
+longbeach$geopoint
+
+longbeach$animal_type
+```
+
+```{r}
+
+leaflet(data = longbeach) %>%
+  addTiles() %>%
+  addCircleMarkers(~longitude, ~latitude,
+                   radius = 5,
+                   color = ~case_when(
+                     animal_type == "dog" ~ "blue",
+                     animal_type == "cat" ~ "red",
+                     animal_type == "bird" ~ "green",
+                     animal_type == "reptile" ~ "orange",
+                     animal_type == "rabbit" ~ "purple",
+                     TRUE ~ "gray"
+                   ),
+                   popup = ~paste("<strong>ID:</strong>", animal_id,
+                                  "<br><strong>Tipo:</strong>", animal_type,
+                                  "<br><strong>Nombre:</strong>", animal_name))
+```
+
+Because this is difficult to present in paper, we also decided to make another graph about the state that the animals were when they arrived at the shelter, and if they are dead or not.
+
+```{r}
+resumen2 <- longbeach %>%
+  filter(!is.na(animal_type), !is.na(intake_condition), !is.na(outcome_is_dead)) %>%
+  group_by(animal_type, intake_condition, outcome_is_dead) %>%
+  summarise(n = n(), .groups = "drop")
+
+ggplot(resumen2, aes(x = animal_type, y = intake_condition, size = n, color = outcome_is_dead)) +
+  geom_point(alpha = 0.7) +
+  labs(title = "Frecuencia de animales según especie, condición de ingreso y resultado",
+       x = "Especie",
+       y = "Condición de ingreso",
+       size = "Cantidad",
+       color = "¿Está muerto?") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
