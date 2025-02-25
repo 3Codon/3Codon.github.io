@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>QUALITY CONTROLL on 3Codon</title><link>https://3codon.github.io/tags/quality-controll/</link><description>Recent content in QUALITY CONTROLL on 3Codon</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 11 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://3codon.github.io/tags/quality-controll/index.xml" rel="self" type="application/rss+xml"/><item><title>Practical alignment</title><link>https://3codon.github.io/p/ale_tarea_02/</link><pubDate>Tue, 11 Feb 2025 00:00:00 +0000</pubDate><guid>https://3codon.github.io/p/ale_tarea_02/</guid><description>&lt;img src="https://3codon.github.io/p/ale_tarea_02/cover.jpg" alt="Featured image of post Practical alignment" />
+&lt;div id="using-bwa-index-de-e.-coli-genome" class="section level2">
+&lt;h2>• Using bwa index de e. coli genome&lt;/h2>
+&lt;p>a
+&lt;strong>Suazo:&lt;/strong>&lt;/p>
+&lt;pre class="bash">&lt;code>module load bwa/0.7.17
+bwm index Escherichia_coli_K12_MG1655.fasta&lt;/code>&lt;/pre>
+&lt;p>This would create multiple files&lt;/p>
+&lt;table>
+&lt;colgroup>
+&lt;col width="50%" />
+&lt;col width="50%" />
+&lt;/colgroup>
+&lt;thead>
+&lt;tr class="header">
+&lt;th>Archive&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr class="odd">
+&lt;td>.amb&lt;/td>
+&lt;td>Contain Infromation about ambigous bases (N) in the sequence.&lt;/td>
+&lt;/tr>
+&lt;tr class="even">
+&lt;td>.ann&lt;/td>
+&lt;td>Contain Annotation about genome, like sequences names and lenghts.&lt;/td>
+&lt;/tr>
+&lt;tr class="odd">
+&lt;td>.bwt&lt;/td>
+&lt;td>Contain compressed representation of the genome using Burrows-Wheeler algorithm.&lt;/td>
+&lt;/tr>
+&lt;tr class="even">
+&lt;td>.pac&lt;/td>
+&lt;td>Contain packed genome sequence in 2 bits per base. It is used to search the genome.&lt;/td>
+&lt;/tr>
+&lt;tr class="odd">
+&lt;td>.sa&lt;/td>
+&lt;td>Contain the suffix array of the genome.&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;/div>
+&lt;div id="align-reads-from-a-fnr-chip-seq-experiment" class="section level2">
+&lt;h2>• Align reads from a FNR ChIP-seq experiment&lt;/h2>
+&lt;p>&lt;strong>Suazo:&lt;/strong>&lt;/p>
+&lt;pre class="bash">&lt;code>bwa mem Escherichia_coli_K12_MG1655.fasta SRX189773_FNR_ChIP.fastq &lt;/code>&lt;/pre>
+&lt;p>This will generate a SAM file with the alignment of the reads to the genome.&lt;/p>
+&lt;blockquote>
+&lt;p>Preview:&lt;/p>
+&lt;/blockquote>
+&lt;pre class="bash">&lt;code>@SQ SN:NC_000913.2 LN:4639675
+@PG ID:bwa PN:bwa VN:0.7.17-r1188 CL:bwa mem Escherichia_coli_K12_MG1655.fasta SRX189773_FNR_ChIP.fastq
+SRR576933.1 0 NC_000913.2 914875 60 36M * 0 0 AAGCATGGAATAACCGCCTGGTGAATGCTCGCCATA EDEA=EEEEEBFBDFDEBDAD=DDBAC5CCEEE:E@ NM:i:0 MD:Z:36 AS:i:36 XS:i:0
+SRR576933.2 0 NC_000913.2 147284 60 36M * 0 0 TGGAGGCTGACCACGATAAGCTGCCGCTGGTGGTGC EDF:D?=DEEE?EEE5DDDAEB:ECEBBEA&amp;gt;AA956 NM:i:0 MD:Z:36 AS:i:36 XS:i:0
+SRR576933.3 0 NC_000913.2 1572373 60 36M * 0 0 AGTGCGATGCCGTTCACCCGGTTTTCTTTATCATTA EEEEED=DD?AD=DDEEBEDEBBECCD&amp;gt;&amp;gt;&amp;gt;BB?EE5 NM:i:0 MD:Z:36 AS:i:36 XS:i:0
+&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;div id="using-the-available-indexed-genomes-in-the-cluster-mntarchivesgenome-align-reads-of-a-mouse-chip-seq-experiment-to-the-genome." class="section level2">
+&lt;h2>• Using the available indexed genomes in the cluster (/mnt/Archives/genome/) align reads of a mouse ChIP-seq experiment to the genome.&lt;/h2>
+&lt;blockquote>
+&lt;p>• Please analyze the quality of the data, try using fastqc ;)&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>Here you go, &lt;a href="https://3lconejo.github.io/posts/fastqc/">fastqc&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;strong>Ferro&lt;/strong>:
+What is FASTQC?&lt;/p>
+&lt;p>One of the essential steps in research on the molecule of life is its sequencing. Once the samples have been extracted, the sequencing process is carried out to obtain the nucleotide sequence of the samples. Currently, the new sequencing technology “…can generate hundreds of thousands of sequences in a single run.” (Babraham institute). But it should be mentioned that before doing an analysis of the sequences to reach a conclusion, it is important to do a simple quality control on the fastq files, to observe how well the raw files look for future analysis and thus avoid biases that can affect the research.&lt;/p>
+&lt;p>To do quality tests for fastq files, there is the &lt;strong>FASTQC&lt;/strong> tool, whose output is a report of the problems that arose in the sequencer or in the start library.This tool can be run in two different modes, the first is as a stand-alone interactive application that can perform a quick analysis with a few fastq files or as a non-interactive mode, where the analysis process is larger, since it does
+a “…systematic processing of large amounts of files.” (Babraham institute)&lt;/p>
+&lt;p>To use the tool fastqc I charged the module &lt;em>fastqc/0.12.1&lt;/em> to start the analysis of the quality of the data.&lt;/p>
+&lt;p>Ref:&lt;a href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/1%20Introduction/1.1%20What%20is%20FastQC.html" class="uri">https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/1%20Introduction/1.1%20What%20is%20FastQC.html&lt;/a>&lt;/p>
+&lt;pre class="bash">&lt;code>module load fastqc/0.12.1
+module list
+Currently Loaded Modulefiles:
+1) gcc/5.1.0 2) sge/2011.11p1 3) bcftools/1.10.2 4) fastqc/0.12.1
+&lt;/code>&lt;/pre>
+&lt;p>Once charged the module my next step is used the next command to analyze the quality of the fastq:&lt;/p>
+&lt;pre class="bash">&lt;code>
+fastqc mus_musculus_CEBPA_liver_ERR005132.fastq.gz
+&lt;/code>&lt;/pre>
+&lt;p>The output of this comand line is two archives:&lt;/p>
+&lt;ul>
+&lt;li>mus_musculus_CEBPA_liver_ERR005132_fastqc.html&lt;/li>
+&lt;li>mus_musculus_CEBPA_liver_ERR005132_fastqc.zip&lt;/li>
+&lt;/ul>
+&lt;p>The first file, redirects you to the results of the analysis performed by this tool, which contains a summary showing which of these filters the fastq managed to pass and which ones did not:&lt;/p>
+&lt;p>Summary&lt;/p>
+&lt;ul>
+&lt;li>Basic Statistics&lt;/li>
+&lt;li>Per base sequence quality&lt;/li>
+&lt;li>Per tile sequence quality&lt;/li>
+&lt;li>Per sequence quality scores&lt;/li>
+&lt;li>Per base sequence content&lt;/li>
+&lt;li>Per sequence GC content&lt;/li>
+&lt;li>Per base N content&lt;/li>
+&lt;li>Sequence Length Distribution&lt;/li>
+&lt;li>Sequence Duplication Levels&lt;/li>
+&lt;li>Overrepresented sequences&lt;/li>
+&lt;li>Adapter Content&lt;/li>
+&lt;/ul>
+&lt;p>Also each filter of the summary has a graph that shows us more precise and visual the information of the result of this filters.&lt;/p>
+&lt;p>In the case of our fastq we have this results:&lt;/p>
+&lt;ul>
+&lt;li>&lt;em>&lt;font color="green">[PASS]&lt;/font>&lt;/em> Basic Statistics&lt;/li>
+&lt;li>&lt;em>&lt;font color="red">[FAIL]&lt;/font>&lt;/em> Per base sequence quality&lt;/li>
+&lt;li>&lt;em>&lt;font color="red">[FAIL]&lt;/font>&lt;/em> Per tile sequence quality&lt;/li>
+&lt;li>&lt;em>&lt;font color="red">[FAIL]&lt;/font>&lt;/em> Per sequence quality scores&lt;/li>
+&lt;li>&lt;em>&lt;font color="red">[FAIL]&lt;/font>&lt;/em> Per base sequence content&lt;/li>
+&lt;li>&lt;em>&lt;font color="green">[PASS]&lt;/font>&lt;/em> Per sequence GC content&lt;/li>
+&lt;li>&lt;em>&lt;font color="green">[PASS]&lt;/font>&lt;/em> Per base N content&lt;/li>
+&lt;li>&lt;em>&lt;font color="green">[PASS]&lt;/font>&lt;/em> Sequence Length Distribution&lt;/li>
+&lt;li>&lt;em>&lt;font color="green">[PASS]&lt;/font>&lt;/em> Sequence Duplication Levels&lt;/li>
+&lt;li>&lt;em>&lt;font color="green">[PASS]&lt;/font>&lt;/em> Overrepresented sequences&lt;/li>
+&lt;li>&lt;em>&lt;font color="green">[PASS]&lt;/font>&lt;/em> Adapter Content&lt;/li>
+&lt;/ul>
+&lt;p>Now we will analyze the four filters that failed the FASTQC test:&lt;/p>
+&lt;p>&lt;img src="per_base_quality.png" />&lt;/p>
+&lt;p>This graph shows us the quality scores for the base call. &lt;em>&lt;font color="green">Green&lt;/font>&lt;/em> indicates the call has good quality, &lt;em>&lt;font color="yellow">yellow&lt;/font>&lt;/em> has reasonable quality, and &lt;em>&lt;font color="red">red&lt;/font>&lt;/em> if the quality is very poor.&lt;/p>
+&lt;p>In our case we can see that most base calls have low or reasonable quality as they are in the red and yellow part, this helps us conclude that the call quality per base is poor.&lt;/p>
+&lt;p>Ref:&lt;a href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/2%20Per%20Base%20Sequence%20Quality.html" class="uri">https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/2%20Per%20Base%20Sequence%20Quality.html&lt;/a>&lt;/p>
+&lt;p>&lt;img src="per_tile_quality.png" />
+This graph shows quality per tile indicating whether there are variations in quality in different regions of the sequencing process by comparing the sequencing quality at different positions within the read (X) to different tiles in the flow cell (Y) and whether certain tiles (sections of the sequencing machine sensor) produce lower quality data.&lt;/p>
+&lt;p>Dark blue tells us that there is high quality in most positions and tiles.
+Red/yellow areas show us specific regions with lower quality, which may indicate problems in some tiles in the sequencing flow.&lt;/p>
+&lt;p>In the case of our fastq we can see that most tiles and reading positions have a high quality, which is a good sign, but there are some areas with red and yellow dots around positions 12-20 bp and 30-35 bp.
+This tells us that in some tiles, the quality is significantly lower at those positions.&lt;/p>
+&lt;p>Ref:&lt;a href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/12%20Per%20Tile%20Sequence%20Quality.html" class="uri">https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/12%20Per%20Tile%20Sequence%20Quality.html&lt;/a>&lt;/p>
+&lt;p>&lt;img src="per_sequence_quality.png" />
+This graph shows us how poorly photographed the sequences are. The X-axis tells us the sequence’s quality score on the PHRED scale and the Y-axis tells us the number of sequences that contain that score. Our fastq shows that most sequences have an average quality of around 12-15, which means that the accuracy percentage is less than 95%, meaning that the probability of that sequence being correct is low.&lt;/p>
+&lt;p>Ref: &lt;a href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/3%20Per%20Sequence%20Quality%20Scores.html" class="uri">https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/3%20Per%20Sequence%20Quality%20Scores.html&lt;/a>&lt;/p>
+&lt;p>&lt;img src="per_base_sequence_content.png" />
+This graph shows the content of each of the nucleotides throughout the read. It is expected that in this graph we can see that the same content of A is equal to the content of T, and in the same way the same content of C must be equal to the content of G. In our case we can observe that at the beginning of the reading the same number of A and T and the same number of C and G are conserved, but from position 20-21 the amount of C deviates and ends up having the same amount of T as C, at the same time in that same position the content of A deviates and ends up having the same amount of A as G. It seems that, halfway through the reading, the amount of purines (A and G) equals each other, as well as the amount of pyrimidines (C and T). The next step would be to investigate what was the cause that caused this error.&lt;/p>
+&lt;p>Ref:&lt;a href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/4%20Per%20Base%20Sequence%20Content.html" class="uri">https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/4%20Per%20Base%20Sequence%20Content.html&lt;/a>&lt;/p>
+&lt;p>In order for our FASTQ file to pass the four filters above, it must be subjected to a filtering process that improves its quality and thus avoids bias in the research.&lt;/p>
+&lt;p>The other filters are those that passed the FASTQC test, indicating that:&lt;/p>
+&lt;ul>
+&lt;li>It does not have a percentage of N content in all databases.&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="per_base_n_content.png" />
+Ref:&lt;a href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/6%20Per%20Base%20N%20Content.html" class="uri">https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/6%20Per%20Base%20N%20Content.html&lt;/a>&lt;/p>
+&lt;ul>
+&lt;li>It has sequence fragments of uniform length&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="sequence_length_distribution.png" />
+ref:&lt;a href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/7%20Sequence%20Length%20Distribution.html" class="uri">https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/7%20Sequence%20Length%20Distribution.html&lt;/a>&lt;/p>
+&lt;ul>
+&lt;li>It contain a low level of duplication, this can indicate that they have a high level of coverage.&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="duplication_levels.png" />
+Ref:&lt;a href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/8%20Duplicate%20Sequences.html" class="uri">https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/8%20Duplicate%20Sequences.html&lt;/a>&lt;/p>
+&lt;ul>
+&lt;li>It does not contain overrepresented sequences.&lt;/li>
+&lt;/ul>
+&lt;p>Ref:&lt;a href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/9%20Overrepresented%20Sequences.html" class="uri">https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/9%20Overrepresented%20Sequences.html&lt;/a>
+&lt;a href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/11%20Kmer%20Content.html" class="uri">https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/11%20Kmer%20Content.html&lt;/a>&lt;/p>
+&lt;ul>
+&lt;li>&lt;p>It does not present this adapter sequences:&lt;/p>&lt;/li>
+&lt;li>&lt;p>Illumina Universal Adapter&lt;/p>&lt;/li>
+&lt;li>&lt;p>Illumina Small RNA 3’ Adapter&lt;/p>&lt;/li>
+&lt;li>&lt;p>Illumina Small RNA 5’ Adapter&lt;/p>&lt;/li>
+&lt;li>&lt;p>Nextera Transposase Sequence&lt;/p>&lt;/li>
+&lt;li>&lt;p>PolyA&lt;/p>&lt;/li>
+&lt;li>&lt;p>PolyG&lt;/p>&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="adapter_content.png" />
+Ref:&lt;a href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/10%20Adapter%20Content.html" class="uri">https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/10%20Adapter%20Content.html&lt;/a>&lt;/p>
+&lt;p>&lt;strong>Sofi&lt;/strong>:&lt;/p>
+&lt;p>I started by finding the route in which the mouse genome fasta was allocated (/mnt/Archives/genome/mouse/)mm10/UCSC/bwa-0.7.15-index/index/mm10.fa).&lt;/p>
+&lt;p>I just used one command to do the alignment:&lt;/p>
+&lt;pre class="bash">&lt;code>module load bwa/0.7.8
+bwa mem /mnt/Archives/genome/mouse/mm10/UCSC/bwa-0.7.15-index/index/mm10.fa /mnt/atgc-d1/bioinfoII/sgamino/alignment/mus_musculus_CEBPA_liver_ERR005132.fastq.gz &amp;gt; /mnt/atgc-d1/bioinfoII/sgamino/alignment/mouse_align_exp.sam&lt;/code>&lt;/pre>
+&lt;p>This leaves us with a SAM file that will contain the aligned reads to the reference genome mm10.fa. Its important to note that the quality of the fasta is bad, so if we desire more confidence in our alignment we should perform base recalibration to search for possible reads of the adaptors.&lt;/p>
+&lt;p>This is the job i submitted with qsub job.sge.&lt;/p>
+&lt;pre class="bash">&lt;code>#!/bin/bash
+# Use current working directory
+#$ -cwd
+#
+# Join stdout and stderr
+#$ -j y
+#
+# Run job through bash shell
+#$ -S /bin/bash
+#
+#You can edit the scriptsince this line
+#
+# Your job name
+#$ -N mouse_align_experiment
+#
+# Allocated memory
+#$ -l vf=30G
+# Send an email after the job has finished
+#$ -m e
+#$ -M ghobibohg@gmail.com
+#
+# If modules are needed, source modules environment (Do not delete the next line):
+. /etc/profile.d/modules.sh
+#
+# Add any modules you might require:
+module load bwa/0.7.8
+#
+# Write your commands in the next line
+bwa mem /mnt/Archives/genome/mouse/mm10/UCSC/bwa-0.7.15-index/index/mm10.fa /mnt/atgc-d1/bioinfoII/sgamino/alignment/mus_musculus_CEBPA_liver_ERR005132.fastq.gz &amp;gt; /mnt/atgc-d1/bioinfoII/sgamino/alignment/mouse_align_exp.sam
+&lt;/code>&lt;/pre>
+&lt;blockquote>
+&lt;p>Preview:&lt;/p>
+&lt;/blockquote>
+&lt;pre class="bash">&lt;code>[sgamino@chromatin alignment]$ head -50 mouse_align_exp.sam
+@SQ SN:chr10 LN:130694993
+@SQ SN:chr11 LN:122082543
+@SQ SN:chr12 LN:120129022
+@SQ SN:chr13 LN:120421639
+@SQ SN:chr14 LN:124902244
+@SQ SN:chr15 LN:104043685
+@SQ SN:chr16 LN:98207768
+@SQ SN:chr17 LN:94987271
+@SQ SN:chr18 LN:90702639
+@SQ SN:chr19 LN:61431566
+@SQ SN:chr1 LN:195471971
+@SQ SN:chr2 LN:182113224
+@SQ SN:chr3 LN:160039680
+@SQ SN:chr4 LN:156508116
+@SQ SN:chr5 LN:151834684
+@SQ SN:chr6 LN:149736546
+@SQ SN:chr7 LN:145441459
+@SQ SN:chr8 LN:129401213
+@SQ SN:chr9 LN:124595110
+@SQ SN:chrM LN:16299
+@SQ SN:chrUn_GL456239 LN:40056
+@SQ SN:chrUn_GL456359 LN:22974
+@SQ SN:chrUn_GL456360 LN:31704
+@SQ SN:chrUn_GL456366 LN:47073
+@SQ SN:chrUn_GL456367 LN:42057
+@SQ SN:chrUn_GL456368 LN:20208
+@SQ SN:chrUn_GL456370 LN:26764
+@SQ SN:chrUn_GL456372 LN:28664
+@SQ SN:chrUn_GL456378 LN:31602
+@SQ SN:chrUn_GL456379 LN:72385
+@SQ SN:chrUn_GL456381 LN:25871
+@SQ SN:chrUn_GL456382 LN:23158
+@SQ SN:chrUn_GL456383 LN:38659
+@SQ SN:chrUn_GL456385 LN:35240
+@SQ SN:chrUn_GL456387 LN:24685
+@SQ SN:chrUn_GL456389 LN:28772
+@SQ SN:chrUn_GL456390 LN:24668
+@SQ SN:chrUn_GL456392 LN:23629
+@SQ SN:chrUn_GL456393 LN:55711
+@SQ SN:chrUn_GL456394 LN:24323
+@SQ SN:chrUn_GL456396 LN:21240
+@SQ SN:chrUn_JH584304 LN:114452
+@SQ SN:chrX LN:171031299
+@SQ SN:chrY LN:91744698
+@PG ID:bwa PN:bwa VN:0.7.8-r455 CL:bwa mem /mnt/Archives/genome/mouse/mm10/UCSC/bwa-0.7.15-index/index/mm10.fa /mnt/atgc-d1/bioinfoII/sgamino/alignment/mus_musculus_CEBPA_liver_ERR005132.fastq.gz
+ERR005132.1 4 * 0 0 * * 0 0 GATTTACAAGCATATAAACATATAATAAACAACAGCTTTCAT IIIII/IIIICIIIII45II8*%II)I/+&amp;amp;.%*3II&amp;#39;(C3I# AS:i:0 XS:i:0
+ERR005132.2 4 * 0 0 * * 0 0 GGTGAAATGACTGAGTCTTCACCCGGTTGGACAGCCCCCCCC I1I%III9I)D40I&amp;#39;(*,#;*%%03#-0E)=$)HI#%$,&amp;amp;(. AS:i:0 XS:i:0
+ERR005132.3 4 * 0 0 * * 0 0 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII AS:i:0 XS:i:0
+ERR005132.4 4 * 0 0 * * 0 0 GATATCGTAATCTGCCAACTGCCATCCCCTCATCTCACACCC III*7&amp;amp;E.0I%-+:?;C71I&amp;amp;&amp;gt;2:.C$3;//*5/)*,($)=. AS:i:0 XS:i:0&lt;/code>&lt;/pre>
+&lt;p>&lt;strong>UPDATE&lt;/strong>:
+&lt;strong>Sofia&lt;/strong>: Turns out, with the last alignment we had 0.0% of alignments ((T_T)/), so we proceeded to remove adaptors with trimmomatic.&lt;/p>
+&lt;p>&lt;strong>Ferro&lt;/strong>:
+We used trimmomatic to be able to remove adapters and process our fastq file.&lt;/p>
+&lt;p>&lt;strong>Trimmomatic&lt;/strong>:
+“Trimmomatic is a fast, multi-threaded command line tool that can be used to trim Illumina (FASTQ) data and to remove adapters” (&lt;a href="http://www.usadellab.org" class="uri">http://www.usadellab.org&lt;/a>)&lt;/p>
+&lt;p>This tool has two modes:
+For Single-end and Paired-end fastq files&lt;/p>
+&lt;p>The Paired-end mode keeps the match of read pairs and uses the additional information in the paired reads to find the adapters or PCR primers.&lt;/p>
+&lt;p>Trimmomatic works with fastq files with quality scores phred+33 or phred+64. It accepts files compressed with gzip or bzip2.&lt;/p>
+&lt;p>Ref:&lt;a href="http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/TrimmomaticManual_V0.32.pdf" class="uri">http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/TrimmomaticManual_V0.32.pdf&lt;/a>&lt;/p>
+&lt;p>&lt;strong>Sofia&lt;/strong>:
+First we loaded the archive which contains the adaptors from illumina, with the name TruSeq3-SE.fa. Its insides are:&lt;/p>
+&lt;pre class="bash">&lt;code>&amp;gt;TruSeq3_IndexedAdapter
+AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC
+&amp;gt;TruSeq3_UniversalAdapter
+AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTA&lt;/code>&lt;/pre>
+&lt;p>Then, we proceeded to run the next command in a job:&lt;/p>
+&lt;pre class="bash">&lt;code> -threads 4 -phred64 -trimlog /mnt/atgc-d1/bioinfoII/sgamino/alignment/aln_mouse_liver/mus_musculus_CEBPA_liver_ERR005132.trimlog -summary /mnt/atgc-d1/bioinfoII/sgamino/alignment/aln_mouse_liver/TRIM_mus_musculus_CEBPA_liver_ERR005132.summary /mnt/atgc-d1/bioinfoII/sgamino/alignment/mus_musculus_CEBPA_liver_ERR005132.fastq.gz /mnt/atgc-d1/bioinfoII/sgamino/alignment/aln_mouse_liver/TRIM_mus_musculus_CEBPA_liver_ERR005132.fastq.gz ILLUMINACLIP:/mnt/atgc-d1/bioinfoII/sgamino/Adapters/TruSeq3-PE-2.fa:2:30:10 SLIDINGWINDOW:4:25&lt;/code>&lt;/pre>
+&lt;p>This command takes reads with high quality (30) but does NOT has a MINLEN argument to define the minimun lenght of the reads. For that reason, the cut sometimes is very big for the read and we end un with many reads with a lenght of less than 36 bp. In this case we remain with around 10 million reads, with an average lenght of 14 bp.&lt;/p>
+&lt;p>&lt;strong>Ferro&lt;/strong>:
+After to use the tool trimming, now we analize the qualification of the new file fastq filtered with the tool &lt;em>fastqc&lt;/em>.&lt;/p>
+&lt;p>We have these new results for our fastq:
+- &lt;em>&lt;font color="green">[PASS]&lt;/font>&lt;/em> Basic Statistics
+- &lt;em>&lt;font color="green">[PASS]&lt;/font>&lt;/em> Per base sequence quality
+- &lt;em>&lt;font color="green">[PASS]&lt;/font>&lt;/em> Per sequence quality scores
+- &lt;em>&lt;font color="red">[FAIL]&lt;/font>&lt;/em> Per base sequence content
+- &lt;em>&lt;font color="green">[PASS]&lt;/font>&lt;/em> Per sequence GC content
+- &lt;em>&lt;font color="green">[PASS]&lt;/font>&lt;/em> Per base N content
+- &lt;em>&lt;font color="yellow">[WARN]&lt;/font>&lt;/em> Sequence Length Distribution
+- &lt;em>&lt;font color="green">[PASS]&lt;/font>&lt;/em> Sequence Duplication Levels
+- &lt;em>&lt;font color="yellow">[WARN]&lt;/font>&lt;/em> Overrepresented sequences
+- &lt;em>&lt;font color="green">[PASS]&lt;/font>&lt;/em> Adapter Content&lt;/p>
+&lt;p>In contrast to the first graphs of the analysis with fastqc we see that the filters that had not passed already passed after trimmomatic was used.&lt;/p>
+&lt;p>&lt;img src="per_base_quality_S.png" />&lt;/p>
+&lt;p>In the filter called &lt;em>Quality by base sequence&lt;/em> we can see that the average quality of each base in each position of the read is in the green region, which indicates that these positions have good quality. Comparing it with the previous graph, we observe that the quality has increased.&lt;/p>
+&lt;p>&lt;img src="per_sequence_quality_S.png" />
+In the case of &lt;em>Per sequence quality scores&lt;/em>, with this graph we can confirm that Trimmomatic did filter the minimum size of reads that we asked for, since most of the reads have a size of 36 bp, which was the minimum size we were looking for.&lt;/p>
+&lt;p>&lt;img src="per_base_sequence_content_S.png" />
+The case of &lt;em>Per base sequence content&lt;/em> Although the new fastq passed this filter, we can see that at the end of the graph the amount of Thymine increases and that of Adenine decreases until having approximately the same amount of Cytosine, in addition to the fact that Cytosine increases and at the end there is a greater amount of Cytosine than its complementary nucleotide, Guanine. It seems that at the end of the graph, the amount of pyrimidine type nucleotides increases. Therefore, even when it passed the filter, there are still different amounts between the complementary nucleotides.&lt;/p>
+&lt;p>Finally we got two filters that found an error but not so serious as to fail the test:&lt;/p>
+&lt;p>&lt;img src="sequence_length_distribution_S.png" />
+In &lt;em>Sequence length distribution&lt;/em> we can also see that the trimming was filtered correctly, since in this graph we can see that most of the samples have a size of 36 bp as requested by the tool, and it also indicates that there are also many 42 bp reads.
+This filter can appear in WARM because there may be a wide distribution of lengths, that is, “not all sequences have the same length” (Babraham Institute), or because the trimming made a cut but not in a uniform way, or because the library is fragmented or due to sequencing errors or if the sequences were trimmed with the adapter..&lt;/p>
+&lt;p>Ref:&lt;a href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/7%20Sequence%20Length%20Distribution.html" class="uri">https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/7%20Sequence%20Length%20Distribution.html&lt;/a>
+&lt;a href="https://docs.omicsbox.biobam.com/latest/FastQC-Quality-Check/" class="uri">https://docs.omicsbox.biobam.com/latest/FastQC-Quality-Check/&lt;/a>&lt;/p>
+&lt;pre class="bash">&lt;code>Sequence Count Percentage Possible Source
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 922 0.18814713840854458 No Hit&lt;/code>&lt;/pre>
+&lt;p>In &lt;em>Overrepresented sequences&lt;/em>It gives us a sequence of 40 adenines, and that this was found 922 times in the data sequence, and represents approximately 0.19% of the total, for this reason, the fastqc tool puts this filter in WARM&lt;/p>
+&lt;p>Ref:&lt;a href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/9%20Overrepresented%20Sequences.html" class="uri">https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/9%20Overrepresented%20Sequences.html&lt;/a>
+&lt;a href="https://docs.omicsbox.biobam.com/latest/FastQC-Quality-Check/" class="uri">https://docs.omicsbox.biobam.com/latest/FastQC-Quality-Check/&lt;/a>&lt;/p>
+&lt;p>&lt;strong>Sofia&lt;/strong>:
+The code for the alignment is the following:&lt;/p>
+&lt;pre class="bash">&lt;code>bowtie /mnt/Archives/genome/mouse/mm10/UCSC/bowtie-0.12.7-index/index/mm10 /mnt/atgc-d1/bioinfoII/sgamino/alignment/aln_mouse_liver/TRIM_mus_musculus_CEBPA_liver_ERR005132.fastq
+-S /mnt/atgc-d1/bioinfoII/sgamino/alignment/aln_mouse_liver/TRIM_mus_musculus_CEBPA_liver_ERR005132.sam&lt;/code>&lt;/pre>
+&lt;p>I also performed a trimming but with a MINLEN value of 36, as it is the minimum lenght for an appropiate read. The code used is the following:&lt;/p>
+&lt;pre class="bash">&lt;code>bowtie /mnt/Archives/genome/mouse/mm10/UCSC/bowtie-0.12.7-index/index/mm10 /mnt/atgc-d1/bioinfoII/sgamino/alignment/aln_mouse_liver/TRIM_minlen36_mus_musculus_CEBPA_liver_ERR005132.fastq
+-S /mnt/atgc-d1/bioinfoII/sgamino/alignment/aln_mouse_liver/TRIM_minlen36_mus_musculus_CEBPA_liver_ERR005132.sam&lt;/code>&lt;/pre>
+&lt;p>And the alignment:&lt;/p>
+&lt;pre class="bash">&lt;code>bowtie /mnt/Archives/genome/mouse/mm10/UCSC/bowtie-0.12.7-index/index/mm10 /mnt/atgc-d1/bioinfoII/sgamino/alignment/aln_mouse_liver/TRIM_minlen36_mus_musculus_CEBPA_liver_ERR005132.fastq
+-S /mnt/atgc-d1/bioinfoII/sgamino/alignment/aln_mouse_liver/TRIM_minlen36_mus_musculus_CEBPA_liver_ERR005132.sam&lt;/code>&lt;/pre>
+&lt;/div></description></item></channel></rss>
