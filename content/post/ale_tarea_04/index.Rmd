@@ -1,0 +1,22 @@
+---
+title: Visualization 2
+description: Practical Activity
+slug: ale_tarea_04
+date: 2025-02-23
+image: covera.jpg
+categories:
+    - Activity
+    - Bioinformatics
+    - Basic
+tags:
+    - File Managing
+    - Data visualization
+    - BW
+    - DeepTools
+---
+
+# Crear la plot de H3K36me3. Explicar los comandos que se usaron y por qué.
+
+# Crear plot de ChIP-seq de ratón. Explicar los comandos que se usaron y por qué. Es informativa la plot sobre esas regiones?
+
+# TidyTuesday plot. Elegir datos que le interesen y hacer una gráfica con ellos
