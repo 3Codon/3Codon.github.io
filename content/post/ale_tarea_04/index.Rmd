@@ -15,8 +15,30 @@ tags:
     - DeepTools
 ---
 
-# Crear la plot de H3K36me3. Explicar los comandos que se usaron y por qué.
+# Create the H3K36me3 plot. Explain the commands used and the reason behind them.
 
-# Crear plot de ChIP-seq de ratón. Explicar los comandos que se usaron y por qué. Es informativa la plot sobre esas regiones?
+## 1. Creating a score Matrix of one of the H3K36me3 Chip seq
 
-# TidyTuesday plot. Elegir datos que le interesen y hacer una gráfica con ellos
+First we use the command computeMatrix. This command creates a matrix with scores assigned to the regions defined in the .bed file, usually genes. The file created can then be graphed with plotHeatmap of plotProfiles. This command allows us as well to filter and sort according to scores. 
+
+We used the following options:
+
+- reference-point: This is a sub command that allow us to chose a region of the bed file(s) and then plot for a fixed number of bp upstream and/or downstream. 
+    - S: File(s) to be plotted according to their scores. They need to be bw files. In our case we used only the bw corresponding to the chip seq of H3K36me3.
+    - R: File(s) to use as a reference for regions in the plot. We can use GTF of BED files. If we use multiple of these, they will be considered as different plots. We used a single bed that was proportioned in the materials.
+    - --referencePoint: This option allow id to define the reference point for ploting. It can either be in the end (TSE), in the start (TSS) or in the center. The default is TSE, but in this case we used center.
+- -out: refers to the name of the output file.
+
+```{bash, eval = F}
+computeMatrix reference-point -S H3K36me3.bw -R Human38_genesGencodev39.bed --referencePoint center -a 2000 -b 2000 -out matrix_H3K36me3_matrix.tab.gz
+```
+
+> Ref: <https://deeptools.readthedocs.io/en/develop/content/tools/computeMatrix.html>
+
+## 2. Create the heatmap of the score matrix with plotHeatmap 
+
+
+
+# Create the mouse ChIP-seq plot. Explain the commands used and the reason behind them. Is the plot of those regions informative?
+
+# TidyTuesday plot. Choose a dataset that is of your interest and make a graph with them.
