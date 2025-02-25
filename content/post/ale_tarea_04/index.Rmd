@@ -13,31 +13,93 @@ tags:
     - Data visualization
     - BW
     - DeepTools
+editor_options: 
+  markdown: 
+    wrap: sentence
 ---
 
 # Create the H3K36me3 plot. Explain the commands used and the reason behind them.
 
-## 1. Creating a score Matrix of one of the H3K36me3 Chip seq
+## Heatmap of only one signal.
 
-First we use the command computeMatrix. This command creates a matrix with scores assigned to the regions defined in the .bed file, usually genes. The file created can then be graphed with plotHeatmap of plotProfiles. This command allows us as well to filter and sort according to scores. 
+### 1. Creating a score Matrix of one of the H3K36me3 Chip seq
+
+First we use the command computeMatrix.
+This command creates a matrix with scores assigned to the regions defined in the .bed file, usually genes.
+The file created can then be graphed with plotHeatmap of plotProfiles.
+This command allows us as well to filter and sort according to scores.
 
 We used the following options:
 
-- reference-point: This is a sub command that allow us to chose a region of the bed file(s) and then plot for a fixed number of bp upstream and/or downstream. 
-    - S: File(s) to be plotted according to their scores. They need to be bw files. In our case we used only the bw corresponding to the chip seq of H3K36me3.
-    - R: File(s) to use as a reference for regions in the plot. We can use GTF of BED files. If we use multiple of these, they will be considered as different plots. We used a single bed that was proportioned in the materials.
-    - --referencePoint: This option allow id to define the reference point for ploting. It can either be in the end (TSE), in the start (TSS) or in the center. The default is TSE, but in this case we used center.
-- -out: refers to the name of the output file.
+-   reference-point: This is a sub command that allow us to chose a region of the bed file(s) and then plot for a fixed number of bp upstream and/or downstream.
+    -   S: File(s) to be plotted according to their scores. They need to be bw files. In our case we used only the bw corresponding to the chip seq of H3K36me3.
+    -   R: File(s) to use as a reference for regions in the plot. We can use GTF of BED files. If we use multiple of these, they will be considered as different plots. We used a single bed that was proportioned in the materials.
+    -   --referencePoint: This option allow id to define the reference point for ploting. It can either be in the end (TSE), in the start (TSS) or in the center. The default is TSE, but in this case we used center.
+-   -out: refers to the name of the output file.
 
 ```{bash, eval = F}
-computeMatrix reference-point -S H3K36me3.bw -R Human38_genesGencodev39.bed --referencePoint center -a 2000 -b 2000 -out matrix_H3K36me3_matrix.tab.gz
+[sgamino@compute-00-00 deepTools]$ computeMatrix reference-point -S H3K36me3.bw -R Human38_genesGencodev39.bed --referencePoint center -a 2000 -b 2000 -out matrix_H3K36me3_matrix.tab.gz
 ```
+
+According to the options then, we will end up with a score matrix whom will contain the signals in a region +2000 and -2000 bp from the center of the bed file.
 
 > Ref: <https://deeptools.readthedocs.io/en/develop/content/tools/computeMatrix.html>
 
-## 2. Create the heatmap of the score matrix with plotHeatmap 
+### 2. Create the heatmap of the score matrix with plotHeatmap
 
+We then used the command plotHeatmap, which as its name suggests, plots our score matrix in a heatmap.
+This command allows us to costumize our heatmaps in a myriad of ways.
 
+The options used were: - -m: Is the score matrix.
+- -out: This option allows us to save the heatmap in a file.
+- --heatmapHeight: Sets the height of the heatmap.
+- --refPointLabel: Allows us to put a legend in the heatmap describing the reference point.
+- --regionsLabel: Is an option used to set the type of regions that are represented in the bed, and put a legend with that info in the heatmap.
+- --plotTitle: Allows us to put a title in the heatmap.
+
+```{bash, eval = F}
+[sgamino@compute-00-00 deepTools]$ plotHeatmap -m matrix_H3K36me3_matrix.tab.gz -out H3K36me3_genes.png --heatmapHeight 15 --refPointLabel gene.center --regionsLabel genes --plotTitle ' H3K36me3 signal'
+```
+
+> Ref: <https://deeptools.readthedocs.io/en/develop/content/tools/plotHeatmap.html>
+
+### 3. Analysis of the heatmap
+
+The heatmap of the chip seq is the following:
+
+![](images/clipboard-3523510445.png)
+
+As we can see, the heatmap contains a los of information but it is usorted and ulfiltered, so it looks a little messy. If we added parameters like --skipzeros or one of the many sort options available in computeMatrix and plotHeatmap.
+
+## Comparing multiple signals in one plot
+
+This time, we will compare the heatmaps of multiple alignments in a single graph.
+
+### 1. Creating a score matrix for each bw
+
+Because we are working with various files, each one of them will have their own score matrix. In this case, we used some new options such as:
+ 
+- scale-regions: In this mode (as opposed to the reference point), we will shruk or expand the regions of the bed depending on the length proportioned by the user.
+- --beforeRegionStartLength: Distance upstream of the start site of the regions defined in the region file. If the regions are genes, this would be the distance upstream of the transcription start site.- The default is O
+- --regionBodyLength: Distance in bases to which all regions will be fit. The default is 1000.
+- --afterRegionStartLength: Distance downstream of the end site of the given regions. If the regions are genes, this would be the distance downstream of the transcription end site. The default is 0 as well.
+- ..skipZeros: This option allows us to skip regions which have no signal or score. The default is to include them.
+
+```{bash, eval = F}
+[sgamino@compute-00-00 deepTools]$ computeMatrix scale-regions -S H3K27me3.bw H3K36me3.bw H3K4me3.bw -R Human38_genesGencodev39.bed -- beforeRegionStartLength 1000 --regionBodyLength 1000 -- afterRegionStartLength 1000 --skipZeros -o matrix.mat.gz
+```
+
+### 2. Create the heatmap of the score matrix with plotHeatmap
+
+The command used was the following and no options were used:
+
+```{bash, eval = F}
+[sgamino@compute-00-00 deepTools]$ plotHeatmap -m matrix.mat.gz -out ExampleHeatmap1.png
+```
+
+### Analysis of the heatmaps
+
+The result of the matrixes can be represented in three different heatmaps: 
 
 # Create the mouse ChIP-seq plot. Explain the commands used and the reason behind them. Is the plot of those regions informative?
 
