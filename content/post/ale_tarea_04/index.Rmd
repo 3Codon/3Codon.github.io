@@ -84,7 +84,7 @@ The options used were: - -m: Is the score matrix.
 > Ref: <https://deeptools.readthedocs.io/en/develop/content/tools/plotHeatmap.html>
 
 ### 3. Analysis of the heatmap
-
+hola
 The heatmap of the chip seq is the following:
 
 ![](images/clipboard-3523510445.png)
