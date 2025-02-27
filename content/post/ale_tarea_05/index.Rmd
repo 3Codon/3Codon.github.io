@@ -1,20 +1,18 @@
 ---
-title: Eleccion de transcriptoma
+title: "Eleccion de transcriptoma"
 description: Planeacion del Proyecto
-slug: ale_tarea_05
-date: 2025-02-27
+date: "2025-02-27"
+output: pdf_document
 categories:
-    - Activity
-    - Bioinformatics
-    - Basic
+- Activity
+- Bioinformatics
+- Project
 tags:
-    - File Managing
-    - Data visualization
-    - BW
-    - DeepTools
-editor_options: 
-  markdown: 
+- RNAseq
+editor_options:
+  markdown:
     wrap: sentence
+slug: ale_tarea_05
 ---
 
 Descripción del equipo:
