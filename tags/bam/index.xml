@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>BAM on 3Codon</title><link>https://3codon.github.io/tags/bam/</link><description>Recent content in BAM on 3Codon</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 09 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://3codon.github.io/tags/bam/index.xml" rel="self" type="application/rss+xml"/><item><title>Genome Browsers</title><link>https://3codon.github.io/p/ale_tarea_03/</link><pubDate>Sun, 09 Feb 2025 00:00:00 +0000</pubDate><guid>https://3codon.github.io/p/ale_tarea_03/</guid><description>&lt;img src="https://3codon.github.io/p/ale_tarea_03/covera.jpg" alt="Featured image of post Genome Browsers" />
+&lt;meta http-equiv="Content-Security-Policy" content="{{ .Site.Params.contentSecurityPolicy }}">
+&lt;div id="igv" class="section level1">
+&lt;h1>IGV&lt;/h1>
+&lt;div id="we-will-use-igv-to-visualize-data-for-plasmodium-chabaudi-as-p.-chabaudi" class="section level2">
+&lt;h2>We will use IGV to visualize data for Plasmodium chabaudi AS (P. chabaudi)&lt;/h2>
+&lt;blockquote>
+&lt;p>P. Chabaudi is a malaria mouse pathogen.&lt;/p>
+&lt;/blockquote>
+&lt;/div>
+&lt;div id="using-the-files-in-mntatgc-d1bioinfoiidataigv-we-will-visualize-rna-seq-data." class="section level2">
+&lt;h2>Using the files in: /mnt/atgc-d1/bioinfoII/data/IGV, we will visualize RNA-seq data.&lt;/h2>
+&lt;/div>
+&lt;div id="load-the-genome-from-a-file-note-it-has-been-indexed" class="section level2">
+&lt;h2>Load the genome from a file (note it has been indexed)&lt;/h2>
+&lt;div id="load-annotations-for-the-genome." class="section level3">
+&lt;h3>Load annotations for the genome.&lt;/h3>
+&lt;video width="320" height="240" controls>
+&lt;source src="https://data.cyverse.org/dav-anon/iplant/home/3lconejo/video1.mp4" type="video/mp4">
+&lt;p>Your browser does not support the video tag. &lt;/video>&lt;/p>
+&lt;/div>
+&lt;div id="which-one-is-the-annotation-file" class="section level3">
+&lt;h3>Which one is the annotation file?&lt;/h3>
+&lt;p>&lt;strong>Suazo&lt;/strong>: The annotation files are the ones with the extension .gff3 which stands for General Feature Format version 3.&lt;/p>
+&lt;/div>
+&lt;div id="what-is-this-format-describing" class="section level3">
+&lt;h3>What is this format describing?&lt;/h3>
+&lt;p>&lt;strong>Suazo&lt;/strong>: The ggf3 format is a tab-delimited file that describes the features of a genome, such as DNA, RNA and protein sequences. It is a standard format for genome annotation.&lt;/p>
+&lt;/div>
+&lt;/div>
+&lt;div id="what-is-the-browser-displaying" class="section level2">
+&lt;h2>What is the browser displaying?&lt;/h2>
+&lt;p>&lt;strong>Suazo&lt;/strong>: The browser is displaying information about the annotations of genes, transcriptions and exons.&lt;/p>
+&lt;/div>
+&lt;div id="what-happens-if-you-zoom-in-or-out" class="section level2">
+&lt;h2>What happens if you zoom in or out?&lt;/h2>
+&lt;p>&lt;strong>Suazo&lt;/strong>: When you zoom in, the browser displays more detailed information about the annotations such as nucleotides. When you zoom out, the browser displays less detailed information.&lt;/p>
+&lt;/div>
+&lt;div id="load-an-alignment-file-for-an-rna-seq-experiment-mt1-and-mt2" class="section level2">
+&lt;h2>Load an alignment file for an RNA-seq experiment MT1 and MT2&lt;/h2>
+&lt;/div>
+&lt;div id="is-the-data-in-the-correct-format" class="section level2">
+&lt;h2>Is the data in the correct format?&lt;/h2>
+&lt;p>&lt;strong>Suazo&lt;/strong>: No, the format provided is in FASTQ format, which is not compatible with IGV. We need to convert it to BAM format.&lt;/p>
+&lt;/div>
+&lt;div id="what-kind-of-data-do-you-need" class="section level2">
+&lt;h2>What kind of data do you need?&lt;/h2>
+&lt;blockquote>
+&lt;p>This is RNA-seq data so we need special aligners to take into account isoforms.&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;strong>Suazo&lt;/strong>: We need to align the data to the genome. &lt;strong>Sofia&lt;/strong>: For that reason, we need data in the form of bam and their index, bam.bai.&lt;/p>
+&lt;/div>
+&lt;div id="we-will-use-hisat2-to-map-the-rna-seq-reads-from-our-samples-to-the-reference-genome.-hisat2-is-a-fast-and-sensitive-splice-aware-aligner." class="section level2">
+&lt;h2>We will use HISAT2 to map the RNA-Seq reads from our samples to the reference genome. HISAT2 is a fast and sensitive splice-aware aligner.&lt;/h2>
+&lt;/div>
+&lt;div id="we-need-to-index-the-genome" class="section level2">
+&lt;h2>We need to index the genome&lt;/h2>
+&lt;pre class="bash">&lt;code>hisat2-build PccAS_v3_genome.fa PccAS_v3_hisat2.idx&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;div id="now-we-can-align" class="section level2">
+&lt;h2>Now we can align&lt;/h2>
+&lt;pre class="bash">&lt;code>hisat2 --max-intronlen 10000 -x PccAS_v3_hisat2.idx -1 MT1_1.fastq -2 MT1_2.fastq -S MT1.sam&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;div id="we-need-to-convert-the-sam-to-bam-and-sort-the-file-we-also-need-an-index-so-igv-can-access-the-data-quickly." class="section level2">
+&lt;h2>We need to convert the sam to bam and sort the file… We also need an index so IGV can access the data quickly.&lt;/h2>
+&lt;pre class="bash">&lt;code># We align the Pair Ended reads
+hisat2 --max-intronlen 10000 -x PccAS_v3_hisat2.idx -1 MT1_1.fastq -2 MT1_2.fastq -S MT1.sam
+hisat2 --max-intronlen 10000 -x PccAS_v3_hisat2.idx -1 MT2_1.fastq -2 MT2_2.fastq -S MT2.sam
+# We convert the SAM files to BAM files
+samtools view MT1.sam -O BAM -o MT1.bam
+samtools view MT2.sam -O BAM -o MT2.bam
+# We sort the BAM files
+samtools sort MT1.bam -o MT1.sorted.bam
+samtools sort MT2.bam -o MT2.sorted.bam
+# We index the BAM files
+samtools index MT1.sorted.bam
+samtools index MT2.sorted.bam
+&lt;/code>&lt;/pre>
+&lt;p>&lt;strong>Ferro&lt;/strong>:
+## We should do the same for sample MT2&lt;/p>
+&lt;/div>
+&lt;div id="now-we-can-load-the-bam-files-to-igv-remember-you-need-the-index" class="section level2">
+&lt;h2>Now we can load the BAM files to IGV… Remember you need the index&lt;/h2>
+&lt;div id="what-do-you-see-explore-the-genome." class="section level3">
+&lt;h3>What do you see?, explore the genome.&lt;/h3>
+&lt;p>We observe that at the top of the reads they tell us the coverage of each coding sequence and the coverage can help us infer which exons are more expressed among all the exons in the sample. We can see that the reads are cut very precisely and between each set of reads of each exon there is a GAP or a space, this is due to the prediction of the splicing junctions and that the reads are cut, which is what IGV does to be able to map the reads in the reference genome. Also with this, IGV represents the splicing junctions as a red or blue curve.&lt;/p>
+&lt;p>Ref:&lt;a href="https://www.youtube.com/watch?v=awGN-rpLYas" class="uri">https://www.youtube.com/watch?v=awGN-rpLYas&lt;/a>
+&lt;a href="https://igv.org/doc/desktop/#UserGuide" class="uri">https://igv.org/doc/desktop/#UserGuide&lt;/a>&lt;/p>
+&lt;p>&lt;img src="images/clipboard-320555205.png" />&lt;/p>
+&lt;/div>
+&lt;div id="visualize-loci-pchas_0505200-and-pchas_1409500" class="section level3">
+&lt;h3>Visualize loci: PCHAS_0505200 and PCHAS_1409500&lt;/h3>
+&lt;pre class="bash">&lt;code>[sgamino@compute-00-11 IGV]$ grep &amp;quot;PCHAS_0505200&amp;quot; PccAS_v3.gff3
+PccAS_05_v3 DEFAULT gene 202496 203599 . - . ID=PCHAS_0505200
+PccAS_05_v3 DEFAULT mRNA 202496 203599 . - . ID=PCHAS_0505200.1;Parent=PCHAS_0505200
+PccAS_05_v3 DEFAULT CDS 202496 202583 . - 1 ID=PCHAS_0505200.1:exon:2216;Parent=PCHAS_0505200.1
+PccAS_05_v3 DEFAULT CDS 202719 202869 . - 2 ID=PCHAS_0505200.1:exon:2217;Parent=PCHAS_0505200.1
+PccAS_05_v3 DEFAULT CDS 202994 203081 . - 0 ID=PCHAS_0505200.1:exon:2218;Parent=PCHAS_0505200.1
+PccAS_05_v3 DEFAULT CDS 203199 203269 . - 2 ID=PCHAS_0505200.1:exon:2219;Parent=PCHAS_0505200.1
+PccAS_05_v3 DEFAULT CDS 203452 203599 . - 0 ID=PCHAS_0505200.1:exon:2220;Parent=PCHAS_0505200.1
+[sgamino@compute-00-11 IGV]$ grep &amp;quot;PCHAS_1409500&amp;quot; PccAS_v3.gff3
+PccAS_14_v3 DEFAULT gene 377689 378830 . + . ID=PCHAS_1409500
+PccAS_14_v3 DEFAULT mRNA 377689 378830 . + . ID=PCHAS_1409500.1;Parent=PCHAS_1409500
+PccAS_14_v3 DEFAULT CDS 377689 377868 . + 0 ID=PCHAS_1409500.1:exon:12588;Parent=PCHAS_1409500.1
+PccAS_14_v3 DEFAULT CDS 378016 378165 . + 0 ID=PCHAS_1409500.1:exon:12589;Parent=PCHAS_1409500.1
+PccAS_14_v3 DEFAULT CDS 378669 378830 . + 0 ID=PCHAS_1409500.1:exon:12590;Parent=PCHAS_1409500.1&lt;/code>&lt;/pre>
+&lt;p>This way, we can know the position of these loci.&lt;/p>
+&lt;p>&lt;strong>Ferro&lt;/strong>:
+### What do you see?
+First, let’s remember what the mRNA maturation process is: The result of the DNA transcription process is an RNA molecule called pre-mRNA, this molecule is characterized by containing introns and exons. The premature RNA molecule enters a process called spicing where the spliceosome removes the introns and only leaves the coding sequences (CD). Then the regions where the spliceosome cuts are called splicing junctions, which are the regions where the exons are joined and thus we obtain the mature mRNA ready to begin the translation process. Now when we get the mRNA sequencing reads at the time of aligning them with the reference genome, but the problem is that some reads do not map to the reference genome, therefore to align what is done is that IGV predicts the splicing junctions and cuts the reads and aligns them with the coding sequences (CD), and with this the more coverage the different exons have, we can observe which exons are being expressed. Also IGV when predicting the splice junctions, represents the jumps between exons as arcs. If the arcs are red, it represents the splicing junctions of the positive strand, while the blue arcs represent the splicing junctions of the negative strand. The thickness and height of these curves are determined by the amount of reads you have in a given junction.&lt;/p>
+&lt;p>In our sample, we can see that the PCHAS_0505200 loci has 5 coding sequences and each of them has a good coverage, and the coding sequences are of different sizes. All the representations of the splicing junctions are from the negative strand, since it is colored blue. On the other hand, the PCHAS_1409500 loci only has 3 coding sequences, we can see that the curves that represent the junctions are red, this indicates that these arcs are splicing junctions from the positive strand. In both samples we can also see at the top that it tells us how many coverages each exon has, in our sample, it tells us that there are high coverages in each coding sequence that the loci has.&lt;/p>
+&lt;p>Ref:&lt;a href="https://www.youtube.com/watch?v=awGN-rpLYas" class="uri">https://www.youtube.com/watch?v=awGN-rpLYas&lt;/a>
+&lt;a href="https://igv.org/doc/desktop/#UserGuide" class="uri">https://igv.org/doc/desktop/#UserGuide&lt;/a>&lt;/p>
+&lt;/div>
+&lt;div id="can-you-export-the-figure" class="section level3">
+&lt;h3>Can you export the figure?&lt;/h3>
+&lt;p>Yes, IGV allows you to export the image of what you are working on. To be able to extract the image you must first center what you want to show, then at the top of the tool there are several options including “File” and there are two formats in which you can extract the image, such as a png image or an SVG image, you select the format you want and it will export the image to your files. We extract the images in png.&lt;/p>
+&lt;p>&lt;img src="igv_snapshot_PCHAS_0505200.png" />&lt;/p>
+&lt;p>&lt;img src="igv_snapshot_PCHAS_1409500.png" />&lt;/p>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;div id="igv-mouse" class="section level1">
+&lt;h1>IGV Mouse&lt;/h1>
+&lt;div id="using-igv-try-to-visualize-the-data-for-mouse-chip-seq-you-generated.-is-a-liver-data-set-can-you-point-to-an-interesting-loci" class="section level2">
+&lt;h2>Using IGV try to visualize the data for mouse ChIP-seq you generated. Is a liver data set, can you point to an interesting loci?&lt;/h2>
+&lt;p>No, because when we aligned the RNA-seq sequences from the loci after trimming, we remained with around 400k reads with adequate quality. This amount of reads is neglible, son any assesment is almost impossible to do. For example, this is the kind of information we get from a loci:&lt;/p>
+&lt;p>&lt;img src="images/clipboard-2848686320.png" />&lt;/p>
+&lt;/div>
+&lt;div id="use-ucsc-genome-browser" class="section level2">
+&lt;h2>Use UCSC Genome Browser&lt;/h2>
+&lt;/div>
+&lt;div id="how-can-you-upload-the-data" class="section level2">
+&lt;h2>How can you upload the data?&lt;/h2>
+&lt;div id="bam" class="section level3">
+&lt;h3>Bam&lt;/h3>
+&lt;/div>
+&lt;div id="bigwig" class="section level3">
+&lt;h3>Bigwig&lt;/h3>
+&lt;div id="what-is-bigwig" class="section level4">
+&lt;h4>What is BigWig?&lt;/h4>
+&lt;p>BigWig (bw) is a type of format useful to display information on genome browsers visualizers, as it does not needs to charge all reads, but only those in the region displayed, called “sparse”. BigWig files contain information of aligned reads for each position.&lt;/p>
+&lt;p>It is an indexed file and the info is saved in a server external to the genome browser.&lt;/p>
+&lt;p>BigWig files are created from wiggle (wig) type files using the program wigToBigWig&lt;/p>
+&lt;/div>
+&lt;div id="create-a-bigwig-using-deeptools" class="section level4">
+&lt;h4>Create a BigWig using deepTools&lt;/h4>
+&lt;pre class="bash">&lt;code>bamCoverage -b reads.bam -o coverage.bw&lt;/code>&lt;/pre>
+&lt;blockquote>
+&lt;p>You might need to try &lt;a href="https://de.cyverse.org/" class="uri">https://de.cyverse.org/&lt;/a> or any server could work.&lt;/p>
+&lt;/blockquote>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;div id="can-you-contextualize-your-results-to-other-available-data-sets" class="section level2">
+&lt;h2>Can you contextualize your results to other available data sets?&lt;/h2>
+&lt;div id="adobe-dc-view">
+&lt;/div>
+&lt;script src="https://acrobatservices.adobe.com/view-sdk/viewer.js">&lt;/script>
+&lt;div id="adobe-dc-view">
+&lt;/div>
+&lt;script type="text/javascript">
+document.addEventListener("adobe_dc_view_sdk.ready", function() {
+var adobeDCView = new AdobeDC.View({
+clientId: "c57675621c8d42c1943b44c8a1f0b0ff", // Reemplaza con tu clientId de Adobe
+divId: "adobe-dc-view"
+});
+adobeDCView.previewFile(
+{
+content: {
+location: {
+url: "https://data.cyverse.org/dav-anon/iplant/home/3lconejo/USCS.pdf", // Ruta al PDF subido
+},
+},
+metaData: { fileName: "example.pdf" },
+},
+{ embedMode: "IN_LINE" }
+);
+});
+&lt;/script>
+&lt;p>Yes we can. In the UCSC genome browser, we can compare in real time our results to those obtained in a variety of experiments and projects like the ENCODE project. For example, we can know the results of CHIPseq alignment of many types of proteins, and then compare with our own CHIP seq experiments to see if they are congruent to the know literature.&lt;/p>
+&lt;/div>
+&lt;/div></description></item><item><title>QC Formats</title><link>https://3codon.github.io/p/ale_tarea_01/</link><pubDate>Sun, 09 Feb 2025 00:00:00 +0000</pubDate><guid>https://3codon.github.io/p/ale_tarea_01/</guid><description>&lt;img src="https://3codon.github.io/p/ale_tarea_01/cover.jpg" alt="Featured image of post QC Formats" />
+&lt;div id="practical-bam-file" class="section level2">
+&lt;h2>Practical BAM file&lt;/h2>
+&lt;p>• Using your VPN go to the cluster&lt;/p>
+&lt;p>• Using the file NA20538.bam located at /mnt/atgc-d1/bioinfoII/data/format_qc&lt;/p>
+&lt;p>• Answer the following questions&lt;/p>
+&lt;div id="what-does-rg-stand-for" class="section level3">
+&lt;h3>What does RG stand for?&lt;/h3>
+&lt;p>&lt;strong>Sgam&lt;/strong>: It means read group, wich in turn indicates the number of reads for a specific sample. Its important to mention that when multiplexing in a single lane, each library or sample has its own read group. The relevance of having read groups from the same sample in different lanes and flow cells is to be able to discern which part of the error is due to the sequenciator or other circumnstances (batch effect).&lt;/p>
+&lt;p>&lt;strong>Ferro:&lt;/strong>
+The &lt;span class="citation">@RG&lt;/span> stand has this information:&lt;/p>
+&lt;p>ID: Is a read group identifier. Each &lt;span class="citation">@RG&lt;/span> line must have a unique ID.
+The value of this ID is used in the RG tags of alignment record labels.
+When merging the SAM files for collision control you can modify the IDs.&lt;/p>
+&lt;p>BC (&lt;em>barcode&lt;/em>): Is a sequence that identify the library or the sample. It value
+If the sample or library has several barcodes, it is recommended to concatenated all the barcodes with hyphens (“-”)&lt;/p>
+&lt;p>CN: Name of sequencing center producing the read.
+DS: It is the description.&lt;/p>
+&lt;p>Ref: &lt;a href="https://support.illumina.com/help/BS_App_MDProcessor_Online_1000000007932/Content/Source/Informatics/BAM-Format.htm" class="uri">https://support.illumina.com/help/BS_App_MDProcessor_Online_1000000007932/Content/Source/Informatics/BAM-Format.htm&lt;/a>, &lt;a href="https://gatk.broadinstitute.org/hc/en-us/articles/360035890671-Read-groups" class="uri">https://gatk.broadinstitute.org/hc/en-us/articles/360035890671-Read-groups&lt;/a>
+&lt;a href="https://samtools.github.io/hts-specs/SAMv1.pdf" class="uri">https://samtools.github.io/hts-specs/SAMv1.pdf&lt;/a>&lt;/p>
+&lt;p>&lt;strong>Suazo:&lt;/strong>&lt;/p>
+&lt;pre class="bash">&lt;code>samtools view -H NA20538.bam | grep &amp;#39;^@RG&amp;#39;
+@RG ID:ERR003612 PL:ILLUMINA LB:g1k-sc-NA20538-TOS-1 PI:2000 DS:SRP000540 SM:NA20538 CN:SC
+@RG ID:ERR003761 PL:ILLUMINA LB:g1k-sc-NA20538-TOS-1 PI:2000 DS:SRP000540 SM:NA20538 CN:SC
+@RG ID:ERR003762 PL:ILLUMINA LB:g1k-sc-NA20538-TOS-1 PI:2000 DS:SRP000540 SM:NA20538 CN:SC
+@RG ID:ERR003763 PL:ILLUMINA LB:g1k-sc-NA20538-TOS-1 PI:2000 DS:SRP000540 SM:NA20538 CN:SC
+@RG ID:ERR003764 PL:ILLUMINA LB:g1k-sc-NA20538-TOS-1 PI:2000 DS:SRP000540 SM:NA20538 CN:SC
+@RG ID:ERR003765 PL:ILLUMINA LB:g1k-sc-NA20538-TOS-1 PI:2000 DS:SRP000540 SM:NA20538 CN:SC
+@RG ID:ERR003766 PL:ILLUMINA LB:g1k-sc-NA20538-TOS-1 PI:2000 DS:SRP000540 SM:NA20538 CN:SC
+@RG ID:ERR003767 PL:ILLUMINA LB:g1k-sc-NA20538-TOS-1 PI:2000 DS:SRP000540 SM:NA20538 CN:SC
+@RG ID:ERR003811 PL:ILLUMINA LB:g1k-sc-NA20538-TOS-1 PI:2000 DS:SRP000540 SM:NA20538 CN:SC
+@RG ID:ERR003812 PL:ILLUMINA LB:g1k-sc-NA20538-TOS-1 PI:2000 DS:SRP000540 SM:NA20538 CN:SC
+@RG ID:ERR003813 PL:ILLUMINA LB:g1k-sc-NA20538-TOS-1 PI:2000 DS:SRP000540 SM:NA20538 CN:SC
+@RG ID:ERR003814 PL:ILLUMINA LB:g1k-sc-NA20538-TOS-1 PI:2000 DS:SRP000540 SM:NA20538 CN:SC
+@RG ID:ERR003815 PL:ILLUMINA LB:g1k-sc-NA20538-TOS-1 PI:2000 DS:SRP000540 SM:NA20538 CN:SC
+@RG ID:ERR003816 PL:ILLUMINA LB:g1k-sc-NA20538-TOS-1 PI:2000 DS:SRP000540 SM:NA20538 CN:SC
+@RG ID:ERR015472 PL:ILLUMINA LB:g1k-sc-NA20538-A PI:450 DS:SRP000540 SM:NA20538 CN:SC
+&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;div id="what-is-the-lane-id-lane-is-the-basic-independent-run-of-a-high--throughput-sequencing-machine.-for-illumina-machines-this-is-the-physical-sequencing-lane.-reads-from-one-lane-are-identified-by-the-same-read-group-id-and-the-information-about-lanes-can-be-found-in-the-header-in-lines-starting-with-rg." class="section level3">
+&lt;h3>What is the lane ID? (“Lane” is the basic independent run of a high- throughput sequencing machine. For Illumina machines, this is the physical sequencing lane. Reads from one lane are identified by the same read group ID and the information about lanes can be found in the header in lines starting with “&lt;span class="citation">@RG&lt;/span>”.)&lt;/h3>
+&lt;p>We suppose that the Lane ID in this case is the tag ID, which does not repeat. According to &lt;a href="https://gatk.broadinstitute.org/hc/en-us/articles/360035890671-Read-groups" class="uri">https://gatk.broadinstitute.org/hc/en-us/articles/360035890671-Read-groups&lt;/a>, there could be multiplexing in each lane, and for that reason i’m confused with the definition that all samples of a lane are represented by the same RG.&lt;/p>
+&lt;/div>
+&lt;div id="what-is-the-sequencing-platform" class="section level3">
+&lt;h3>What is the sequencing platform?&lt;/h3>
+&lt;p>Illumina, represented by the tag PL&lt;/p>
+&lt;blockquote>
+&lt;p>Hint: you want to use samtools. Files are huge so remember to pipe.
+samtools view -H NA20538.bam | less -S&lt;/p>
+&lt;/blockquote>
+&lt;/div>
+&lt;div id="what-version-of-the-human-assembly-was-used-to-perform-the-alignments" class="section level3">
+&lt;h3>What version of the human assembly was used to perform the alignments?&lt;/h3>
+&lt;p>&lt;strong>Ferro:&lt;/strong>&lt;/p>
+&lt;pre class="bash">&lt;code>samtools view -H NA20538.bam | head -n 2
+@HD VN:1.0 GO:none SO:coordinate
+@SQ SN:1 LN:249250621 AS:NCBI37 UR:ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/technical/reference/human_g1k_v37.fasta.gz M5:1b22b98cdeb4a9304cb5d48026a85128 SP:Human
+&lt;/code>&lt;/pre>
+&lt;p>In this example, we can see that the Reference Sequence Dictionary (&lt;span class="citation">@SQ&lt;/span>) has a part called, Genome Assembly Identifier (&lt;span class="citation">@AS&lt;/span>) that indicates that the reference genome used in this BAM file is the GRCh37 version.&lt;/p>
+&lt;/div>
+&lt;div id="what-programs-were-used-to-create-this-bam-file" class="section level3">
+&lt;h3>What programs were used to create this BAM file?&lt;/h3>
+&lt;p>&lt;code>samtools view -H NA20538.bam | less -S&lt;/code>&lt;/p>
+&lt;p>&lt;strong>Suazo:&lt;/strong>&lt;/p>
+&lt;pre class="bash">&lt;code>@PG ID:GATK IndelRealigner VN:1.0.4487 CL:SNPsFileForDebugging=null targetIntervals=/lustre/scratch105/projects/g1k/ref/broad_rec...
+@PG ID:GATK TableRecalibration VN:1.0.4487 CL:output_bam=null window_size_nqs=5 force_read_group=null smoothing=1 default_pla...
+&lt;/code>&lt;/pre>
+&lt;p>The Programs used were GATK IndelRealigner and GATK TableRecalibration&lt;/p>
+&lt;/div>
+&lt;div id="what-version-of-bwa-was-used-to-align-the-reads" class="section level3">
+&lt;h3>What version of bwa was used to align the reads?&lt;/h3>
+&lt;p>&lt;strong>Suazo:&lt;/strong>&lt;/p>
+&lt;pre class="bash">&lt;code>@PG ID:bwa VN:0.5.5&lt;/code>&lt;/pre>
+&lt;p>The version of bwa used was 0.5.5&lt;/p>
+&lt;/div>
+&lt;div id="what-is-the-name-of-the-first-read" class="section level3">
+&lt;h3>What is the name of the first read?&lt;/h3>
+&lt;p>&lt;strong>Suazo:&lt;/strong>&lt;/p>
+&lt;pre class="bash">&lt;code> samtools view NA20538.bam | grep -m 1 &amp;quot;^ERR&amp;quot; | awk &amp;#39;{print $1}&amp;#39;
+ERR003814.1408899&lt;/code>&lt;/pre>
+&lt;p>The name of the first read is ERR003814.1408899&lt;/p>
+&lt;/div>
+&lt;div id="what-position-does-the-alignment-of-the-read-start-at" class="section level3">
+&lt;h3>What position does the alignment of the read start at?&lt;/h3>
+&lt;p>&lt;code>samtools view NA20538.bam | less -S&lt;/code>&lt;/p>
+&lt;p>&lt;strong>Suazo:&lt;/strong>&lt;/p>
+&lt;pre class="bash">&lt;code>ERR003814.1408899 163 1 19999970 23 37M = 20000147 213 GGTGGGTGGATCACCTGAGATCGGGAGTTTGAGA&lt;/code>&lt;/pre>
+&lt;p>The position of the alignment of the read start at 19999970&lt;/p>
+&lt;/div>
+&lt;div id="what-is-the-mapping-quality-of-the-first-read" class="section level3">
+&lt;h3>What is the mapping quality of the first read?&lt;/h3>
+&lt;p>&lt;strong>Suazo:&lt;/strong>&lt;/p>
+&lt;pre class="bash">&lt;code>ERR003814.1408899 163 1 19999970 23 37M = 20000147 213 GGTGGGTGGATCACCTGAGATCGGGAGTTTGAGA&lt;/code>&lt;/pre>
+&lt;p>The mapping quality of the first read is 23&lt;/p>
+&lt;/div>
+&lt;/div>
+&lt;div id="practical-bcf" class="section level2">
+&lt;h2>Practical bcf&lt;/h2>
+&lt;blockquote>
+&lt;p>Now use file 1kg.bcf&lt;/p>
+&lt;/blockquote>
+&lt;div id="what-is-a-bcf" class="section level3">
+&lt;h3>What is a bcf?&lt;/h3>
+&lt;p>&lt;strong>Sofia:&lt;/strong> A bcf is like a vcf, but in binary, in which the fields are arranged for fast access. They store information about variants in read alignments.&lt;/p>
+&lt;/div>
+&lt;div id="can-you-convert-bcf-to-vcf-using-bcftools" class="section level3">
+&lt;h3>Can you convert bcf to vcf using bcftools?&lt;/h3>
+&lt;p>&lt;strong>Sofia&lt;/strong>: Yes, with a command in bcftools called view. View has an -O option which can be transformed into -Oz to transsform a bcf file into a compressed vcf; it also can be -Ov, which transforms a bcf file into a uncompressed vcf. For example:&lt;/p>
+&lt;pre class="bash">&lt;code>[sgamino@compute-00-05 format_qc]$ bcftools view -O v -o output.vcf 1kg.bcf &lt;/code>&lt;/pre>
+&lt;/div>
+&lt;div id="how-many-samples-are-in-the-bcf-hint-use-the--l-option." class="section level3">
+&lt;h3>How many samples are in the BCF? Hint: use the -l option.&lt;/h3>
+&lt;p>&lt;strong>Sofia&lt;/strong>:&lt;/p>
+&lt;pre class="bash">&lt;code>[sgamino@compute-00-05 format_qc]$ grep -v &amp;quot;#&amp;quot; output.vcf | wc -l
+10000&lt;/code>&lt;/pre>
+&lt;p>There are 10000 samples.&lt;/p>
+&lt;/div>
+&lt;div id="what-is-the-genotype-of-the-sample-hg00107-at-the-position-2024019472" class="section level3">
+&lt;h3>What is the genotype of the sample HG00107 at the position 20:24019472?&lt;/h3>
+&lt;blockquote>
+&lt;p>Hint: use the combination of -r, -s, and -f ‘[ %TGT]’ options.&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;strong>Sofia&lt;/strong>:&lt;/p>
+&lt;pre class="bash">&lt;code>[sgamino@compute-00-05 format_qc]$ awk &amp;#39;{for(i=1; i&amp;lt;=NF; i++) if ($i == &amp;quot;HG00107&amp;quot;) print i}&amp;#39; output.vcf
+19
+[sgamino@compute-00-05 format_qc]$ grep &amp;quot;24019472&amp;quot; output.vcf | awk &amp;#39;{print $19}&amp;#39;
+0/1:235,0,148:16
+&lt;/code>&lt;/pre>
+&lt;p>The genotype of the sample HG00107 in the locus 20:24019472 is a heterozygous, with the variant 1. The genotype is not phased, so we don’t know from which of the parents each allele comes from. But we can search this information if we have a vcf for the parents and then we use the tool &lt;em>isec&lt;/em> from &lt;strong>bcftools&lt;/strong> to do phasing parental.&lt;/p>
+&lt;p>Ref:&lt;a href="https://samtools.github.io/bcftools/bcftools.html" class="uri">https://samtools.github.io/bcftools/bcftools.html&lt;/a>&lt;/p>
+&lt;/div>
+&lt;div id="how-many-positions-there-are-with-more-than-10-alternate-alleles-see-the-infoac-tag.-hint-use-the--i-filtering-option." class="section level3">
+&lt;h3>How many positions there are with more than 10 alternate alleles? (See the INFO/AC tag.) Hint: use the -i filtering option.&lt;/h3>
+&lt;p>&lt;strong>Ferro:&lt;/strong>&lt;/p>
+&lt;pre class="bash">&lt;code>bcftools view -i &amp;#39;INFO/AC &amp;gt; 10&amp;#39; output.vcf &amp;gt; resultado.vcf
+less -S resultado.vcf | head -n 50 &amp;gt; header.vcf
+#CHROM POS ID REF ALT QUAL FILTER INFO FORMAT HG00096 HG00097 HG00099 HG00100 HG00101 HG00102 HG00103 HG00105 HG00106 HG00107 HG00108 HG00109 HG00110 HG00111 HG00
+20 23946710 . C T 999 . AN=98;AC=94;AC_Het=4;AC_Hom=90;AC_Hemi=0 GT:PL:DP 1/1:77,6,0:2 1/1:141,15,0:5 0/1:45,0,68:5 1/1:211,21,0
+20 23948049 . A G 999 . AN=98;AC=97;AC_Het=1;AC_Hom=96;AC_Hemi=0 GT:PL:DP 1/1:129,9,0:3 1/1:232,33,0:11 0/1:26,0,32:2 1/1:255,42,0
+20 23948593 . G A 999 . AN=96;AC=90;AC_Het=4;AC_Hom=86;AC_Hemi=0 GT:PL:DP 1/1:86,9,0:3 1/1:193,21,0:7 0/1:174,0,111:11 1/1:
+20 23949020 . A G 999 . AN=98;AC=93;AC_Het=5;AC_Hom=88;AC_Hemi=0 GT:PL:DP 1/1:255,21,0:7 1/1:255,33,0:11 0/1:178,0,60:8 1/1:255,33,0
+20 23949210 . A G 999 . AN=100;AC=95;AC_Het=5;AC_Hom=90;AC_Hemi=0 GT:PL:DP 1/1:109,12,0:4 1/1:255,42,0:14 0/1:54,0,67:4 1/1:255,45,0
+20 23949344 . A C 999 . AN=100;AC=100;AC_Het=0;AC_Hom=100;AC_Hemi=0 GT:PL:DP 1/1:186,15,0:5 1/1:255,36,0:12 1/1:139,12,0:4 1/1:237,30,0
+wc -l output.vcf
+10043 output.vcf
+wc -l resultado.vcf
+4822 resultado.vcf
+&lt;/code>&lt;/pre>
+&lt;p>Previously, we converted the file 1kg.bcf to output.vcf in order to display the information.
+With the help of the &lt;em>view&lt;/em> tool of &lt;strong>bcftools&lt;/strong> we use complement filler tags, i.e. we use INFO/AC to count how many positions there are with more than 10 alternative alleles. So we create an archive vcf with this positions, it calls &lt;em>resultado.vcf&lt;/em>.&lt;/p>
+&lt;p>We create the vcf called header.vcf to show an example of the contein of the archive resultado.vcf.&lt;/p>
+&lt;p>Finally we count the number of variants in the original vcf (output.vcf) and the filtered vcf (resultado.vcf) and we can see that the archive has 4822 variants that have an alternative allele frequency (AC) greater than 10, that is, they have at least 11 alternative alleles that are found in the population.&lt;/p>
+&lt;p>Ref:&lt;a href="https://samtools.github.io/bcftools/bcftools.html#view" class="uri">https://samtools.github.io/bcftools/bcftools.html#view&lt;/a>
+&lt;a href="https://samtools-github-io.translate.goog/bcftools/howtos/plugin.fill-tags.html?_x_tr_sl=en&amp;amp;_x_tr_tl=es&amp;amp;_x_tr_hl=es&amp;amp;_x_tr_pto=tc" class="uri">https://samtools-github-io.translate.goog/bcftools/howtos/plugin.fill-tags.html?_x_tr_sl=en&amp;amp;_x_tr_tl=es&amp;amp;_x_tr_hl=es&amp;amp;_x_tr_pto=tc&lt;/a>&lt;/p>
+&lt;/div>
+&lt;div id="list-all-positions-where-hg00107-has-a-non-reference-genotype-and-the-read-depth-is-bigger-than-10." class="section level3">
+&lt;h3>List all positions where HG00107 has a non-reference genotype and the read depth is bigger than 10.&lt;/h3>
+&lt;p>&lt;strong>Ferro:&lt;/strong>&lt;/p>
+&lt;pre class="bash">&lt;code>bcftools view -s HG00107 -i &amp;#39;GT!=&amp;quot;0/0&amp;quot; &amp;amp;&amp;amp; GT!=&amp;quot;./.&amp;quot; &amp;amp;&amp;amp; FORMAT/DP&amp;gt;10&amp;#39; input.vcf.gz | wc -l
+9820&lt;/code>&lt;/pre>
+&lt;p>What we did is use view to visualize our requested genotype (sample HG00107), then we asked for only the unfiltered genotypes with GT!=“0/0” &amp;amp;&amp;amp; GT!=“./.” and with FORMAT/DP&amp;gt;10 we made sure that we only have the variants that have a reading depth greater than 10 since we access the Format section where it contains the DP field that tells us the reading depth. And finally we counted the number of variants that meet these requirements in the vcf.&lt;/p>
+&lt;p>We obtained that there are 9820 variants that meet the requirements of non-referential genotype and reading depth greater than 10.&lt;/p>
+&lt;pre class="bash">&lt;code>bcftools view -s HG00107 -i &amp;#39;GT!=&amp;quot;0/0&amp;quot; &amp;amp;&amp;amp; GT!=&amp;quot;./.&amp;quot; &amp;amp;&amp;amp; FORMAT/DP&amp;gt;10 &amp;amp;&amp;amp; FORMAT/GQ&amp;gt;20&amp;#39; output.vcf | wc -l
+0&lt;/code>&lt;/pre>
+&lt;p>We wanted to be a little more strict in the filtering since we observed that when filtering and finding non-reference genotypes, some referential variants were still found, so we added GQ&amp;gt;20 to the previous command, which is Genotype Quality, to filter variants that have a score greater than 20 since it is considered that from 10 to 20, the called genotype is reasonably adequate, and thus we increase the precision of the filtering to obtain unreferenced genotypes.&lt;/p>
+&lt;p>But when running the command, we get a result of 0, and that could mean that by adding GQ we are making the filtering too strict, so we prefer to use a less strict filtering that gives us some referenced genotypes.&lt;/p>
+&lt;/div>
+&lt;/div>
+&lt;div id="practical-stats" class="section level2">
+&lt;h2>Practical stats&lt;/h2>
+&lt;blockquote>
+&lt;p>Using samtools stats answer&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;code>samtools stats NA20538.bam | grep ^SN&lt;/code>&lt;/p>
+&lt;div id="what-is-the-total-number-of-reads" class="section level3">
+&lt;h3>What is the total number of reads?&lt;/h3>
+&lt;p>&lt;strong>Suazo:&lt;/strong>&lt;/p>
+&lt;pre class="bash">&lt;code>SN raw total sequences: 347367 # excluding supplementary and secondary reads&lt;/code>&lt;/pre>
+&lt;/div>
+&lt;div id="what-proportion-of-the-reads-were-mapped" class="section level3">
+&lt;h3>What proportion of the reads were mapped?&lt;/h3>
+&lt;p>&lt;strong>Suazo:&lt;/strong>&lt;/p>
+&lt;pre class="bash">&lt;code>SN reads mapped: 323966&lt;/code>&lt;/pre>
+&lt;p>The proportion of the reads that were mapped is 323966/347367 = 0.932
+### How many reads were mapped to a different chromosome?&lt;/p>
+&lt;pre class="bash">&lt;code>SN pairs on different chromosomes: 4055&lt;/code>&lt;/pre>
+&lt;p>There were 4055 reads mapped to a different chromosome&lt;/p>
+&lt;/div>
+&lt;div id="what-is-the-insert-size-mean-and-standard-deviation" class="section level3">
+&lt;h3>What is the insert size mean and standard deviation?&lt;/h3>
+&lt;pre class="bash">&lt;code>SN insert size average: 190.3
+SN insert size standard deviation: 136.4&lt;/code>&lt;/pre>
+&lt;p>The insert size mean is 190.3 and the standard deviation is 136.4&lt;/p>
+&lt;/div>
+&lt;div id="hint-options--f-secondary" class="section level3">
+&lt;h3>Hint: options -F SECONDARY&lt;/h3>
+&lt;blockquote>
+&lt;p>Get used to combine these commands with basic linux commands (|, grep, less, head, etc.)&lt;/p>
+&lt;/blockquote>
+&lt;/div>
+&lt;/div></description></item></channel></rss>
