@@ -1,19 +1,17 @@
 ---
-title: "Calidad de los transcriptomas"
-description: Entregable 2.
-date: "2025-03-03"
-output:
-  html_document:
-    df_print: paged
-categories:
-- Activity
-- Bioinformatics
-- Project
-tags: RNAseq
-editor_options:
-  markdown:
-    wrap: sentence
+title: Calidad de transcriptoma
+description: Practical Activity
 slug: ale_tarea_06
+date: 2025-03-03
+image: cover.jpg
+categories:
+    - Activity
+    - Bioinformatics
+    - Basic
+tags:
+    - RNAseq
+    - Transcriptomica
+
 ---
 
 ## Descripcion del equipo
@@ -66,10 +64,7 @@ df$Type <- type
 rownames(df) <- NULL
 ```
 
-```{r, echo=FALSE}
-knitr::kable(df, options = list(pageLength = 5))
 
-```
 
 
 # Calidad de las secuencias de los datos crudos
