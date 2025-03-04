@@ -64,7 +64,9 @@ df$Type <- type
 rownames(df) <- NULL
 ```
 
-
+```{r, echo = FALSE}
+knitr::kable(df)
+```
 
 
 # Calidad de las secuencias de los datos crudos
