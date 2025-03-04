@@ -2,13 +2,14 @@
 title: "Calidad de los transcriptomas"
 description: Entregable 2.
 date: "2025-03-03"
-output: pdf_document
+output:
+  html_document:
+    df_print: paged
 categories:
 - Activity
 - Bioinformatics
 - Project
-tags:
-- RNAseq
+tags: RNAseq
 editor_options:
   markdown:
     wrap: sentence
@@ -44,7 +45,32 @@ slug: ale_tarea_06
 | Secuenciador Empleado | Illumina NextSeq 500 |
 | Profundidad de secuenciación de cada transcriptoma | 12M a 40M |
 | Tamaño de las lecturas | 75 bp |
-| Articulo Cientifico | Sarkar MK, Kaplan N, Tsoi LC, Xing X et al. Endogenous Glucocorticoid Deficiency in Psoriasis Promotes Inflammation and Abnormal Differentiation. J Invest Dermatol 2017 Jul;137(7):1474-1483. PMID: [28259685](https://pubmed.ncbi.nlm.nih.gov/28259685/) Los datos se pueden descargar desde [NCBI](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE120783) o usando [ENA](https://www.ebi.ac.uk/ena/browser/view/PRJNA494527?show=publications). |
+| Articulo Cientifico | Sarkar MK, Kaplan N, Tsoi LC, Xing X et al. Endogenous Glucocorticoid Deficiency in Psoriasis Promotes Inflammation and Abnormal Differentiation. J Invest Dermatol 2017 Jul;137(7):1474-1483. PMID: [28259685](https://pubmed.ncbi.nlm.nih.gov/28259685/) Los datos se pueden descargar desde [NCBI](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE120783) o usando [ENA](https://www.ebi.ac.uk/ena/browser/view/PRJNA494527?show=publications). 
+
+```{r,include=FALSE, echo=FALSE}
+library(DT)
+library(jsonlite)
+library(dplyr)
+df <- fromJSON("~/Downloads/filereport_read_run_PRJNA494527_json.json")
+json_text <- '[{"run_accession":"SRR7959189","sample_title":"aaF1","sample_alias":"GSM3415442"}, ...]'  # Aquí iría todo el JSON
+
+df <- df[order(df$sample_alias), ]
+
+Individuals <- c(1,2,3,4,5,6,7,8,9,10,12,13,14,15,16,17,18)
+Individuals <- rep(Individuals, each=2)
+df$Individuals <- Individuals
+type <- rep(c("Control", "GC"), 17)
+
+Dataset <- read.csv("/home/suaria/Documents/3Codon.github.io/content/post/ale_tarea_06/filereport_read_run_PRJNA494527_tsv-2.csv", header = TRUE, sep = ",")
+df$Type <- type
+rownames(df) <- NULL
+```
+
+```{r, echo=FALSE}
+knitr::kable(df, options = list(pageLength = 5))
+
+```
+
 
 # Calidad de las secuencias de los datos crudos
 
