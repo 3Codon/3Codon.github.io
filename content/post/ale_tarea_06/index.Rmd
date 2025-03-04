@@ -1,0 +1,47 @@
+---
+title: "Calidad de los transcriptomas"
+description: Entregable 2.
+date: "2025-03-03"
+output: pdf_document
+categories:
+- Activity
+- Bioinformatics
+- Project
+tags:
+- RNAseq
+editor_options:
+  markdown:
+    wrap: sentence
+slug: ale_tarea_06
+---
+
+## Descripcion del equipo
+
+-   **Equipo**: #1
+
+-   **Integrantes**:
+
+    -   Sofia Gamiño Estrada `sgamino`
+    -   Jorge Alfredo Suazo Victoria `jsuazo`
+    -   Emiliano Ferro Rodriguez `eferro`
+
+-   **Correo Electronico**:
+
+    -   [ghobibohg\@gmail.com](mailto:ghobibohg@gmail.com)
+    -   [emiferro\@comunidad.unam.mx](mailto:emiferro@comunidad.unam.mx)
+    -   [jasvpj\@gmail.com](mailto:jasvpj@gmail.com)
+
+## Descripcion de los datos
+
+| Descripción | Información |
+|------------------------------------|------------------------------------|
+| Bioproject | [PRJNA494527](https://www.ebi.ac.uk/ena/browser/view/PRJNA494527) |
+| Especie | *Homo Sapiens* |
+| Tipo de biblioteca | single-end |
+| Método de Seleccion | RNA-Total |
+| Número de transcriptomas | 34 |
+| Número de réplicas biológicas | 17 Replicas Biologicas por condicion ( Control y Firma génica inducida por glucocorticoides en la piel humana) |
+| Secuenciador Empleado | Illumina NextSeq 500 |
+| Profundidad de secuenciación de cada transcriptoma | 12M a 40M |
+| Tamaño de las lecturas | 75 bp |
+| Articulo Cientifico | Sarkar MK, Kaplan N, Tsoi LC, Xing X et al. Endogenous Glucocorticoid Deficiency in Psoriasis Promotes Inflammation and Abnormal Differentiation. J Invest Dermatol 2017 Jul;137(7):1474-1483. PMID: [28259685](https://pubmed.ncbi.nlm.nih.gov/28259685/) Los datos se pueden descargar desde [NCBI](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE120783) o usando [ENA](https://www.ebi.ac.uk/ena/browser/view/PRJNA494527?show=publications). |
