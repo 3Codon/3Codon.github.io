@@ -1,0 +1,580 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>RNAseq on 3Codon</title><link>https://3codon.github.io/tags/rnaseq/</link><description>Recent content in RNAseq on 3Codon</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 03 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://3codon.github.io/tags/rnaseq/index.xml" rel="self" type="application/rss+xml"/><item><title>Calidad de transcriptoma</title><link>https://3codon.github.io/p/ale_tarea_06/</link><pubDate>Mon, 03 Mar 2025 00:00:00 +0000</pubDate><guid>https://3codon.github.io/p/ale_tarea_06/</guid><description>&lt;img src="https://3codon.github.io/p/ale_tarea_06/cover.jpg" alt="Featured image of post Calidad de transcriptoma" />
+&lt;div id="descripcion-del-equipo" class="section level2">
+&lt;h2>Descripcion del equipo&lt;/h2>
+&lt;ul>
+&lt;li>&lt;p>&lt;strong>Equipo&lt;/strong>: #1&lt;/p>&lt;/li>
+&lt;li>&lt;p>&lt;strong>Integrantes&lt;/strong>:&lt;/p>
+&lt;ul>
+&lt;li>Sofia Gamiño Estrada &lt;code>sgamino&lt;/code>&lt;/li>
+&lt;li>Jorge Alfredo Suazo Victoria &lt;code>jsuazo&lt;/code>&lt;/li>
+&lt;li>Emiliano Ferro Rodriguez &lt;code>eferro&lt;/code>&lt;/li>
+&lt;/ul>&lt;/li>
+&lt;li>&lt;p>&lt;strong>Correo Electronico&lt;/strong>:&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="mailto:ghobibohg@gmail.com">ghobibohg@gmail.com&lt;/a>&lt;/li>
+&lt;li>&lt;a href="mailto:emiferro@comunidad.unam.mx">emiferro@comunidad.unam.mx&lt;/a>&lt;/li>
+&lt;li>&lt;a href="mailto:jasvpj@gmail.com">jasvpj@gmail.com&lt;/a>&lt;/li>
+&lt;/ul>&lt;/li>
+&lt;/ul>
+&lt;/div>
+&lt;div id="descripcion-de-los-datos" class="section level2">
+&lt;h2>Descripcion de los datos&lt;/h2>
+&lt;table>
+&lt;colgroup>
+&lt;col width="50%" />
+&lt;col width="50%" />
+&lt;/colgroup>
+&lt;thead>
+&lt;tr class="header">
+&lt;th>Descripción&lt;/th>
+&lt;th>Información&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr class="odd">
+&lt;td>Bioproject&lt;/td>
+&lt;td>&lt;a href="https://www.ebi.ac.uk/ena/browser/view/PRJNA494527">PRJNA494527&lt;/a>&lt;/td>
+&lt;/tr>
+&lt;tr class="even">
+&lt;td>Especie&lt;/td>
+&lt;td>&lt;em>Homo Sapiens&lt;/em>&lt;/td>
+&lt;/tr>
+&lt;tr class="odd">
+&lt;td>Tipo de biblioteca&lt;/td>
+&lt;td>single-end&lt;/td>
+&lt;/tr>
+&lt;tr class="even">
+&lt;td>Método de Seleccion&lt;/td>
+&lt;td>RNA-Total&lt;/td>
+&lt;/tr>
+&lt;tr class="odd">
+&lt;td>Número de transcriptomas&lt;/td>
+&lt;td>34&lt;/td>
+&lt;/tr>
+&lt;tr class="even">
+&lt;td>Número de réplicas biológicas&lt;/td>
+&lt;td>17 Replicas Biologicas por condicion ( Control y Firma génica inducida por glucocorticoides en la piel humana)&lt;/td>
+&lt;/tr>
+&lt;tr class="odd">
+&lt;td>Secuenciador Empleado&lt;/td>
+&lt;td>Illumina NextSeq 500&lt;/td>
+&lt;/tr>
+&lt;tr class="even">
+&lt;td>Profundidad de secuenciación de cada transcriptoma&lt;/td>
+&lt;td>12M a 40M&lt;/td>
+&lt;/tr>
+&lt;tr class="odd">
+&lt;td>Tamaño de las lecturas&lt;/td>
+&lt;td>75 bp&lt;/td>
+&lt;/tr>
+&lt;tr class="even">
+&lt;td>Articulo Cientifico&lt;/td>
+&lt;td>Sarkar MK, Kaplan N, Tsoi LC, Xing X et al. Endogenous Glucocorticoid Deficiency in Psoriasis Promotes Inflammation and Abnormal Differentiation. J Invest Dermatol 2017 Jul;137(7):1474-1483. PMID: &lt;a href="https://pubmed.ncbi.nlm.nih.gov/28259685/">28259685&lt;/a> Los datos se pueden descargar desde &lt;a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE120783">NCBI&lt;/a> o usando &lt;a href="https://www.ebi.ac.uk/ena/browser/view/PRJNA494527?show=publications">ENA&lt;/a>.&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;table>
+&lt;colgroup>
+&lt;col width="19%" />
+&lt;col width="35%" />
+&lt;col width="17%" />
+&lt;col width="16%" />
+&lt;col width="10%" />
+&lt;/colgroup>
+&lt;thead>
+&lt;tr class="header">
+&lt;th align="left">run_accession&lt;/th>
+&lt;th align="left">sample_title&lt;/th>
+&lt;th align="left">sample_alias&lt;/th>
+&lt;th align="right">Individuals&lt;/th>
+&lt;th align="left">Type&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr class="odd">
+&lt;td align="left">SRR7959189&lt;/td>
+&lt;td align="left">aaF1&lt;/td>
+&lt;td align="left">GSM3415442&lt;/td>
+&lt;td align="right">1&lt;/td>
+&lt;td align="left">Control&lt;/td>
+&lt;/tr>
+&lt;tr class="even">
+&lt;td align="left">SRR7959190&lt;/td>
+&lt;td align="left">aaF1_GC&lt;/td>
+&lt;td align="left">GSM3415443&lt;/td>
+&lt;td align="right">1&lt;/td>
+&lt;td align="left">GC&lt;/td>
+&lt;/tr>
+&lt;tr class="odd">
+&lt;td align="left">SRR7959191&lt;/td>
+&lt;td align="left">aaF2&lt;/td>
+&lt;td align="left">GSM3415444&lt;/td>
+&lt;td align="right">2&lt;/td>
+&lt;td align="left">Control&lt;/td>
+&lt;/tr>
+&lt;tr class="even">
+&lt;td align="left">SRR7959192&lt;/td>
+&lt;td align="left">aaF2_GC&lt;/td>
+&lt;td align="left">GSM3415445&lt;/td>
+&lt;td align="right">2&lt;/td>
+&lt;td align="left">GC&lt;/td>
+&lt;/tr>
+&lt;tr class="odd">
+&lt;td align="left">SRR7959193&lt;/td>
+&lt;td align="left">aaF3&lt;/td>
+&lt;td align="left">GSM3415446&lt;/td>
+&lt;td align="right">3&lt;/td>
+&lt;td align="left">Control&lt;/td>
+&lt;/tr>
+&lt;tr class="even">
+&lt;td align="left">SRR7959194&lt;/td>
+&lt;td align="left">aaF3_GC&lt;/td>
+&lt;td align="left">GSM3415447&lt;/td>
+&lt;td align="right">3&lt;/td>
+&lt;td align="left">GC&lt;/td>
+&lt;/tr>
+&lt;tr class="odd">
+&lt;td align="left">SRR7959195&lt;/td>
+&lt;td align="left">aaM1&lt;/td>
+&lt;td align="left">GSM3415448&lt;/td>
+&lt;td align="right">6&lt;/td>
+&lt;td align="left">Control&lt;/td>
+&lt;/tr>
+&lt;tr class="even">
+&lt;td align="left">SRR7959196&lt;/td>
+&lt;td align="left">aaM1_GC&lt;/td>
+&lt;td align="left">GSM3415449&lt;/td>
+&lt;td align="right">6&lt;/td>
+&lt;td align="left">GC&lt;/td>
+&lt;/tr>
+&lt;tr class="odd">
+&lt;td align="left">SRR7959197&lt;/td>
+&lt;td align="left">aaM2&lt;/td>
+&lt;td align="left">GSM3415450&lt;/td>
+&lt;td align="right">7&lt;/td>
+&lt;td align="left">Control&lt;/td>
+&lt;/tr>
+&lt;tr class="even">
+&lt;td align="left">SRR7959198&lt;/td>
+&lt;td align="left">aaM2_GC&lt;/td>
+&lt;td align="left">GSM3415451&lt;/td>
+&lt;td align="right">7&lt;/td>
+&lt;td align="left">GC&lt;/td>
+&lt;/tr>
+&lt;tr class="odd">
+&lt;td align="left">SRR7959199&lt;/td>
+&lt;td align="left">aaM3&lt;/td>
+&lt;td align="left">GSM3415452&lt;/td>
+&lt;td align="right">8&lt;/td>
+&lt;td align="left">Control&lt;/td>
+&lt;/tr>
+&lt;tr class="even">
+&lt;td align="left">SRR7959200&lt;/td>
+&lt;td align="left">aaM3_GC&lt;/td>
+&lt;td align="left">GSM3415453&lt;/td>
+&lt;td align="right">8&lt;/td>
+&lt;td align="left">GC&lt;/td>
+&lt;/tr>
+&lt;tr class="odd">
+&lt;td align="left">SRR7959201&lt;/td>
+&lt;td align="left">HS15&lt;/td>
+&lt;td align="left">GSM3415454&lt;/td>
+&lt;td align="right">4&lt;/td>
+&lt;td align="left">Control&lt;/td>
+&lt;/tr>
+&lt;tr class="even">
+&lt;td align="left">SRR7959202&lt;/td>
+&lt;td align="left">HS16&lt;/td>
+&lt;td align="left">GSM3415455&lt;/td>
+&lt;td align="right">4&lt;/td>
+&lt;td align="left">GC&lt;/td>
+&lt;/tr>
+&lt;tr class="odd">
+&lt;td align="left">SRR7959203&lt;/td>
+&lt;td align="left">HS17&lt;/td>
+&lt;td align="left">GSM3415456&lt;/td>
+&lt;td align="right">9&lt;/td>
+&lt;td align="left">Control&lt;/td>
+&lt;/tr>
+&lt;tr class="even">
+&lt;td align="left">SRR7959204&lt;/td>
+&lt;td align="left">HS18&lt;/td>
+&lt;td align="left">GSM3415457&lt;/td>
+&lt;td align="right">9&lt;/td>
+&lt;td align="left">GC&lt;/td>
+&lt;/tr>
+&lt;tr class="odd">
+&lt;td align="left">SRR7959205&lt;/td>
+&lt;td align="left">HS19&lt;/td>
+&lt;td align="left">GSM3415458&lt;/td>
+&lt;td align="right">5&lt;/td>
+&lt;td align="left">Control&lt;/td>
+&lt;/tr>
+&lt;tr class="even">
+&lt;td align="left">SRR7959206&lt;/td>
+&lt;td align="left">HS20&lt;/td>
+&lt;td align="left">GSM3415459&lt;/td>
+&lt;td align="right">5&lt;/td>
+&lt;td align="left">GC&lt;/td>
+&lt;/tr>
+&lt;tr class="odd">
+&lt;td align="left">SRR7959207&lt;/td>
+&lt;td align="left">HS1233_control_S10_R1_001&lt;/td>
+&lt;td align="left">GSM3415460&lt;/td>
+&lt;td align="right">10&lt;/td>
+&lt;td align="left">Control&lt;/td>
+&lt;/tr>
+&lt;tr class="even">
+&lt;td align="left">SRR7959208&lt;/td>
+&lt;td align="left">HS1233_Gc_S11_R1_001&lt;/td>
+&lt;td align="left">GSM3415461&lt;/td>
+&lt;td align="right">10&lt;/td>
+&lt;td align="left">GC&lt;/td>
+&lt;/tr>
+&lt;tr class="odd">
+&lt;td align="left">SRR7959209&lt;/td>
+&lt;td align="left">HS1583_control_S1_R1_001&lt;/td>
+&lt;td align="left">GSM3415462&lt;/td>
+&lt;td align="right">12&lt;/td>
+&lt;td align="left">Control&lt;/td>
+&lt;/tr>
+&lt;tr class="even">
+&lt;td align="left">SRR7959210&lt;/td>
+&lt;td align="left">HS1583_Gc_S2_R1_001&lt;/td>
+&lt;td align="left">GSM3415463&lt;/td>
+&lt;td align="right">12&lt;/td>
+&lt;td align="left">GC&lt;/td>
+&lt;/tr>
+&lt;tr class="odd">
+&lt;td align="left">SRR7959211&lt;/td>
+&lt;td align="left">HS1609_control_S12_R1_001&lt;/td>
+&lt;td align="left">GSM3415464&lt;/td>
+&lt;td align="right">13&lt;/td>
+&lt;td align="left">Control&lt;/td>
+&lt;/tr>
+&lt;tr class="even">
+&lt;td align="left">SRR7959212&lt;/td>
+&lt;td align="left">HS1609_GC_S13_R1_001&lt;/td>
+&lt;td align="left">GSM3415465&lt;/td>
+&lt;td align="right">13&lt;/td>
+&lt;td align="left">GC&lt;/td>
+&lt;/tr>
+&lt;tr class="odd">
+&lt;td align="left">SRR7959213&lt;/td>
+&lt;td align="left">HS1625_control_S3_R1_001&lt;/td>
+&lt;td align="left">GSM3415466&lt;/td>
+&lt;td align="right">14&lt;/td>
+&lt;td align="left">Control&lt;/td>
+&lt;/tr>
+&lt;tr class="even">
+&lt;td align="left">SRR7959214&lt;/td>
+&lt;td align="left">HS1625_Gc_S4_R1_001&lt;/td>
+&lt;td align="left">GSM3415467&lt;/td>
+&lt;td align="right">14&lt;/td>
+&lt;td align="left">GC&lt;/td>
+&lt;/tr>
+&lt;tr class="odd">
+&lt;td align="left">SRR7959215&lt;/td>
+&lt;td align="left">HS1659_control_S14_R1_001&lt;/td>
+&lt;td align="left">GSM3415468&lt;/td>
+&lt;td align="right">15&lt;/td>
+&lt;td align="left">Control&lt;/td>
+&lt;/tr>
+&lt;tr class="even">
+&lt;td align="left">SRR7959216&lt;/td>
+&lt;td align="left">HS1659_GC_S15_R1_001&lt;/td>
+&lt;td align="left">GSM3415469&lt;/td>
+&lt;td align="right">15&lt;/td>
+&lt;td align="left">GC&lt;/td>
+&lt;/tr>
+&lt;tr class="odd">
+&lt;td align="left">SRR7959217&lt;/td>
+&lt;td align="left">HS1660_control_S16_R1_001&lt;/td>
+&lt;td align="left">GSM3415470&lt;/td>
+&lt;td align="right">16&lt;/td>
+&lt;td align="left">Control&lt;/td>
+&lt;/tr>
+&lt;tr class="even">
+&lt;td align="left">SRR7959218&lt;/td>
+&lt;td align="left">HS1660_GC_S17_R1_001&lt;/td>
+&lt;td align="left">GSM3415471&lt;/td>
+&lt;td align="right">16&lt;/td>
+&lt;td align="left">GC&lt;/td>
+&lt;/tr>
+&lt;tr class="odd">
+&lt;td align="left">SRR7959219&lt;/td>
+&lt;td align="left">HS2100_control_S18_R1_001&lt;/td>
+&lt;td align="left">GSM3415472&lt;/td>
+&lt;td align="right">17&lt;/td>
+&lt;td align="left">Control&lt;/td>
+&lt;/tr>
+&lt;tr class="even">
+&lt;td align="left">SRR7959220&lt;/td>
+&lt;td align="left">HS2100_GC_S19_R1_001&lt;/td>
+&lt;td align="left">GSM3415473&lt;/td>
+&lt;td align="right">17&lt;/td>
+&lt;td align="left">GC&lt;/td>
+&lt;/tr>
+&lt;tr class="odd">
+&lt;td align="left">SRR7959221&lt;/td>
+&lt;td align="left">HS2191_GC_S8_R1_001&lt;/td>
+&lt;td align="left">GSM3415474&lt;/td>
+&lt;td align="right">18&lt;/td>
+&lt;td align="left">Control&lt;/td>
+&lt;/tr>
+&lt;tr class="even">
+&lt;td align="left">SRR7959222&lt;/td>
+&lt;td align="left">HS2191_control_S7_R1_001&lt;/td>
+&lt;td align="left">GSM3415475&lt;/td>
+&lt;td align="right">18&lt;/td>
+&lt;td align="left">GC&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;/div>
+&lt;div id="calidad-de-las-secuencias-de-los-datos-crudos" class="section level1">
+&lt;h1>Calidad de las secuencias de los datos crudos&lt;/h1>
+&lt;p>&lt;img src="images/clipboard-2901346883.png" />&lt;/p>
+&lt;div class="float">
+&lt;img src="images/clipboard-2945811438.png" alt="" />
+&lt;div class="figcaption">&lt;img src="images/clipboard-3296102419.png" />&lt;/div>
+&lt;/div>
+&lt;div class="float">
+&lt;img src="images/clipboard-2627870887.png" alt="" />
+&lt;div class="figcaption">&lt;img src="images/clipboard-4002289918.png" />&lt;/div>
+&lt;/div>
+&lt;div class="float">
+&lt;img src="images/clipboard-2104822047.png" alt="" />
+&lt;div class="figcaption">&lt;img src="images/clipboard-1393419541.png" />&lt;/div>
+&lt;/div>
+&lt;p>&lt;img src="images/clipboard-1673040211.png" />&lt;/p>
+&lt;div class="float">
+&lt;img src="images/clipboard-951062137.png" alt="" />
+&lt;div class="figcaption">&lt;img src="images/clipboard-1553742041.png" />&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;div id="conclusión-sobre-los-datos" class="section level1">
+&lt;h1>Conclusión sobre los datos&lt;/h1>
+&lt;div id="son-viables-para-continuar-el-análisis" class="section level2">
+&lt;h2>¿Son viables para continuar el análisis?&lt;/h2>
+&lt;p>No, los datos como están no son viables para continuar con el análisis ya que hay muchas secuencias duplicadas (adaptadores) que pueden interferir al momento de alinear, ya que si los dejamos así pueden llegar a alinear en muchos sitios.&lt;/p>
+&lt;p>Esto es evidente gracias a la alta cantidad de transcriptomas con un contenido de GC no adecuado, el hecho de que todos los fastq muestran una cantidad desbalanceada de bases por secuencia, las secuencias sobrerepresentadas en una cantidad alta y los niveles altos de duplicación.
+Todos estos son signos de que los archivos fastq estan crudos.&lt;/p>
+&lt;p>Algo importante a notar es el contenido de GC.
+Errores en este test pueden deberse a contaminaciones del tejido epitelial por virus o bacterias, lo cual no es nada raro en la piel humana.
+Es importante considerar esto, ya que en caso de que no mejore se tendría que volver a mandar a secuenciar pero ahora en condiciones esteriles y más estrictas.
+H&lt;/p>
+&lt;/div>
+&lt;div id="qué-pasos-deben-seguirse-para-mejorar-la-calidad-de-los-datos" class="section level2">
+&lt;h2>¿Qué pasos deben seguirse para mejorar la calidad de los datos?&lt;/h2>
+&lt;p>Aparte de los adaptadores en las reads, tenemos una calidad de transciptomas muy buena y con buena covertura, por lo cual la secuenciación fue sin problemas.&lt;/p>
+&lt;p>El principal problema que veo aparte de los adpatadores es checar que tanta contaminación tienen nuestras muestras con microorganismos, y que tanto pueden afectar la calidad de nuestras lecturas.
+En caso de que sea muy prevalente, sería bueno separar las lecturas entre las células epiteliales y los micro-organismos.&lt;/p>
+&lt;p>Entonces:&lt;/p>
+&lt;ol style="list-style-type: decimal">
+&lt;li>Hacer trimming de los adaptadores, cuidando que la longitud de nuestras reads se mantenga entre 50 y 60.&lt;/li>
+&lt;li>Volver a hacer un multiqc como este y volver a evaluar las calidades.&lt;/li>
+&lt;li>Checar si ha cambiado el contenido de GC. En caso de que no, seguir con los siguientes pasos.&lt;/li>
+&lt;li>Identificar la especie a la que pertenecen los transcritos contaminantes, y agruparlos para dejarlos fuera de nuestras lecturas.&lt;/li>
+&lt;li>Volver a hacer un multiqc, y repetir los pasos a partir del 3 en caso de ser necesario.&lt;/li>
+&lt;/ol>
+&lt;/div>
+&lt;/div></description></item><item><title>Eleccion de transcriptoma</title><link>https://3codon.github.io/p/ale_tarea_05/</link><pubDate>Thu, 27 Feb 2025 00:00:00 +0000</pubDate><guid>https://3codon.github.io/p/ale_tarea_05/</guid><description>
+&lt;p>Descripción del equipo:&lt;/p>
+&lt;div id="equipo-1" class="section level2">
+&lt;h2>Equipo: #1&lt;/h2>
+&lt;ul>
+&lt;li>Integrantes:&lt;/li>
+&lt;li>Emiliano Ferro Rodríguez (eferro)&lt;/li>
+&lt;li>Jorge Alfredo Suazo Victoria (jsuazo)&lt;/li>
+&lt;li>Sofia Gamino Estrada (sgamino)&lt;/li>
+&lt;/ul>
+&lt;/div>
+&lt;div id="correos-electrónicos-de-los-integrantes" class="section level2">
+&lt;h2>Correos electrónicos de los integrantes:&lt;/h2>
+&lt;ul>
+&lt;li>Ferro: &lt;a href="mailto:emiferro@comunidad.unam.mx">emiferro@comunidad.unam.mx&lt;/a>&lt;/li>
+&lt;li>Suazo: &lt;a href="mailto:jasvpj@gmail.com">jasvpj@gmail.com&lt;/a>&lt;/li>
+&lt;li>Sofia: &lt;a href="mailto:ghobibohg@gmail.com">ghobibohg@gmail.com&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>Descripción de los datos:&lt;/p>
+&lt;ul>
+&lt;li>&lt;p>Bioproject: &lt;a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE120783">PRJNA494527&lt;/a>&lt;/p>&lt;/li>
+&lt;li>&lt;p>Especie: &lt;em>Homo sapiens&lt;/em>&lt;/p>&lt;/li>
+&lt;li>&lt;p>Tipo de bibliotecas: Single-end&lt;/p>&lt;/li>
+&lt;li>&lt;p>Método de selección: Total RNA&lt;/p>&lt;/li>
+&lt;li>&lt;p>Número de transcriptomas: 34&lt;/p>&lt;/li>
+&lt;li>&lt;p>Número de réplicas biológicas: 17 replicas biológicas por condición (control y tratamiento)&lt;/p>&lt;/li>
+&lt;li>&lt;p>Secuenciador empleado: &lt;strong>Illumina NextSeq 500&lt;/strong>&lt;/p>&lt;/li>
+&lt;li>&lt;p>Distribución de las muestras: Control: 17 replicas de biopsias de piel de perforación de espesor completo (&lt;code>SRX4792843, SRX479284, - - SRX4792847, SRX4792849, SRX4792851, SRX4792853, SRX4792855, SRX4792857, SRX4792859, SRX4792861, SRX4792863, SRX4792865, SRX4792867, SRX4792869, SRX4792871, SRX4792873, SRX4792876&lt;/code>)&lt;/p>&lt;/li>
+&lt;li>&lt;p>Tratamiento: 17 muestras proviene de biopsias de piel tratadas con glucocorticoides (SRX4792844, SRX4792846, SRX4792848, SRX4792850, SRX4792852, SRX4792854, SRX4792856, SRX4792858, SRX4792860, SRX4792862, SRX4792864, SRX4792866, SRX4792868, SRX4792870, SRX4792872, SRX4792874, SRX4792875)&lt;/p>&lt;/li>
+&lt;li>&lt;p>Profundidad de secuenciación de cada transcriptoma:&lt;/p>&lt;/li>
+&lt;li>&lt;p>Control:&lt;/p>&lt;/li>
+&lt;/ul>
+&lt;table>
+&lt;thead>
+&lt;tr class="header">
+&lt;th>Muestra&lt;/th>
+&lt;th>Profundidad&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr class="odd">
+&lt;td>SRX4792843&lt;/td>
+&lt;td>21.3M&lt;/td>
+&lt;/tr>
+&lt;tr class="even">
+&lt;td>SRX479284&lt;/td>
+&lt;td>17.6M&lt;/td>
+&lt;/tr>
+&lt;tr class="odd">
+&lt;td>SRX4792847&lt;/td>
+&lt;td>27.3M&lt;/td>
+&lt;/tr>
+&lt;tr class="even">
+&lt;td>SRX4792849&lt;/td>
+&lt;td>25.1M&lt;/td>
+&lt;/tr>
+&lt;tr class="odd">
+&lt;td>SRX4792851&lt;/td>
+&lt;td>19M&lt;/td>
+&lt;/tr>
+&lt;tr class="even">
+&lt;td>SRX4792853&lt;/td>
+&lt;td>31.5M&lt;/td>
+&lt;/tr>
+&lt;tr class="odd">
+&lt;td>SRX4792855&lt;/td>
+&lt;td>12.6M&lt;/td>
+&lt;/tr>
+&lt;tr class="even">
+&lt;td>SRX4792857&lt;/td>
+&lt;td>12.2M&lt;/td>
+&lt;/tr>
+&lt;tr class="odd">
+&lt;td>SRX4792859&lt;/td>
+&lt;td>11.5M&lt;/td>
+&lt;/tr>
+&lt;tr class="even">
+&lt;td>SRX4792861&lt;/td>
+&lt;td>36.2M&lt;/td>
+&lt;/tr>
+&lt;tr class="odd">
+&lt;td>SRX4792863&lt;/td>
+&lt;td>26M&lt;/td>
+&lt;/tr>
+&lt;tr class="even">
+&lt;td>SRX4792865&lt;/td>
+&lt;td>24.7M&lt;/td>
+&lt;/tr>
+&lt;tr class="odd">
+&lt;td>SRX4792867&lt;/td>
+&lt;td>31.4M&lt;/td>
+&lt;/tr>
+&lt;tr class="even">
+&lt;td>SRX4792869&lt;/td>
+&lt;td>27M&lt;/td>
+&lt;/tr>
+&lt;tr class="odd">
+&lt;td>SRX4792871&lt;/td>
+&lt;td>27.2M&lt;/td>
+&lt;/tr>
+&lt;tr class="even">
+&lt;td>SRX4792873&lt;/td>
+&lt;td>28.9M&lt;/td>
+&lt;/tr>
+&lt;tr class="odd">
+&lt;td>SRX4792876&lt;/td>
+&lt;td>26.6M&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;ul>
+&lt;li>Tratamiento:&lt;/li>
+&lt;/ul>
+&lt;table>
+&lt;thead>
+&lt;tr class="header">
+&lt;th>Muestra&lt;/th>
+&lt;th>Profundidad&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr class="odd">
+&lt;td>SRX4792844&lt;/td>
+&lt;td>31.7M&lt;/td>
+&lt;/tr>
+&lt;tr class="even">
+&lt;td>SRX4792846&lt;/td>
+&lt;td>29.3M&lt;/td>
+&lt;/tr>
+&lt;tr class="odd">
+&lt;td>SRX4792848&lt;/td>
+&lt;td>20.9M&lt;/td>
+&lt;/tr>
+&lt;tr class="even">
+&lt;td>SRX4792850&lt;/td>
+&lt;td>40.7M&lt;/td>
+&lt;/tr>
+&lt;tr class="odd">
+&lt;td>SRX4792852&lt;/td>
+&lt;td>29.3M&lt;/td>
+&lt;/tr>
+&lt;tr class="even">
+&lt;td>SRX4792854&lt;/td>
+&lt;td>23.6M&lt;/td>
+&lt;/tr>
+&lt;tr class="odd">
+&lt;td>SRX4792856&lt;/td>
+&lt;td>12.5M&lt;/td>
+&lt;/tr>
+&lt;tr class="even">
+&lt;td>SRX4792858&lt;/td>
+&lt;td>13.5M&lt;/td>
+&lt;/tr>
+&lt;tr class="odd">
+&lt;td>SRX4792860&lt;/td>
+&lt;td>13.1M&lt;/td>
+&lt;/tr>
+&lt;tr class="even">
+&lt;td>SRX4792862&lt;/td>
+&lt;td>24.6M&lt;/td>
+&lt;/tr>
+&lt;tr class="odd">
+&lt;td>SRX4792864&lt;/td>
+&lt;td>27.3M&lt;/td>
+&lt;/tr>
+&lt;tr class="even">
+&lt;td>SRX4792866&lt;/td>
+&lt;td>29.4M&lt;/td>
+&lt;/tr>
+&lt;tr class="odd">
+&lt;td>SRX4792868&lt;/td>
+&lt;td>31.3M&lt;/td>
+&lt;/tr>
+&lt;tr class="even">
+&lt;td>SRX4792870&lt;/td>
+&lt;td>24.1M&lt;/td>
+&lt;/tr>
+&lt;tr class="odd">
+&lt;td>SRX4792872&lt;/td>
+&lt;td>23.5M&lt;/td>
+&lt;/tr>
+&lt;tr class="even">
+&lt;td>SRX4792874&lt;/td>
+&lt;td>24.6M&lt;/td>
+&lt;/tr>
+&lt;tr class="odd">
+&lt;td>SRX4792875&lt;/td>
+&lt;td>23.5M&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;ul>
+&lt;li>&lt;p>Tamaño de las lecturas: 75 pb&lt;/p>&lt;/li>
+&lt;li>&lt;p>Artículo científico: Sarkar MK, Kaplan N, Tsoi LC, Xing X et al.
+Endogenous Glucocorticoid Deficiency in Psoriasis Promotes Inflammation and Abnormal Differentiation.
+J Invest Dermatol 2017 Jul;137(7):1474-1483.
+PMID: &lt;a href="https://pubmed.ncbi.nlm.nih.gov/28259685/">28259685&lt;/a> Los datos se pueden descargar desde &lt;a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE120783">NCBI&lt;/a> o usando &lt;a href="https://www.ebi.ac.uk/ena/browser/view/PRJNA494527?show=publications">ENA&lt;/a>.&lt;/p>&lt;/li>
+&lt;/ul>
+&lt;/div></description></item></channel></rss>
