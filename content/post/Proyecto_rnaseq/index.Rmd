@@ -111,4 +111,11 @@ slug: Proyecto_rnaseq
 
 #  Buenas Prácticas de programación
 
+Nuestra carpeta de Nuestro proyecto tiene la siguiente organización:
+```{r}
+library(knitr)
+
+
+```
+
 
